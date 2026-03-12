@@ -82,8 +82,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// Disable body parsing for this route to handle video uploads
+export const dynamic = 'force-dynamic';
+export const maxDuration = 60;
