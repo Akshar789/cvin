@@ -5,13 +5,14 @@ import { eq, and } from 'drizzle-orm';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { slug } = await params;
     const [cv] = await db
       .select()
       .from(cvs)
-      .where(and(eq(cvs.publicSlug, params.slug), eq(cvs.isPublic, true)))
+      .where(and(eq(cvs.publicSlug, slug), eq(cvs.isPublic, true)))
       .limit(1);
 
     if (!cv) {
