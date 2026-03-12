@@ -1,0 +1,304 @@
+FULL BILINGUAL SYSTEM AUDIT & STABILIZATION (EN / AR)
+🎯 Objective
+
+We must analyze and stabilize the entire CV flow to eliminate:
+
+Language conflicts
+
+English showing inside Arabic view
+
+Arabic showing inside English view
+
+Mixed fields
+
+Incorrect fallback
+
+Auto-save overwriting wrong language
+
+Sync bugs
+
+Template preview mismatches
+
+The system must become:
+
+✔ Fully bilingual
+✔ Clean separation of EN & AR
+✔ No mixing
+✔ No fallback errors
+✔ High-performance
+✔ Enterprise-level stable
+
+Test account:
+Email: akshar.storestranform@gmail.com
+
+Password: akshar.storestranform@gmail.com
+
+🧠 PHASE 1 — DEFINE A SINGLE SOURCE OF TRUTH
+1️⃣ Language State Authority
+
+There must be ONE authoritative language source.
+
+Example:
+
+Global app state (Redux / Context / i18n)
+
+NOT local state per component
+
+NOT URL + localStorage mixed
+
+NOT duplicate states
+
+Every function must read from this single source.
+
+Before any sync, save, preview, or AI call:
+
+Log:
+
+Current language at execution time
+
+If mismatch occurs → fix state propagation.
+
+🗄 PHASE 2 — DATABASE STRUCTURE VALIDATION
+
+Every bilingual field must follow strict structure:
+
+field_name: {
+   en: "...",
+   ar: "..."
+}
+
+This must apply to:
+
+professional_summary
+
+headline
+
+job_title
+
+education[].institution
+
+education[].degree
+
+education[].field_of_study
+
+education[].description
+
+experience[].company
+
+experience[].job_title
+
+experience[].description
+
+target_job_domain
+
+location
+
+skills (if text-based)
+
+AI-generated content
+
+No flat strings allowed.
+
+No partial bilingual objects allowed.
+
+🔁 PHASE 3 — SAVE LOGIC STANDARDIZATION
+RULE:
+
+Whenever a field is saved:
+
+If currentLanguage === "en":
+
+Save value to field.en
+
+Auto-generate field.ar
+
+Save both
+
+If currentLanguage === "ar":
+
+Save value to field.ar
+
+Auto-generate field.en
+
+Save both
+
+No fallback.
+No OR logic.
+No merging.
+
+Never use:
+
+field.en || field.ar
+
+Never use:
+
+field[currentLanguage] || field.en
+
+That causes language bleed.
+
+🔄 PHASE 4 — RENDER LOGIC STANDARDIZATION
+
+When rendering:
+
+If language = EN → display .en
+If language = AR → display .ar
+
+If selected language content is empty:
+→ show empty
+→ do NOT fallback automatically
+
+Fallback causes mixing.
+
+🔁 PHASE 5 — AUTO-SAVE AUDIT
+
+Auto-save must:
+
+Update only current CV ID
+
+Update only active language field
+
+Not overwrite opposite language
+
+Not rewrite entire object
+
+Not flatten bilingual structure
+
+Ensure partial updates preserve both languages.
+
+🧩 PHASE 6 — SYNC FROM PROFILE / SYNC FROM CV
+
+When syncing:
+
+Detect current language
+
+Pull correct language object
+
+Update correct language only
+
+Never inject English into Arabic
+
+Never inject Arabic into English
+
+Repeater arrays must sync per index per language.
+
+🧠 PHASE 7 — AI GENERATION STABILITY
+
+AI generation must:
+
+Generate primary language
+
+Immediately generate secondary language
+
+Save both before UI update
+
+No scenario where only one language exists.
+
+Add retry mechanism if second language fails.
+
+🎨 PHASE 8 — TEMPLATE PREVIEW LANGUAGE
+
+When switching template:
+
+Do NOT regenerate content
+
+Do NOT retranslate
+
+Only change layout
+
+Always render using selected language key
+
+Preview must never default to English.
+
+📊 PHASE 9 — DASHBOARD CONSISTENCY
+
+Dashboard must:
+
+Fetch correct CV
+
+Not cache old language
+
+Not override template_id
+
+Not use previous session language
+
+Always use fresh data fetch.
+
+🧪 PHASE 10 — FULL TEST MATRIX
+
+Using test user:
+
+akshar.storestranform@gmail.com
+
+Test:
+
+Create CV fully in English.
+
+Switch to Arabic.
+
+Verify full Arabic content.
+
+Edit Arabic.
+
+Switch back to English.
+
+Verify English untouched.
+
+Sync profile in AR.
+
+Verify no English injection.
+
+Create new CV in Arabic.
+
+Switch to English.
+
+Verify English auto-generated.
+
+Refresh page.
+
+Logout → Login.
+
+Verify no language corruption.
+
+🚫 STRICT PROHIBITIONS
+
+No automatic fallback between languages.
+
+No OR-based value selection.
+
+No storing only active language.
+
+No flattening bilingual objects.
+
+No partial array overwrites.
+
+No silent translation failure.
+
+No mixing EN/AR keys.
+
+🏗 ARCHITECTURAL IMPROVEMENT (RECOMMENDED)
+
+Create centralized utility:
+
+getLocalizedField(fieldObject, currentLanguage)
+setLocalizedField(fieldObject, currentLanguage, value)
+
+Use everywhere.
+Do NOT manually access .en or .ar in random places.
+
+✅ FINAL EXPECTED RESULT
+
+After stabilization:
+
+✔ Language switching is instant & clean
+✔ No English inside Arabic view
+✔ No Arabic inside English view
+✔ No mixed repeater entries
+✔ No fallback corruption
+✔ No auto-save language overwrite
+✔ AI bilingual generation reliable
+✔ High-end performance
+✔ Production-ready bilingual architecture
+
+This is a full bilingual system hardening task, not a small patch.
+
+The system must behave like a professional multilingual SaaS platform — clean, deterministic, and conflict-free.

@@ -1,0 +1,112 @@
+Update Education Summary AI Logic (Critical Fix)
+
+Currently, while creating a resume, we ask the user for an Education Summary, and the AI generates a very long paragraph.
+
+This is not professional.
+
+Additionally:
+
+Many CV templates do not support long education summaries
+
+The generated text looks excessive and unstructured
+
+It breaks layout in several templates
+
+It does not feel clean or premium
+
+✅ Required Changes
+1️⃣ Education Summary Length Restriction
+
+Update the AI prompt so that:
+
+It generates ONLY one single professional line
+
+Maximum 15–20 words
+
+No paragraph
+
+No bullet points
+
+No multi-line content
+
+No storytelling
+
+No repetition
+
+Example format:
+
+Bachelor of Computer Science with focus on software development and web technologies.
+
+NOT:
+
+Multiple sentences
+
+Academic journey explanation
+
+Project details
+
+Long descriptions
+
+2️⃣ Smart Template Compatibility (Global)
+
+This must work across:
+
+All 20+ templates
+
+Free and premium templates
+
+LTR and RTL
+
+English and Arabic
+
+Education summary must:
+
+Fit in single-line layouts
+
+Not break sidebars
+
+Not overflow in compact templates
+
+Work in sidebar and main-column templates
+
+3️⃣ Proper Language Handling (Very Important)
+
+Translation must be:
+
+Clean and accurate
+
+Context-aware
+
+Not literal word-by-word translation
+
+Natural in Arabic
+
+Natural in English
+
+If user creates in English:
+→ Arabic version must be professionally translated and saved
+
+If user creates in Arabic:
+→ English version must be professionally translated and saved
+
+No broken grammar
+No mixed language
+No untranslated fragments
+
+4️⃣ Update AI Prompt to Something Like:
+
+Generate a concise, professional one-line education summary.
+Maximum 20 words.
+Do not create a paragraph.
+Do not add extra explanation.
+Keep it clean and suitable for modern CV templates.
+Language: {selected_language}
+
+🎯 Expected Final Result
+
+✔ One-line education summary
+✔ Clean and professional tone
+✔ No layout breaking
+✔ Fully compatible with all templates
+✔ Perfect bilingual support
+✔ High-end SaaS-level polish

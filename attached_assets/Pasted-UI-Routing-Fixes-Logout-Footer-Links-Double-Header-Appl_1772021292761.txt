@@ -1,0 +1,143 @@
+UI + Routing Fixes (Logout, Footer Links, Double Header)
+
+Apply the following fixes exactly.
+
+1️⃣ Fix Logout Dropdown Background Overflow
+Issue:
+
+Logout dropdown background is crossing its container boundary.
+
+It looks broken and extends outside the dropdown box.
+
+Required Fix:
+
+Constrain dropdown within its parent container.
+
+Fix overflow and positioning.
+
+Ensure:
+
+Proper border-radius
+
+No background bleeding
+
+No z-index issues
+
+Clean shadow
+
+Fully responsive
+
+Test on mobile + desktop.
+
+Result:
+✔ Logout stays inside dropdown box
+✔ No visual overflow
+✔ Clean boundary
+
+2️⃣ Fix Footer Links (Currently 404)
+
+Current footer links:
+
+Privacy Policy
+
+Terms of Service
+
+About Us
+
+Contact
+
+These are going to 404.
+
+We already have working routes:
+
+/legal/terms-of-use
+
+/legal/privacy-policy
+
+/legal/ai-disclosure
+
+Required Changes:
+Update Footer Links:
+
+Privacy Policy → /legal/privacy-policy
+
+Terms of Service → /legal/terms-of-use
+
+Add new link below Terms:
+
+AI Disclosure → /legal/ai-disclosure
+
+About Us & Contact:
+
+If pages exist:
+
+Link properly to correct routes.
+
+If routes exist under different paths:
+
+Map correctly.
+
+Do NOT leave any footer link pointing to 404.
+
+3️⃣ Add AI Disclosure to Footer
+
+Under LEGAL section:
+
+Order should be:
+
+Privacy Policy
+
+Terms of Service
+
+AI Disclosure
+
+Make sure it:
+
+Matches styling
+
+Matches spacing
+
+Works on mobile
+
+RTL compatible
+
+4️⃣ Remove Double Header (Entire Website)
+
+There is a double header appearing on some pages.
+
+Required:
+
+Remove duplicate header globally.
+
+Ensure only ONE main navbar/header exists.
+
+Do not break layout.
+
+Do not remove functional header.
+
+Check all layouts (legal pages, dashboard, marketing pages).
+
+After fix:
+✔ Only single header visible everywhere
+✔ No duplicate navigation bar
+✔ Layout consistent
+
+5️⃣ Final Checklist
+
+No 404 links in footer
+
+Logout dropdown visually correct
+
+AI Disclosure link added
+
+Double header removed everywhere
+
+Mobile tested
+
+RTL tested
+
+No console errors
+
+This is a layout + routing cleanup task.
+
+Implement cleanly without breaking existing functionality.

@@ -1,0 +1,150 @@
+Dashboard Hero Section – Final Fix & Animation Upgrade
+
+Apply the following changes exactly as described.
+
+1️⃣ Remove Extra Quote After Greeting
+
+Currently it shows:
+
+Good Afternoon’ Kairav
+
+❌ Remove the extra quote character after “Afternoon”.
+
+Correct format must be:
+
+Good Afternoon, Kairav
+
+No special characters.
+Clean comma formatting only.
+
+2️⃣ Keep “Welcome Back” Text
+
+Do NOT remove the “Welcome back” line.
+
+Final structure should be:
+
+Welcome back
+Good Afternoon, Kairav
+[Typing animated text below]
+
+Maintain clean hierarchy:
+
+“Welcome back” small label
+
+Greeting large bold heading
+
+3️⃣ Fix Sun Icon Animation (Must Not Be Static)
+
+The sun icon is currently static.
+
+❌ Do NOT use static SVG.
+❌ Do NOT use emoji.
+
+Required:
+
+Make the icon animated:
+
+Morning:
+
+Slow rotation animation (very subtle)
+
+Soft glow pulse effect
+
+Afternoon:
+
+Gentle floating animation
+
+Evening/Night:
+
+Slow glow + slight movement
+
+Animation must:
+
+Be smooth
+
+Be subtle
+
+Not distracting
+
+Match premium SaaS feel
+
+Use CSS keyframes or lightweight animation
+
+No heavy JS animation libraries
+
+4️⃣ Animate Hero Background
+
+Currently background is static dark gradient.
+
+We want:
+
+Subtle animated gradient movement
+OR
+
+Soft moving light blobs (like homepage hero)
+OR
+
+Very slow gradient shift animation
+
+Requirements:
+
+Extremely subtle (not flashy)
+
+Premium look
+
+Smooth transition
+
+No performance issues
+
+Must work on mobile smoothly
+
+Use CSS animation (not heavy JS).
+
+5️⃣ Maintain Typing Animation Below Greeting
+
+Typing animation must:
+
+Match homepage cursor style
+
+Same speed
+
+Same blinking cursor
+
+No layout shift
+
+6️⃣ Final Hero Structure Should Be
+
+[Animated Background]
+
+Welcome back
+Good Afternoon, Kairav
+[Typing Animated Text]
+
+[Stats Cards Below]
+
+🚫 Do NOT
+
+Do not remove Welcome back
+
+Do not use emoji
+
+Do not use static icons
+
+Do not use harsh animation
+
+Do not break mobile layout
+
+Do not add unnecessary elements
+
+✅ Final Expected Result
+
+✔ No extra quote character
+✔ Clean greeting format
+✔ Welcome back visible
+✔ Animated sun icon (not static)
+✔ Subtle animated hero background
+✔ Smooth typing animation
+✔ Premium AI SaaS feel
+✔ Fully responsive
+
+Focus on polish and smoothness — this is a high-end dashboard hero section.

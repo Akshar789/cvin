@@ -1,0 +1,176 @@
+Critical Fixes – Dashboard Template Sync + Smart Template Security Lock
+1️⃣ Dashboard Not Updating Template (Cache / State Issue)
+❌ Problem
+
+When:
+
+I create 2 CVs
+
+Go to Edit page
+
+Change template
+
+Wait for data to save
+
+Go back to Dashboard
+
+Dashboard still shows old template.
+
+Only after hard refresh (Ctrl + F5) it updates.
+
+This means:
+
+Dashboard is using stale state
+
+Or client cache not invalidated
+
+Or CV list not re-fetching after template update
+
+✅ Required Fix
+
+Dashboard must:
+
+Always fetch fresh CV data when:
+
+Page loads
+
+Navigating back from edit page
+
+Do NOT rely on cached state
+
+Do NOT rely only on local state
+
+Invalidate CV list after template change
+
+Re-fetch from database
+
+When template_id changes:
+
+Update CV record properly
+
+Ensure dashboard shows latest template immediately
+
+No hard refresh required
+
+🔍 Validate:
+
+Test:
+
+Create CV A
+
+Change template
+
+Navigate back to dashboard
+
+Template must update instantly
+
+No manual refresh required
+
+2️⃣ Smart Template Step – FULL PAGE SECURITY LOCK
+
+Previously we restricted:
+
+Right-click
+
+Inspect shortcuts
+
+Copy
+
+Drag
+
+But only inside preview container.
+
+Now requirement:
+
+🚨 Apply restriction to ENTIRE SMART TEMPLATE STEP PAGE
+
+For this step only:
+
+Disable:
+
+Right-click (context menu)
+
+F12
+
+Ctrl + Shift + I
+
+Ctrl + Shift + C
+
+Ctrl + U
+
+Ctrl + S
+
+Copy (Ctrl + C)
+
+Select text
+
+Drag images
+
+Developer tools shortcuts
+
+Apply only when:
+
+User is on Smart Template Step.
+
+Do NOT apply globally to whole site.
+
+🔐 Additional Requirement
+
+For Premium Template Preview:
+
+Blur must NOT be removable by DOM editing
+
+Lock overlay must not be removable easily
+
+Prevent user from selecting underlying content
+
+Prevent text copy
+
+Prevent print
+
+Prevent download via inspect
+
+If user attempts:
+
+Show subtle warning toast
+
+⚠️ Important Notes
+
+Do not break accessibility
+
+Do not break mobile usability
+
+Do not crash page
+
+Apply only in Smart Template step route
+
+Remove restrictions when leaving that step
+
+✅ Final Expected Result
+
+After fix:
+
+✔ Dashboard instantly shows correct template without hard refresh
+✔ No stale state
+✔ Smart Template step fully protected
+✔ No inspect removal of blur
+✔ No copy
+✔ No right-click
+✔ No devtools shortcuts
+✔ Premium content secure
+✔ Free content unaffected
+✔ System remains stable
+
+This is:
+
+State management fix
+Cache invalidation fix
+Security hardening for premium preview
+
+Implement carefully and test with:
+
+akshar.storestranform@gmail.com
+
+Password: akshar.storestranform@gmail.com
+
+Focus on robustness and preventing loopholes.

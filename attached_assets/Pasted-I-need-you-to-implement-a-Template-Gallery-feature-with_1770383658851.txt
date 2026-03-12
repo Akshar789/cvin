@@ -1,0 +1,466 @@
+I need you to implement a Template Gallery feature with Preview Modal functionality in my CVPro Next.js application. This feature has been built and tested locally, and I need to replicate it exactly in Replit.
+
+### OVERVIEW
+Add a new template gallery page where users can:
+1. Browse all 15 CV templates in a responsive 3-column grid
+2. Filter templates by All/Free/Premium
+3. Hover over templates to see a "Preview Template" button
+4. Click to open a full-screen modal showing the template at actual size
+5. Select templates with proper premium access control
+6. Experience full bilingual support (English/Arabic) with RTL layout
+
+### TASK 1: Add "Browse Templates" Button to Homepage
+
+**File:** `components/landing/Hero.tsx`
+
+**Action:** Add a new button after the login/register buttons and before the "No credit card required" text.
+
+**Code to add:**
+```tsx
+{/* New Template Gallery Button */}
+<div className="flex justify-center mb-4">
+  <Link href="/template-gallery">
+    <Button 
+      size="lg" 
+      className="text-base px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+    >
+      {t.hero.browseTemplates || 'Browse Templates'} 🎨
+    </Button>
+  </Link>
+</div>
+```
+
+**Position:** Place this div right after the existing flex container with login/register buttons, before the paragraph with "No credit card required" text.
+
+### TASK 2: Add Translation Keys
+
+**File:** `lib/i18n/translations.ts`
+
+**Action:** Add the `browseTemplates` key to both English and Arabic translations.
+
+**In English section (en.hero):**
+```typescript
+hero: {
+  // ... existing keys
+  browseTemplates: 'Browse Templates',
+}
+```
+
+**In Arabic section (ar.hero):**
+```typescript
+hero: {
+  // ... existing keys
+  browseTemplates: 'تصفح القوالب',
+}
+```
+
+### TASK 3: Update Template Configuration
+
+**File:** `config/templates.ts`
+
+**Action:** Add 5 new template configurations to the `TEMPLATE_FAMILIES` array.
+
+**Add these templates at the end of the TEMPLATE_FAMILIES array:**
+
+```typescript
+{
+  id: 'smart',
+  name: 'Smart',
+  nameAr: 'ذكي',
+  description: 'Modern template with colored header and clean sections. Perfect for tech professionals and modern industries.',
+  descriptionAr: 'قالب عصري مع رأس ملون وأقسام نظيفة. مثالي للمحترفين التقنيين والصناعات الحديثة.',
+  isPremium: false,
+  features: ['Colored Header', 'Clean Sections', 'Modern Design', 'ATS-Friendly'],
+  featuresAr: ['رأس ملون', 'أقسام نظيفة', 'تصميم عصري', 'متوافق مع ATS'],
+  previewType: 'modern',
+  supportedColorThemes: ['blue', 'teal', 'green', 'purple'],
+  layout: {
+    type: 'single-column',
+    columns: 1,
+    photoPosition: 'none',
+  },
+  cssStyles: {
+    fontFamily: '"Segoe UI", Roboto, Arial, sans-serif',
+    fontSize: '10pt',
+    lineHeight: '1.5',
+  },
+},
+{
+  id: 'strong',
+  name: 'Strong',
+  nameAr: 'قوي',
+  description: 'Bold and powerful template with strong typography and left border accent. Ideal for leadership positions.',
+  descriptionAr: 'قالب جريء وقوي مع طباعة قوية وحد أيسر مميز. مثالي للمناصب القيادية.',
+  isPremium: false,
+  features: ['Bold Typography', 'Strong Design', 'Leadership Focus', 'Professional'],
+  featuresAr: ['طباعة جريئة', 'تصميم قوي', 'تركيز قيادي', 'احترافي'],
+  previewType: 'modern',
+  supportedColorThemes: ['blue', 'gray', 'gold'],
+  layout: {
+    type: 'single-column',
+    columns: 1,
+    photoPosition: 'none',
+  },
+  cssStyles: {
+    fontFamily: 'Arial, Helvetica, sans-serif',
+    fontSize: '10pt',
+    lineHeight: '1.5',
+  },
+},
+{
+  id: 'elegant',
+  name: 'Elegant',
+  nameAr: 'أنيق',
+  description: 'Sophisticated template with centered layout and elegant typography. Perfect for creative and executive roles.',
+  descriptionAr: 'قالب متطور مع تخطيط مركزي وطباعة أنيقة. مثالي للأدوار الإبداعية والتنفيذية.',
+  isPremium: false,
+  features: ['Centered Layout', 'Elegant Typography', 'Sophisticated', 'Creative'],
+  featuresAr: ['تخطيط مركزي', 'طباعة أنيقة', 'متطور', 'إبداعي'],
+  previewType: 'creative',
+  supportedColorThemes: ['purple', 'blue', 'gold', 'gray'],
+  layout: {
+    type: 'centered',
+    columns: 1,
+    photoPosition: 'none',
+  },
+  cssStyles: {
+    fontFamily: '"Playfair Display", Georgia, serif',
+    fontSize: '10pt',
+    lineHeight: '1.5',
+  },
+},
+{
+  id: 'compact',
+  name: 'Compact',
+  nameAr: 'مضغوط',
+  description: 'Space-efficient template that fits more content on one page. Ideal for experienced professionals with extensive backgrounds.',
+  descriptionAr: 'قالب موفر للمساحة يتسع لمزيد من المحتوى في صفحة واحدة. مثالي للمحترفين ذوي الخبرة الواسعة.',
+  isPremium: false,
+  features: ['Space Efficient', 'Compact Design', 'More Content', 'Professional'],
+  featuresAr: ['موفر للمساحة', 'تصميم مضغوط', 'محتوى أكثر', 'احترافي'],
+  previewType: 'ats',
+  supportedColorThemes: ['green', 'blue', 'gray'],
+  layout: {
+    type: 'single-column',
+    columns: 1,
+    photoPosition: 'none',
+  },
+  cssStyles: {
+    fontFamily: 'Calibri, Arial, sans-serif',
+    fontSize: '9pt',
+    lineHeight: '1.4',
+  },
+},
+{
+  id: 'two-column-pro',
+  name: 'Two Column Pro',
+  nameAr: 'عمودين برو',
+  description: 'Professional two-column layout with colored header and sidebar. Experience on left, education and skills on right.',
+  descriptionAr: 'تخطيط احترافي بعمودين مع رأس ملون وشريط جانبي. الخبرة على اليسار، التعليم والمهارات على اليمين.',
+  isPremium: false,
+  features: ['Two Columns', 'Colored Header', 'Sidebar Layout', 'Professional'],
+  featuresAr: ['عمودين', 'رأس ملون', 'تخطيط شريط جانبي', 'احترافي'],
+  previewType: 'modern',
+  supportedColorThemes: ['blue', 'green', 'purple', 'teal'],
+  layout: {
+    type: 'two-column',
+    columns: 2,
+    photoPosition: 'none',
+  },
+  cssStyles: {
+    fontFamily: 'Arial, Helvetica, sans-serif',
+    fontSize: '10pt',
+    lineHeight: '1.5',
+  },
+},
+```
+
+
+### TASK 4: Create New Template Components
+
+You need to create 5 new template component files. These templates already exist in the codebase, so you should copy them from the existing files.
+
+**Files to verify/create in `components/templates/`:**
+1. `SmartTemplate.tsx`
+2. `StrongTemplate.tsx`
+3. `ElegantTemplate.tsx`
+4. `CompactTemplate.tsx`
+5. `TwoColumnProTemplate.tsx`
+
+**Note:** These template files should already exist in your codebase. If they don't, please let me know and I'll provide the complete code for each.
+
+### TASK 5: Create Template Gallery Page
+
+**File:** `app/template-gallery/page.tsx` (NEW FILE)
+
+**Action:** Create this complete file with the following functionality:
+
+**IMPORTANT REQUIREMENTS:**
+1. Import ALL 15 template components (10 existing + 5 new)
+2. Create sample CV data for template previews
+3. Implement `renderTemplatePreview()` function that maps template IDs to components
+4. Create responsive 3-column grid (mobile: 1, tablet: 2, desktop: 3)
+5. Add filter buttons (All/Free/Premium)
+6. Implement hover state to show "Preview Template" button
+7. Create full-screen modal that opens when preview button is clicked
+8. Modal should display template at actual A4 size (210mm x 297mm)
+9. Modal should have sticky header with "Use This Template" button and close (X) button
+10. Click outside modal or X button should close it
+11. Full bilingual support with RTL layout for Arabic
+12. Premium access control (free users see upgrade prompt on premium templates)
+
+**Key Features to Implement:**
+
+**State Management:**
+```typescript
+const [filterType, setFilterType] = useState<'all' | 'free' | 'premium'>('all');
+const [previewTemplate, setPreviewTemplate] = useState<string | null>(null);
+const [hoveredTemplate, setHoveredTemplate] = useState<string | null>(null);
+```
+
+**Template Preview Scaling:**
+```typescript
+style={{ 
+  width: '210mm',
+  height: '297mm',
+  transform: 'scale(0.35)',
+  transformOrigin: 'top center',
+}}
+```
+
+**Grid Layout:**
+```typescript
+className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+```
+
+**Hover Preview Button:**
+```typescript
+{hoveredTemplate === template.id && (
+  <div className="absolute inset-0 bg-black/40 z-25 flex items-center justify-center transition-all">
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        setPreviewTemplate(template.id);
+      }}
+      className="px-6 py-3 bg-white text-gray-900 font-bold rounded-xl hover:bg-gray-100 transition-all shadow-2xl flex items-center gap-2"
+    >
+      <FiSearch className="w-5 h-5" />
+      {isRTL ? 'معاينة القالب' : 'Preview Template'}
+    </button>
+  </div>
+)}
+```
+
+**Full-Screen Modal:**
+```typescript
+{previewTemplate && (
+  <div 
+    className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+    onClick={() => setPreviewTemplate(null)}
+  >
+    <div 
+      className="relative bg-white rounded-2xl shadow-2xl max-w-[95vw] max-h-[95vh] overflow-hidden"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Sticky Header */}
+      <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+        {/* Template name and buttons */}
+      </div>
+      
+      {/* Scrollable Content */}
+      <div className="overflow-auto bg-gray-100 p-8" style={{ maxHeight: 'calc(95vh - 80px)' }}>
+        <div className="flex justify-center">
+          <div className="bg-white shadow-2xl" style={{ width: '210mm', minHeight: '297mm' }}>
+            {renderTemplatePreview(previewTemplate, isRTL)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+```
+
+**Sample Data Structure:**
+```typescript
+const sampleData = {
+  title: 'Professional CV',
+  personalInfo: {
+    name: 'Sarah Johnson',
+    email: 'sarah.johnson@email.com',
+    phone: '+1 (555) 123-4567',
+    location: 'San Francisco, CA',
+    linkedin: 'linkedin.com/in/sarahjohnson',
+    photo: '',
+  },
+  summary: 'Results-driven Senior Product Manager with 8+ years of experience...',
+  experience: [
+    {
+      company: 'TechCorp Solutions',
+      position: 'Senior Product Manager',
+      location: 'San Francisco, CA',
+      startDate: '2020',
+      endDate: 'Present',
+      description: 'Leading product strategy...',
+      achievements: [
+        'Increased user engagement by 45%',
+        'Led cross-functional team of 12',
+        'Drove $2M ARR growth',
+      ],
+    },
+    // Add 1-2 more experiences
+  ],
+  education: [
+    {
+      institution: 'Stanford University',
+      degree: 'Master of Business Administration',
+      field: 'Technology Management',
+      startDate: '2016',
+      endDate: '2018',
+      description: 'Focus on Product Management',
+    },
+    // Add 1 more education
+  ],
+  skills: [
+    {
+      category: 'Product Management',
+      skillsList: ['Product Strategy', 'Roadmap Planning', 'User Research', 'A/B Testing'],
+    },
+    {
+      category: 'Technical Skills',
+      skillsList: ['SQL', 'Analytics', 'Agile/Scrum', 'JIRA'],
+    },
+    {
+      category: 'Leadership',
+      skillsList: ['Team Management', 'Stakeholder Communication', 'Strategic Planning'],
+    },
+  ],
+};
+```
+
+**Template Renderer Function:**
+```typescript
+const renderTemplatePreview = (templateId: string, isRTL: boolean = false) => {
+  const defaultSettings = {
+    primaryColor: '#1e40af',
+    accentColor: '#3b82f6',
+    headerBg: '#1e3a8a',
+    photoUrl: '',
+  };
+
+  const commonProps = {
+    data: sampleData,
+    previewMode: true,
+    isArabic: isRTL,
+    settings: defaultSettings,
+  };
+
+  switch (templateId) {
+    case 'classic':
+      return <ClassicTemplate {...commonProps} />;
+    case 'simple-professional':
+      return <SimpleProfessionalTemplate {...commonProps} />;
+    case 'minimalist-clean':
+      return <MinimalistCleanTemplate {...commonProps} />;
+    case 'modern':
+      return <ModernTemplate {...commonProps} />;
+    case 'executive':
+      return <ExecutiveTemplate {...commonProps} />;
+    case 'creative':
+      return <CreativeTemplate {...commonProps} />;
+    case 'executive-clean-pro':
+      return <ExecutiveCleanProTemplate {...commonProps} />;
+    case 'structured-sidebar-pro':
+      return <StructuredSidebarProTemplate {...commonProps} />;
+    case 'global-professional':
+      return <GlobalProfessionalTemplate {...commonProps} />;
+    case 'ats-ultra-pro':
+      return <ATSUltraProTemplate {...commonProps} />;
+    case 'smart':
+      return <SmartTemplate {...commonProps} />;
+    case 'strong':
+      return <StrongTemplate {...commonProps} />;
+    case 'elegant':
+      return <ElegantTemplate {...commonProps} />;
+    case 'compact':
+      return <CompactTemplate {...commonProps} />;
+    case 'two-column-pro':
+      return <TwoColumnProTemplate {...commonProps} />;
+    default:
+      return null;
+  }
+};
+```
+
+**Premium Access Control:**
+```typescript
+const canAccessPremium = user && ['regular', 'plus', 'annual', 'premium', 'lifetime', 'yearly'].includes(user.subscriptionTier || '');
+
+const handleSelectTemplate = (templateId: string, isPremium: boolean) => {
+  if (isPremium && !canAccessPremium) {
+    router.push('/pricing');
+    return;
+  }
+  
+  localStorage.setItem('selectedTemplate', templateId);
+  router.push(`/cv/basic-info?template=${templateId}`);
+};
+```
+
+### IMPLEMENTATION CHECKLIST
+
+Please implement the following in order:
+
+1. ✅ Add "Browse Templates" button to Hero component
+2. ✅ Add translation keys for `browseTemplates`
+3. ✅ Add 5 new template configurations to `config/templates.ts`
+4. ✅ Verify all 15 template components exist in `components/templates/`
+5. ✅ Create complete `app/template-gallery/page.tsx` with:
+   - All 15 template imports
+   - Sample CV data
+   - Template renderer function
+   - 3-column responsive grid
+   - Filter buttons (All/Free/Premium)
+   - Hover state for preview button
+   - Full-screen modal with backdrop
+   - Sticky header in modal
+   - Close functionality (X button and backdrop click)
+   - "Use This Template" button
+   - Premium access control
+   - Bilingual support with RTL
+   - Proper styling and animations
+
+### TESTING REQUIREMENTS
+
+After implementation, verify:
+1. Homepage shows "Browse Templates" button
+2. Button navigates to `/template-gallery`
+3. All 15 templates display in grid
+4. Filter buttons work correctly
+5. Hover shows "Preview Template" button
+6. Click opens modal with full template
+7. Modal closes properly
+8. Template selection works
+9. Premium access control works
+10. Arabic/RTL layout works
+11. Responsive design works on all screen sizes
+
+### EXPECTED RESULT
+
+Users should be able to:
+- Click "Browse Templates" on homepage
+- See all 15 templates in a beautiful 3-column grid
+- Filter by All/Free/Premium
+- Hover over any template to see "Preview Template" button
+- Click to open full-screen modal showing template at actual size
+- Close modal by clicking X or outside
+- Click "Use This Template" to select and proceed to CV builder
+- See upgrade prompt if trying to use premium template without subscription
+- Experience everything in both English and Arabic with proper RTL layout
+
+### NOTES
+
+- Use existing template components (don't recreate them)
+- Follow existing code patterns in the application
+- Ensure TypeScript types are correct
+- Test thoroughly before marking as complete
+- The local version is working perfectly, so replicate the exact functionality

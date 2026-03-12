@@ -1,0 +1,126 @@
+You are a senior frontend developer.
+
+Project Context:
+We have a web application with a Dashboard page that contains a section titled:
+
+"Enhance Your Career Journey"
+
+This section contains 3 cards:
+1. LinkedIn Optimizer (redirects to premium page)
+2. Interview Prep & Guidance (redirects)
+3. AI Career Coach (redirects)
+
+Now we need to:
+
+--------------------------------------------------
+OBJECTIVE
+--------------------------------------------------
+
+1. Add TWO new cards:
+   - Job Analyst
+   - Job Posting
+
+2. Move this entire section from Dashboard page to Home page
+   - Place it above the Footer section
+   - The component must be reusable
+   - Any changes should reflect on both Home and Dashboard
+
+--------------------------------------------------
+FUNCTIONAL REQUIREMENTS
+--------------------------------------------------
+
+NEW CARD 1: Job Analyst
+- Same UI style as LinkedIn Optimizer
+- Redirect to Premium page (same behavior as LinkedIn Optimizer)
+- Add premium badge/tag (optional small "Premium" label)
+- Animated icon (use Lottie or animated SVG)
+- Description text:
+  "Analyze job descriptions and match them with your CV to improve your application success rate."
+- Status text:
+  "Synced with your CV"
+
+NEW CARD 2: Job Posting
+- Mark as "Coming Soon"
+- Should NOT redirect anywhere
+- Show disabled cursor
+- Show subtle overlay or badge: "Coming Soon"
+- Description text:
+  "Discover curated job postings tailored to your profile and career goals."
+- Animated icon (different from others)
+- Slight hover effect but no click action
+
+--------------------------------------------------
+UI REQUIREMENTS
+--------------------------------------------------
+
+- Keep same card styling (shadow, border-radius, padding)
+- Maintain grid responsiveness:
+   Desktop: 5 cards in one row
+   Tablet: 2–3 per row
+   Mobile: 1 per row
+- Maintain same design language
+- Icons should have subtle animation (scale / pulse / Lottie)
+
+--------------------------------------------------
+ARCHITECTURE REQUIREMENTS
+--------------------------------------------------
+
+1. Extract this section into a reusable component:
+   Example:
+   components/CareerToolsSection.jsx
+
+2. Use a dynamic array for cards like:
+
+   const careerTools = [
+     {
+       title,
+       description,
+       icon,
+       isPremium,
+       isComingSoon,
+       redirectUrl
+     }
+   ]
+
+3. Render cards using map() to avoid repetition.
+
+4. If isComingSoon === true:
+   - Disable pointer events
+   - Show "Coming Soon" badge
+   - Do not attach redirect
+
+5. If isPremium === true:
+   - Add premium label
+   - Redirect to premium route
+
+--------------------------------------------------
+ANIMATION REQUIREMENTS
+--------------------------------------------------
+
+- Use Framer Motion or CSS animation
+- Add:
+   - Fade-in on scroll
+   - Slight hover lift (translateY -4px)
+   - Icon micro animation (pulse or rotate)
+
+--------------------------------------------------
+ROUTING LOGIC
+--------------------------------------------------
+
+LinkedIn Optimizer → /premium/linkedin
+Interview Prep → /interview-prep
+AI Career Coach → /premium/career-coach
+Job Analyst → /premium/job-analyst
+Job Posting → no route (coming soon)
+
+--------------------------------------------------
+DELIVERABLES
+--------------------------------------------------
+
+1. New reusable component
+2. Updated Home page with this section above footer
+3. Dashboard updated to use same reusable component
+4. Clean modern UI
+5. Fully responsive
+6. No duplicated code
+7. Production-ready code

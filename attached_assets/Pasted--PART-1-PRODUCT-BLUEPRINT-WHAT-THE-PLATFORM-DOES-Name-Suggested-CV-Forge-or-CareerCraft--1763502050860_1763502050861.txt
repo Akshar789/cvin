@@ -1,0 +1,272 @@
+🟦 PART 1 — PRODUCT BLUEPRINT (WHAT THE PLATFORM DOES)
+⭐ Name (Suggested):
+
+CV Forge
+or
+CareerCraft AI
+or
+CVGen Pro
+
+These names are international, memorable, and scalable.
+
+⭐ Core Features (User Benefits)
+🔹 Free Plan (Trial)
+
+Create 3 CVs for free
+
+Improve 3 CV bullets
+
+Generate 1 interview question set
+
+See “Basic ATS Score”
+
+This gives strong value and builds trust.
+
+🔹 Premium Subscription
+
+Unlocks:
+
+Unlimited CV generations
+
+Smart role-based CV templates
+
+ATS Matching (with keywords match)
+
+Interview Questions & Answers
+
+IDP Generator
+
+Cover Letters
+
+LinkedIn Bio Optimizer
+
+Multiple Templates (PDF/Word)
+
+Save, edit, and download CVs
+
+Career Tips AI Chat
+
+Priority model (GPT-4.1)
+
+🟦 PART 2 — SUBSCRIPTION STRATEGY (BUSINESS MODEL)
+⭐ Monthly subscription (e.g., SAR 19 / $4.99)
+
+Unlimited access
+
+All features unlocked
+
+⭐ Yearly subscription (SAR 149 / $39)
+
+Offer 2 months free
+
+Best for increasing retention
+
+⭐ Lifetime access option (SAR 199–249)
+
+One-time payment
+
+Very attractive in the KSA market
+
+⭐ Conversion Logic:
+
+After a user finishes their 3 free CV generations →
+Show a warm message:
+
+“لقد استخدمت جميع محاولاتك المجانية!
+أنت واضح في سعيك لتطوير نفسك.
+فعّل اشتراكك الآن واحصل على سيرة ذاتية احترافية تزيد فرصك في المقابلات.”
+
+Emotion → Motivation → Action.
+
+🟦 PART 3 — REPLIT DEVELOPER FULL SPECIFICATION
+
+(You can copy/paste this to Replit AI Agent or your developer.)
+
+⭐ 1. Tech Stack
+
+Frontend: React / Next.js (Replit-ready templates)
+
+Backend: Node.js (Express server)
+
+Database: Supabase OR Replit DB OR Firebase
+
+Authentication: Supabase Auth or Magic Link
+
+Payments: Stripe
+
+AI Engine: OpenAI API (gpt-4.1-mini & gpt-4.1)
+
+⭐ 2. Database Structure (copy to developer)
+Users {
+  id: string,
+  email: string,
+  isSubscribed: boolean,
+  freeCredits: number, // default = 3
+  createdAt: timestamp
+}
+
+UsageLogs {
+  userId: string,
+  feature: string, // 'cv', 'ats', 'interview', etc.
+  date: timestamp,
+  tokensUsed: number
+}
+
+⭐ 3. API Architecture
+POST /generate-cv
+
+Validate user token → Identify user
+
+IF !isSubscribed:
+
+IF freeCredits > 0 → allow
+
+ELSE → return error {code:"SUBSCRIPTION_REQUIRED"}
+
+Call gpt-4.1-mini for free users
+
+Call gpt-4.1 for paid users
+
+Save usage log
+
+Return response
+
+POST /generate-idp
+
+Exact same logic.
+
+POST /generate-interview-questions
+
+Same logic.
+
+POST /ats-check
+
+Same logic.
+
+⭐ 4. Rate Limiting
+
+Add a middleware:
+
+limit: 5 requests per minute per user
+
+
+Prevents misuse & protects API costs.
+
+⭐ 5. Subscription Activation Workflow
+After successful Stripe payment:
+
+Update:
+
+isSubscribed: true
+freeCredits: 999 // unlimited
+
+If payment fails:
+
+Revert to:
+
+isSubscribed: false
+freeCredits: remaining/free  // If trial not used
+
+🟦 PART 4 — PROMPT ENGINEERING (For Developer Integration)
+
+Use these system prompts inside your GPT calls:
+
+⭐ 1. CV Generator Prompt (Best Quality)
+
+System Prompt:
+
+You are a senior HR Director and CV-writing expert. 
+Your job is to generate an ATS-optimized, clean, modern CV based on the user’s details. 
+Use strong action verbs, quantify achievements when possible, and format in clean text.
+
+
+User Prompt Example:
+
+Generate a professional CV for the following information:
+[USER INPUT HERE]
+
+⭐ 2. Interview Questions Prompt
+You are an interview coach with 20 years of experience. 
+Generate structured interview questions and model answers for the user’s target role.
+
+⭐ 3. IDP Generator Prompt
+Create a detailed Individual Development Plan (IDP) with goals, actions, timelines, and KPIs based on the user’s job target.
+
+⭐ 4. ATS Score Prompt
+Evaluate the following CV content for ATS compliance.
+Return:
+1. Score (0–100)
+2. Missing keywords
+3. Fix recommendations
+
+🟦 PART 5 — MARKETING STRATEGY (Designed to Drive Conversions)
+⭐ Core message:
+
+“Your future job starts with a strong CV.
+Let AI help you stand out.”
+
+⭐ Key Marketing Angles:
+
+Helps fresh graduates
+
+Helps professionals change careers
+
+Helps people with weak English
+
+Helps people rejected due to ATS
+
+Helps people save time before interviews
+
+⭐ Social Proof Format:
+
+“Over 25,000 CVs improved in Saudi Arabia.”
+
+⭐ Upsell Screens:
+
+When free credits end:
+
+Modal Box:
+
+🎉 Great progress!
+You’ve created 3 CVs. To continue your career journey with unlimited tools,
+activate your premium access now.
+
+🟦 PART 6 — UI/UX FLOW (Simple & Beautiful)
+
+Landing Page
+
+Simple hero: “Build Your CV in 30 Seconds.”
+
+CTA: “Start Free Trial”
+
+Sign Up Screen
+
+Email, password, confirm
+
+Free credits = 3
+
+Dashboard
+
+Buttons:
+
+Create CV
+
+Improve CV
+
+Interview Questions
+
+IDP Generator
+
+ATS Checker
+
+Free Trial Counter
+
+“You have 2 free CV generations remaining.”
+
+Subscription Screen
+
+Monthly / Yearly / Lifetime options
+
+Success Page
+
+“Your CV is ready! Download in PDF or DOCX.”

@@ -1,0 +1,271 @@
+Resume Builder Enhancement – Skills, Certificates, Languages + AI Improvements
+
+⚠️ Important: Do NOT break any existing functionality.
+⚠️ Must work perfectly with current EN/AR dual-language system and toggle sync logic.
+
+✅ 1️⃣ Add Missing Steps in Resume Flow
+
+Currently, these fields exist in resume structure but are missing in the step flow:
+
+Skills
+
+Certificates / Achievements
+
+Languages
+
+We need to add these steps for:
+
+Student users
+
+Employer / Professional users
+
+The steps must integrate smoothly into the existing flow without breaking:
+
+AI generation
+
+Language toggle
+
+Guest/Registered logic
+
+Preview
+
+Database storage
+
+🧠 2️⃣ Skills Step – AI Smart Suggestion System
+🎯 Goal:
+
+Allow AI to automatically suggest relevant skills based on user type.
+
+Logic:
+If user is Professional:
+
+AI suggests skills based on:
+
+Job title
+
+Work experience
+
+Industry
+
+If user is Student:
+
+AI suggests skills based on:
+
+Education field
+
+Degree
+
+Major
+
+💡 UI Behavior:
+
+Add button: “Add Skills with AI”
+
+When clicked:
+
+Open modal
+
+AI displays multiple suggested skills (as selectable tags/buttons)
+
+When user clicks a skill:
+
+It gets added to the skills input box
+
+User can select multiple skills
+
+User can still manually add skills
+
+🌍 Language Support:
+
+AI must generate skills in BOTH:
+
+English
+
+Arabic
+
+Store properly in:
+
+EN table
+
+AR table
+
+Toggle must fetch correctly from respective table.
+
+🏆 3️⃣ Certificates / Achievements Step
+UI:
+
+Simple textarea input
+
+User writes short lines like:
+
+“Completed Google UX Certification”
+
+“Participated in Web Development Webinar”
+
+AI Enhancement:
+
+AI improves wording
+
+Suggests better formatting
+
+Makes it professional
+
+Must:
+
+Generate both EN and AR versions
+
+Store in both language tables
+
+Respect translation architecture
+
+🌍 4️⃣ Languages Step (Saudi-Focused)
+Requirement:
+
+Create new table:
+languages_master
+
+Include:
+
+English
+
+Arabic
+
+Urdu
+
+Hindi
+
+French
+
+Any native/regional language relevant to Saudi Arabia
+
+Each language should support proficiency levels:
+
+Basic
+
+Intermediate
+
+Professional
+
+Fluent
+
+Behavior:
+
+User selects:
+
+Language
+
+Proficiency level
+
+Store properly in EN + AR CV tables
+
+Translation-safe (language names must support Arabic properly)
+
+📚 5️⃣ Education Summary Fix
+
+Currently:
+
+Education summary allows many lines.
+
+Fix:
+
+Restrict AI prompt to generate only 1–2 short professional lines.
+
+Keep it concise.
+
+✨ 6️⃣ Professional Summary – Improve AI Prompt
+
+Now AI must generate summary based on:
+
+Education
+
+Skills
+
+Work Experience
+
+User type (Student / Professional)
+
+Prompt should:
+
+Be impactful
+
+Be concise (3–4 lines max)
+
+Look professional
+
+Work in both EN + AR
+
+Professional Summary must be the final step before preview.
+
+📱 7️⃣ Mobile Guest Preview Security Fix (Very Important)
+
+Currently:
+
+Guest users on mobile can see full resume without blur.
+
+Fix this:
+
+Full resume should ONLY be visible for:
+
+Logged-in users
+
+Guest users:
+
+Resume must remain blurred
+
+Download disabled
+
+Full preview restricted
+
+Ensure:
+
+No bypass via mobile
+
+Works same as desktop logic
+
+Does not affect logged-in users
+
+🔐 8️⃣ Critical Technical Rules
+
+⚠️ Must NOT disturb:
+
+Toggle synchronization (Global + CV Edit)
+
+Dual-table EN/AR structure
+
+Guest → Registered migration logic
+
+AI regeneration system
+
+Preview modal behavior
+
+Existing database records
+
+⚠️ Every new field must:
+
+Generate EN + AR content
+
+Store separately in language-specific tables
+
+Fetch based on toggle state
+
+Stay perfectly synced
+
+🎯 Final Resume Flow (Updated)
+
+Personal Info
+
+Education
+
+Work Experience
+
+Skills (NEW)
+
+Certificates / Achievements (NEW)
+
+Languages (NEW)
+
+Professional Summary (Improved AI)
+
+Preview + Download
+
+This must be implemented cleanly, production-ready, and fully compatible with our bilingual architecture without introducing any regression bugs.

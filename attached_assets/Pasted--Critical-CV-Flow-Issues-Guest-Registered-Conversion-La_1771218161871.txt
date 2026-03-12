@@ -1,0 +1,176 @@
+🚨 Critical CV Flow Issues – Guest → Registered Conversion + Language Sync
+🧪 Test Scenario Performed
+
+Created a CV as a guest user using:
+
+akshar.storestranform@gmail.com
+
+
+Opened /cv/preview
+
+Registered using the same email
+
+Guest CV successfully converted into a registered user CV.
+
+User remained on /cv/preview
+
+Everything worked correctly:
+
+✅ CV data visible
+
+✅ Language toggle working
+
+✅ Arabic ↔ English switching working properly
+
+Opened the same account in a different browser
+
+CV loads correctly
+
+Language toggle works
+
+Data is intact
+
+Went back to the original browser (already logged in)
+
+Refreshed /cv/preview
+
+❌ Issues After Refresh
+
+❌ Language toggle switcher disappears
+
+❌ Some CV content disappears
+
+❌ System state becomes unstable
+
+❌ UI looks broken
+
+❌ Some fields (like Name) are not translated into Arabic
+
+❌ Some generated CV fields are not properly switching language
+
+🔍 Required Deep Investigation
+
+We need to carefully analyze:
+
+1️⃣ Guest → Registered Conversion Flow
+
+Ensure guest CV ID properly maps to registered user ID
+
+Verify no session/localStorage conflict
+
+Ensure autosave is not overriding data after registration
+
+Confirm no state reset on refresh
+
+Validate that userID is consistent after conversion
+
+2️⃣ Language Toggle System
+
+Ensure language state persists:
+
+After registration
+
+After page refresh
+
+Across browsers
+
+Verify language is stored in:
+
+Database
+
+OR user session
+
+OR localStorage (if used)
+
+Make sure:
+
+Toggle does not disappear on refresh
+
+Language state is rehydrated correctly on load
+
+3️⃣ Missing Arabic Fields
+
+Ensure ALL fields support bilingual storage:
+
+name_en / name_ar
+
+summary_en / summary_ar
+
+experience_en / experience_ar
+
+If Arabic content does not exist:
+
+Either auto-generate it
+
+OR fallback correctly
+
+Ensure edit panel and preview panel are always in sync
+
+4️⃣ Refresh Behavior Debugging
+
+On /cv/preview reload:
+
+Validate:
+
+Auth state
+
+CV ownership
+
+Language state
+
+CV data fetch
+
+Ensure no conditional rendering hides toggle due to undefined state
+
+🎯 Expected Correct Behavior
+
+After guest → register conversion:
+
+CV remains intact
+
+Language toggle always visible
+
+Language state persists after refresh
+
+Data remains consistent across browsers
+
+Arabic version fully supported for all fields
+
+Edit + Preview fully synced
+
+⚠️ Important
+
+This is a state synchronization + persistence issue.
+Likely causes:
+
+Auth rehydration timing issue
+
+Local state vs DB mismatch
+
+Autosave conflict
+
+Missing language field mapping
+
+Please deeply debug:
+
+Auth state
+
+CV fetch logic
+
+Language state storage
+
+Guest conversion logic
+
+Page refresh lifecycle
+
+Fix this completely and ensure stability across:
+
+Registration
+
+Refresh
+
+Multi-browser login
+
+Language switching
+
+This needs a proper structural fix, not a temporary patch.

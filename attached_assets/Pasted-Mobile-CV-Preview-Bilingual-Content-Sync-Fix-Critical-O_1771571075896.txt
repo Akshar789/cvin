@@ -1,0 +1,251 @@
+Mobile CV Preview + Bilingual Content Sync Fix (Critical)
+🎯 OBJECTIVE
+
+Fix mobile CV preview visibility and resolve major bilingual content mismatch bug in CV Edit page.
+
+This must be implemented cleanly without breaking existing logic.
+
+📱 1️⃣ MOBILE CV EDIT PAGE – ADD STICKY PREVIEW (IMPORTANT)
+Current Issue:
+
+On mobile, CV preview is not visible.
+
+Users cannot see how their CV looks.
+
+Guest users also miss blurred preview.
+
+Required Fix:
+Add Sticky Preview Button (Mobile Only)
+
+Fixed button at bottom:
+👉 “Preview CV”
+
+On click:
+
+Open modal / bottom sheet preview
+
+Scrollable CV preview
+
+Close button included
+
+Preview Rules:
+Guest User:
+
+Show blurred CV preview
+
+Show only selected fields
+
+Maintain existing blur logic
+
+Logged-In User:
+
+Show full CV preview
+
+Fully readable
+
+Requirements:
+
+No overlap with other fixed buttons
+
+Smooth open/close animation
+
+Mobile optimized
+
+No layout shift
+
+No performance issues
+
+🌍 2️⃣ CRITICAL BUG – LANGUAGE SWITCH NOT UPDATING CONTENT
+Current Issue:
+
+User generates CV in English
+
+Switches language to Arabic
+
+UI labels change
+
+But content remains in English
+
+This is incorrect.
+
+Required Fix:
+
+We previously designed system to:
+
+Generate content in both English & Arabic
+
+Store both versions in database
+
+On language switch → fetch correct version
+
+Restore and strictly enforce this logic.
+
+Correct Behavior:
+
+When user switches language:
+
+All labels update
+
+All placeholders update
+
+All form fields update
+
+All CV preview content updates
+
+All generated descriptions update
+
+Professional Summary updates
+
+Experience descriptions update
+
+Education descriptions update
+
+Everything must reflect selected language.
+
+No mixed-language content allowed.
+
+Database Rule:
+
+Each content field must:
+
+Store English version
+
+Store Arabic version
+
+On language switch:
+
+Fetch corresponding language version from DB
+
+Render correctly
+
+Do NOT re-generate unless necessary
+
+🔁 3️⃣ PROFESSIONAL SUMMARY – 3 AI OPTIONS
+
+In Professional Summary step:
+
+When clicking Generate:
+
+Return 3 different summary options
+
+Based on:
+
+Role (Student / Employer)
+
+Job title
+
+Job domain
+
+Experience
+
+User data
+
+User selects one.
+
+Must work in:
+
+English
+
+Arabic
+
+Based on current selected language.
+
+🧠 4️⃣ LANGUAGE SWITCH MUST BE GLOBAL & STABLE
+
+When user switches language:
+
+No form reset
+
+No data loss
+
+No draft loss
+
+No step reset
+
+No redirect
+
+No broken state
+
+Must be seamless.
+
+🧪 5️⃣ TEST ALL SCENARIOS
+
+Test and fix:
+
+Guest user flow
+
+Logged-in user flow
+
+Mobile
+
+Desktop
+
+Language switch mid-step
+
+Language switch on CV edit page
+
+Language switch in preview
+
+Language switch after AI generation
+
+Refresh page
+
+Navigate back
+
+Everything must remain consistent.
+
+⚠️ IMPORTANT RULES
+
+Do NOT break existing DB schema
+
+Do NOT remove AI logic
+
+Maintain guest vs logged-in separation
+
+Maintain performance
+
+No console errors
+
+No duplicate DB entries
+
+Clean state management
+
+✅ SUCCESS CRITERIA
+
+Mobile sticky preview works
+
+Guest sees blurred preview
+
+Logged-in sees full preview
+
+Language switch updates all content correctly
+
+No mixed language bug
+
+Professional summary supports 3 AI options
+
+Data stored and fetched correctly
+
+No layout breaking
+
+No state reset
+
+Clean UX
+
+🎯 FINAL GOAL
+
+Deliver a fully stable:
+
+Bilingual CV Builder
+
+AI-powered
+
+Mobile-optimized
+
+Guest & User compatible
+
+Preview-enabled
+
+Bug-free experience
+
+Fix everything neatly and professionally in one pass.

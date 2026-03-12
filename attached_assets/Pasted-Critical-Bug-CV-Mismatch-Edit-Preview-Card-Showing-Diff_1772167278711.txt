@@ -1,0 +1,197 @@
+Critical Bug – CV Mismatch (Edit / Preview / Card Showing Different CV)
+🎯 Problem Summary
+
+After redesigning the /cvs page, we are facing a serious data integrity issue:
+
+For the same CV card:
+
+Card shows Template A
+
+Edit page loads Template B
+
+Preview shows Template C
+
+This is completely incorrect and breaks user trust.
+
+We already attached screenshots showing mismatch.
+
+This is a CV ID / template_id mapping issue.
+
+🔍 Required Deep Investigation
+
+We must verify how CV data is being fetched and passed.
+
+1️⃣ Verify CV ID Handling
+
+For each CV card:
+
+Ensure correct cv_id is attached to:
+
+Edit button
+
+Preview button
+
+Download button
+
+Check:
+
+Is correct cv_id being passed in route?
+
+Is edit page reading correct cv_id?
+
+Is preview fetching correct CV record?
+
+Is dashboard card using same cv_id?
+
+Add temporary logging:
+
+CV ID on card:
+CV ID on edit page:
+CV ID on preview:
+Template ID in DB:
+
+Confirm they match.
+
+2️⃣ Check Template ID Consistency
+
+Inside database:
+
+Each CV must have:
+
+id
+
+user_id
+
+template_id
+
+Verify:
+
+Card preview uses correct template_id.
+
+Edit page uses same template_id.
+
+Preview page uses same template_id.
+
+No fallback to default template.
+
+3️⃣ Check If State Is Being Cached
+
+Possible causes:
+
+Global state storing last opened CV
+
+Preview component reusing previous CV state
+
+Template slider overriding template_id
+
+Incorrect dependency array in React effect
+
+Not refetching CV on route change
+
+Fix:
+
+On route /cv/edit/:id → fetch CV fresh
+
+On route /cv/preview/:id → fetch CV fresh
+
+Do NOT reuse previous CV state
+
+Do NOT rely only on local state
+
+4️⃣ Check Auto-Save Side Effects
+
+Verify:
+
+Editing one CV does NOT update another CV
+
+Auto-save always updates correct CV ID
+
+No global “current CV” variable overwriting state
+
+5️⃣ Dashboard & /cvs Page Must Use Fresh Data
+
+When navigating back:
+
+Must re-fetch CV list
+
+Not rely on cached list
+
+Not reuse outdated template_id
+
+🧪 Required Testing
+
+Using test user:
+
+akshar.storestranform@gmail.com
+
+Test:
+
+Open CV A.
+
+Confirm template.
+
+Edit CV A.
+
+Preview CV A.
+
+Confirm template matches.
+
+Open CV B.
+
+Confirm different template.
+
+Go back to list.
+
+Confirm card preview matches.
+
+Refresh page.
+
+Logout → Login.
+
+Confirm everything consistent.
+
+No mismatch allowed anywhere.
+
+🚫 Strict Rules
+
+Do not reuse stale state.
+
+Do not default to first CV.
+
+Do not fallback to previously viewed CV.
+
+Do not override template_id silently.
+
+Do not mix CV IDs between routes.
+
+Do not depend on index-based mapping.
+
+Always use unique CV ID from database.
+
+✅ Final Expected Result
+
+After fix:
+
+✔ CV card matches correct template
+✔ Edit page loads correct CV
+✔ Preview loads correct CV
+✔ No cross-CV contamination
+✔ No state leakage
+✔ No caching issues
+✔ Fully consistent data across system
+
+This is a high-priority integrity issue.
+
+Focus on:
+
+CV ID routing
+
+template_id persistence
+
+state isolation
+
+fresh fetch on every route
+
+removing stale cache logic
+
+The system must behave deterministically and reliably.

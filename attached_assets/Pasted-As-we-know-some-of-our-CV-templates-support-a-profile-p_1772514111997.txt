@@ -1,0 +1,127 @@
+As we know, some of our CV templates support a profile picture, while others do not.
+
+I want to implement a new conditional functionality based on template selection.
+
+🎯 Objective
+
+If the user selects a CV template that supports a profile picture, then in the Basic Information step, we should display a new field:
+
+“Upload Profile Picture”
+
+If the selected template does NOT support profile pictures, this field should not appear.
+
+✅ Required Functionality
+1️⃣ Conditional Field Display
+
+Detect selected template_id.
+
+If the template supports profile image → show Upload Profile Picture field.
+
+If not → hide it completely.
+
+No empty placeholder in preview.
+
+2️⃣ Reuse Existing Profile Picture System
+
+We already have a profile picture upload field in the system.
+
+We should:
+
+Reuse the same upload component.
+
+Reuse the same storage logic.
+
+Link it properly with CV data.
+
+Avoid creating duplicate upload systems.
+
+3️⃣ Live Sync Between Profile & CV
+
+The profile picture must:
+
+Sync properly between:
+
+Profile Settings
+
+CV Basic Information step
+
+If user updates picture in Profile → reflect in CV.
+
+If user updates picture in CV → reflect in Profile.
+
+Maintain bilingual integrity (not language dependent).
+
+4️⃣ Preview & Download Support
+
+If template supports image → display image properly in:
+
+Preview
+
+Edit
+
+Downloaded PDF
+
+Ensure proper alignment for:
+
+English (LTR)
+
+Arabic (RTL)
+
+Ensure image does not break layout.
+
+Maintain smart page-break handling.
+
+5️⃣ Storage & Data Integrity
+
+Store image URL/reference in CV record.
+
+Maintain correct CV ID mapping.
+
+Do not overwrite other CVs.
+
+Ensure auto-save works.
+
+Ensure no duplicate images stored unnecessarily.
+
+6️⃣ Edge Case Handling
+
+If user switches to template without image support:
+
+Hide image from preview.
+
+Do NOT delete image from database.
+
+If user switches back to image-supported template:
+
+Image should reappear automatically.
+
+If guest user:
+
+Apply same blur restrictions if needed.
+
+🚫 Do NOT
+
+Do not create separate image storage.
+
+Do not break sync logic.
+
+Do not break bilingual support.
+
+Do not break template rendering.
+
+Do not hardcode template checks; use a scalable flag like:
+supports_profile_image: true
+
+✅ Final Expected Result
+
+After implementation:
+
+✔ Upload field appears only for image-supported templates
+✔ Reuses existing upload system
+✔ Fully synced with Profile
+✔ Works in Preview & Download
+✔ RTL/LTR supported
+✔ Clean layout
+✔ No data conflicts
+✔ No duplicate storage
+✔ Smart conditional behavior

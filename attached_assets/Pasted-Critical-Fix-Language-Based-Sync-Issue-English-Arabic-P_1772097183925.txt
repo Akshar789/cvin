@@ -1,0 +1,154 @@
+Critical Fix – Language-Based Sync Issue (English/Arabic)
+🎯 Problem Summary
+
+While testing Smart Template + Sync From Profile flow, we found a language sync issue.
+
+Scenario:
+
+User switches language to Arabic
+
+Clicks Sync From Profile
+
+Data fills in English, not Arabic
+
+Same issue in reverse:
+
+In Profile Settings → switch to Arabic
+
+Click Sync From CV
+
+It syncs English data only
+
+This is incorrect behavior.
+
+❌ Current Problem
+
+System is:
+
+Not respecting selected language (EN / AR)
+
+Always pulling English fields
+
+Ignoring Arabic stored values
+
+Not checking language toggle state
+
+This breaks bilingual data logic.
+
+✅ Required Fix
+
+Sync must be language-aware.
+
+🔄 1️⃣ Sync From Profile (Inside CV Steps)
+
+When user clicks:
+
+“Sync From Profile”
+
+System must:
+
+Detect current language toggle:
+
+If language = EN → pull field.en
+
+If language = AR → pull field.ar
+
+Populate form using correct language value
+
+Do NOT mix languages
+
+🔄 2️⃣ Sync From CV (Inside Profile Settings)
+
+When user clicks:
+
+“Sync From CV”
+
+System must:
+
+Detect selected language
+
+Pull correct language data from CV record
+
+Update correct language profile fields
+
+Do NOT overwrite Arabic with English
+
+Do NOT overwrite English with Arabic
+
+🧠 3️⃣ Database Structure Validation
+
+Ensure bilingual fields are structured like:
+
+professional_summary: {
+   en: "...",
+   ar: "..."
+}
+
+Same for:
+
+Education
+
+Work Experience
+
+Target Job Domain
+
+Headline
+
+Location
+
+Any text field
+
+Sync must target correct language key.
+
+🔐 4️⃣ Protection Rules
+
+Do NOT fallback to English automatically
+
+If Arabic value is empty → leave empty
+
+Do NOT overwrite existing Arabic with English
+
+Do NOT mix language arrays
+
+🧪 5️⃣ Testing Scenarios
+
+Test:
+
+Add English profile data → sync English → works.
+
+Add Arabic profile data → switch to Arabic → sync → Arabic loads.
+
+Arabic profile empty → sync Arabic → stays empty.
+
+Edit Arabic CV → sync to profile → updates Arabic only.
+
+Switch languages back and forth → no mixing.
+
+Repeater fields (Education, Experience) sync correctly per language.
+
+🚫 Do NOT
+
+Do not hardcode English as default
+
+Do not merge both languages
+
+Do not overwrite opposite language field
+
+Do not break auto-save
+
+Do not break RTL layout
+
+✅ Expected Final Result
+
+After fix:
+
+✔ Sync respects selected language
+✔ Arabic sync pulls Arabic data
+✔ English sync pulls English data
+✔ No language mixing
+✔ Repeater fields language-aware
+✔ Profile ↔ CV sync works in both directions
+✔ Clean bilingual integrity
+
+This is a language-state + database mapping fix.
+Focus on using current language toggle as source of truth.

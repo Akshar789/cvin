@@ -1,0 +1,84 @@
+Task: Enhancements on /cv/basic-info Page
+
+We need to implement the following improvements and database-driven logic:
+
+1️⃣ Mobile Number Validation (UAE Only)
+
+The Mobile field should accept UAE phone numbers only.
+
+Numbers outside UAE format should be rejected.
+
+Apply proper UAE validation (e.g., +971 format or 05XXXXXXXX).
+
+Show proper validation error message if invalid.
+
+2️⃣ City & Country Dropdown (UAE Only)
+
+Set Country default to UAE.
+
+The City dropdown should only display UAE cities.
+
+No other countries should be selectable.
+
+Data should come from the database (not hardcoded).
+
+3️⃣ Guest User Data Flow
+
+Create a guest_users table (similar logic to guest_cvs).
+
+When a guest fills Basic Info:
+
+Save the data in guest_users table.
+
+After the user registers/logs in:
+
+Move the data from guest_users to the users table.
+
+Remove the entry from guest_users after successful migration.
+
+Follow the same logic already implemented for CV migration.
+
+4️⃣ Target Job Domain (Database Driven)
+
+Create a dedicated Target Job Domain table in the database.
+
+Fetch and display dropdown options dynamically from the database.
+
+Currently there is an "Add New Target Job Domain" option:
+
+Add logic so users cannot freely add random values.
+
+Implement controlled logic:
+
+Either restrict adding new domains
+
+Or store new entries in a moderated/pending state
+
+Ensure data integrity and prevent database pollution.
+
+5️⃣ Career Level (Database Driven)
+
+Remove static options.
+
+Fetch all Career Levels from database.
+
+Dropdown must be fully dynamic.
+
+6️⃣ Disable Manual Continue Button (Temporary)
+
+Temporarily disable the Manual Continue button.
+
+Keep the code clean so we can easily re-enable it later.
+
+Important Notes:
+
+Do not break existing CV creation flow.
+
+Keep validation clean and user-friendly.
+
+Ensure database structure is optimized and scalable.
+
+Maintain consistent UI design.
+
+Goal:
+Make the Basic Info page fully database-driven, UAE-specific, structured, and scalable while maintaining clean data control and proper guest-to-user migration logic.

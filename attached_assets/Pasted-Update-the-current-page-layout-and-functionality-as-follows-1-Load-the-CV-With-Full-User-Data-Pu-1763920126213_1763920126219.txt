@@ -1,0 +1,108 @@
+Update the current page layout and functionality as follows:
+
+1. Load the CV With Full User Data
+
+Pull all CV fields previously generated on the previous page (personal info, summary, experience, skills, education, etc.).
+
+Auto-populate all form fields in this page with the exact content produced earlier.
+
+The user should be able to edit everything directly before moving to the next step.
+
+2. Live CV Editing Panel (Side-by-Side Layout)
+
+Keep the current layout:
+
+Left side: Editable form sections
+
+Right side: Live Preview of the CV
+
+As the user edits any field, the preview updates in real time.
+
+Maintain ATS-style formatting in the preview.
+
+The layout must remain responsive for Arabic / English, mobile / desktop.
+
+3. AI Buttons Inside Editing Sections
+A. Professional Summary
+
+Add an AI icon/button next to the “Professional Summary”.
+
+On click:
+
+Generate a summary using:
+
+Years of experience
+
+Career level
+
+Major/Field
+
+Target job title
+
+Industry
+
+Summary should be personalized, concise, ATS-friendly.
+
+B. Skills & Competencies
+
+Add an AI button beside the section.
+
+On click:
+
+Generate relevant skills based on profile info and job target.
+
+Group them logically (Technical, Soft Skills, Tools).
+
+Keep 8–15 skills max.
+
+C. Experience Section
+
+Change field label from “Description” → “Key Responsibilities”.
+
+Add an AI button for each experience entry.
+
+When clicked:
+
+AI generates responsibilities based on:
+
+Job title
+
+Industry
+
+Experience level
+
+Years of experience
+
+Use bullet points, strong action verbs, ATS format.
+
+Keep list focused on measurable, result-oriented outcomes.
+
+4. Multi-Language (Arabic + English) Support
+
+All UI components must automatically switch based on user language selection.
+
+Ensure:
+
+RTL styling for Arabic
+
+LTR styling for English
+
+All text fields must support both languages.
+
+Live Preview must render accurately in both.
+
+5. UX Enhancements
+
+Keep clean spacing, card-style sections, and light borders for readability.
+
+On mobile:
+
+Preview moves below the form.
+
+Forms become collapsible sections.
+
+6. Navigation
+
+After confirming edits, the user clicks Next Step to continue to templates/layout page.
+
+Save all updated data to session or backend before moving forward.

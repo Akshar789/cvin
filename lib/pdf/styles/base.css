@@ -1,0 +1,402 @@
+/**
+ * CV PDF Base Styles
+ * 
+ * Multi-page support with proper page breaks and A4 formatting.
+ * Supports both LTR (English) and RTL (Arabic) layouts.
+ */
+
+/* A4 Page Settings */
+@page {
+  size: A4;
+  margin: 15mm 15mm 20mm 15mm;
+}
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Page Container */
+html, body {
+  width: 210mm;
+  min-height: 297mm;
+  font-family: var(--cv-font-family, 'Arial', 'Noto Sans Arabic', sans-serif);
+  font-size: var(--cv-font-size, 11pt);
+  line-height: var(--cv-line-height, 1.5);
+  color: var(--cv-text-primary, #1e293b);
+  background: white;
+}
+
+/* RTL Support */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] body {
+  unicode-bidi: embed;
+}
+
+/* Print Optimization */
+@media print {
+  html, body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Multi-Page Support */
+.cv-container {
+  width: 100%;
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 15mm;
+}
+
+/* Page Break Rules */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+.page-break-after {
+  page-break-after: always;
+  break-after: page;
+}
+
+.avoid-break {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.keep-together {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* Section Wrappers - Avoid Breaking Inside */
+.cv-section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 8mm;
+}
+
+/* Allow breaks for long sections */
+.cv-section.allow-break {
+  page-break-inside: auto;
+  break-inside: auto;
+}
+
+/* Individual entry items */
+.cv-entry {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 4mm;
+}
+
+/* Header Section */
+.cv-header {
+  text-align: center;
+  margin-bottom: 8mm;
+  padding-bottom: 5mm;
+  border-bottom: 2px solid var(--cv-primary, #1e40af);
+}
+
+.cv-header h1 {
+  font-size: 22pt;
+  font-weight: 700;
+  color: var(--cv-primary, #1e40af);
+  margin-bottom: 3mm;
+}
+
+.cv-contact-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 10pt;
+  color: var(--cv-text-secondary, #64748b);
+}
+
+html[dir="rtl"] .cv-contact-info {
+  flex-direction: row-reverse;
+}
+
+.cv-contact-info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cv-contact-divider {
+  color: #cbd5e1;
+}
+
+/* Section Headers */
+.section-header {
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--cv-primary, #1e40af);
+  margin-bottom: 4mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid var(--cv-border, #e2e8f0);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Professional Summary */
+.cv-summary {
+  font-size: 10pt;
+  line-height: 1.6;
+  color: var(--cv-text-primary, #1e293b);
+  text-align: justify;
+}
+
+html[dir="rtl"] .cv-summary {
+  text-align: right;
+}
+
+/* Experience & Education Entries */
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2mm;
+}
+
+html[dir="rtl"] .entry-header {
+  flex-direction: row-reverse;
+}
+
+.entry-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--cv-primary, #1e40af);
+}
+
+.entry-date {
+  font-size: 9pt;
+  color: var(--cv-text-secondary, #64748b);
+}
+
+.entry-subtitle {
+  font-size: 10pt;
+  color: var(--cv-text-secondary, #64748b);
+  margin-bottom: 2mm;
+}
+
+/* Bullet Lists */
+.bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 12px;
+  margin-bottom: 2mm;
+  font-size: 10pt;
+  line-height: 1.5;
+}
+
+html[dir="rtl"] .bullet-list li {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+.bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--cv-accent, #60a5fa);
+}
+
+html[dir="rtl"] .bullet-list li::before {
+  left: auto;
+  right: 0;
+}
+
+/* Skills Section */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  display: inline-block;
+  background: var(--cv-accent, #60a5fa);
+  background-opacity: 0.1;
+  color: var(--cv-primary, #1e40af);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 9pt;
+  border: 1px solid var(--cv-border, #e2e8f0);
+}
+
+.skills-category {
+  margin-bottom: 3mm;
+}
+
+.skills-category-name {
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--cv-text-primary, #1e293b);
+  margin-bottom: 1mm;
+}
+
+.skills-list {
+  font-size: 10pt;
+  color: var(--cv-text-secondary, #64748b);
+}
+
+/* Languages Section */
+.languages-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.language-item {
+  font-size: 10pt;
+}
+
+.language-name {
+  font-weight: 600;
+  color: var(--cv-text-primary, #1e293b);
+}
+
+.language-level {
+  color: var(--cv-text-secondary, #64748b);
+  font-size: 9pt;
+}
+
+/* Certifications Section */
+.cert-item {
+  margin-bottom: 3mm;
+}
+
+.cert-name {
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--cv-text-primary, #1e293b);
+}
+
+.cert-issuer {
+  font-size: 9pt;
+  color: var(--cv-text-secondary, #64748b);
+}
+
+/* Two-Column Layout */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15mm;
+}
+
+html[dir="rtl"] .two-column {
+  direction: rtl;
+}
+
+.sidebar {
+  background: var(--cv-header-bg, #1e3a8a);
+  color: white;
+  padding: 10mm;
+  border-radius: 4px;
+}
+
+.sidebar .section-header {
+  color: white;
+  border-bottom-color: rgba(255,255,255,0.3);
+}
+
+.sidebar .skill-tag {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border-color: rgba(255,255,255,0.3);
+}
+
+.main-content {
+  padding: 0;
+}
+
+/* Modern Template Header */
+.modern-header {
+  background: linear-gradient(135deg, var(--cv-primary, #1e40af), var(--cv-secondary, #3b82f6));
+  color: white;
+  padding: 15mm;
+  margin: -15mm -15mm 10mm -15mm;
+}
+
+.modern-header h1 {
+  color: white;
+}
+
+.modern-header .cv-contact-info {
+  color: rgba(255,255,255,0.9);
+}
+
+/* Photo Support */
+.cv-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.header-with-photo {
+  display: flex;
+  align-items: center;
+  gap: 15mm;
+}
+
+html[dir="rtl"] .header-with-photo {
+  flex-direction: row-reverse;
+}
+
+/* Watermark */
+.cv-watermark {
+  font-size: 8pt;
+  color: #d1d5db;
+  text-align: right;
+  margin-top: 10mm;
+  font-style: italic;
+}
+
+html[dir="rtl"] .cv-watermark {
+  text-align: left;
+}
+
+/* Responsive Text Scaling for Long Content */
+.text-scale-90 {
+  font-size: 90%;
+}
+
+.text-scale-85 {
+  font-size: 85%;
+}
+
+.text-scale-80 {
+  font-size: 80%;
+}
+
+/* Flexible Content - No Fixed Heights */
+.flex-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Empty State Handling */
+.empty-section {
+  display: none;
+}

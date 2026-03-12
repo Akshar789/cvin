@@ -1,0 +1,247 @@
+Template System Improvements + Security + Data Integrity Fix
+
+We need to refine and secure the template system across:
+
+Home page template slider
+
+Smart Template step
+
+CV Preview & Edit
+
+Dashboard template persistence
+
+Premium restriction logic
+
+This is a logic + security + rendering + database integrity update.
+
+1️⃣ Home Page – Template Slider Fix
+❌ Problem:
+
+Premium templates are currently visible in the home page slider.
+
+✅ Required Fix:
+
+Only display FREE templates in home page slider.
+
+Filter templates by:
+
+is_premium = false
+
+Do NOT show premium templates there at all.
+
+No premium badge needed there.
+
+Result:
+✔ Only free templates appear on homepage
+✔ Premium templates excluded
+
+2️⃣ Smart Template Step – Premium Security Fix
+❌ Problem:
+
+In Smart Template step:
+
+Preview loads full template
+
+User can download premium template
+
+Even guest user can inspect and remove blur
+
+This is a security issue.
+
+✅ Required Premium Logic
+A. For Premium Templates
+Logged-in Free User:
+
+Show template preview
+
+Display visible lock icon overlay
+
+Disable download button
+
+Prevent saving template selection
+
+Do NOT allow switching to premium
+
+Show upgrade modal
+
+Guest User:
+
+Apply blur effect on full template
+
+On hover → partially reveal a small area only (visual teaser)
+
+Disable download button
+
+Disable template selection
+
+B. Restrict Inspection & Right Click
+
+In Smart Template step (preview modal only):
+
+Disable right-click
+
+Disable inspect shortcut (F12, Ctrl+Shift+I)
+
+Disable DevTools key combos
+
+Disable copy
+
+Disable drag
+
+Disable image saving
+
+⚠️ Apply only inside preview container.
+Do NOT break entire website.
+
+3️⃣ Smart Template Preview Layout Improvement
+
+Instead of small preview card:
+
+Display large side preview layout
+
+Left side → Recommended templates list
+
+Right side → Live preview panel
+
+User can switch templates and preview instantly
+
+Clear badge: Free / Premium / Recommended
+
+Make system smarter:
+
+Highlight best match
+
+Add reason below template:
+Example:
+“Best for professionals with 5+ years experience.”
+
+4️⃣ Critical Bug – Dashboard Template Changing
+❌ Problem:
+
+User created CV with Template A
+Downloaded
+Next day logs in
+Dashboard shows Template B
+
+This means:
+
+Template ID is being overwritten
+
+Or last preview template is being saved incorrectly
+
+Or auto-save logic updating template incorrectly
+
+✅ Required Fix:
+
+Only save template_id when:
+
+User explicitly selects template
+
+Do NOT save template_id during preview switching
+
+Do NOT auto-save template_id when browsing
+
+Dashboard must display:
+
+Last explicitly selected template
+
+Always fetch template_id from CV record
+
+Do NOT regenerate or override template_id
+
+5️⃣ Critical Bug – Premium Template Save Loophole
+❌ Problem:
+
+In CV Preview page:
+
+When free user selects premium template
+
+Template changes visually
+
+Data auto-saves
+
+Premium template might get saved
+
+This is a loophole.
+
+✅ Required Fix:
+
+If user is FREE:
+
+When selecting premium template:
+
+Do NOT update template_id
+
+Do NOT auto-save
+
+Show upgrade modal
+
+Revert to previous template
+
+Prevent any database update
+
+Premium template should NEVER be saved in CV record for free user.
+
+6️⃣ Auto-Save Logic Validation
+
+Auto-save must:
+
+Save content changes only
+
+Not save template switch unless allowed
+
+Not overwrite template_id silently
+
+Not create new CV unintentionally
+
+Add protection:
+
+Track explicit template selection event
+
+Only then update template_id
+
+7️⃣ Testing User
+
+Use this test account:
+
+Email: akshar.storestranform@gmail.com
+
+Password: akshar.storestranform@gmail.com
+
+Test:
+
+Create CV with Free template → save → logout → login → template remains same.
+
+Try premium template as free user → ensure not saved.
+
+Try preview premium → ensure no download.
+
+Guest preview premium → blur active + protected.
+
+Switch templates in preview → only saved when allowed.
+
+Dashboard shows correct template.
+
+8️⃣ Final Expected Result
+
+After implementation:
+
+✔ Home page shows only free templates
+✔ Smart template step secure
+✔ Premium cannot be downloaded by free user
+✔ Guest cannot inspect remove blur
+✔ Template ID never overwritten incorrectly
+✔ Dashboard always shows correct template
+✔ Auto-save safe
+✔ No premium loopholes
+✔ Fully secure + smart behavior
+
+This update is about:
+
+Security
+Template integrity
+Premium enforcement
+Database correctness
+User trust
+
+Implement strictly without breaking current flow.

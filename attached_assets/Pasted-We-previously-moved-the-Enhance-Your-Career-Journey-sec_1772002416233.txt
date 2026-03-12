@@ -1,0 +1,84 @@
+We previously moved the "Enhance Your Career Journey" section to the Home page above the footer and made it reusable.
+
+Now we need to update its styling and animation consistency.
+
+On the Home page, there is another section titled:
+"Everything You Need for the Perfect CV"
+
+That section already uses animated icons with a specific animation style.
+
+--------------------------------------------------
+OBJECTIVE
+--------------------------------------------------
+
+1. Apply the SAME animated icon effect used in:
+   "Everything You Need for the Perfect CV"
+
+   to ALL icons inside:
+   "Enhance Your Career Journey"
+
+2. Update alignment to match other Home sections:
+   - Title must be centered
+   - Subtitle must be centered
+   - Entire section content must follow same container width
+   - Maintain visual consistency with rest of homepage
+
+--------------------------------------------------
+TEXT UPDATE (FINAL VERSION)
+--------------------------------------------------
+
+Title:
+Enhance Your Career Journey
+
+Subtitle:
+Use your CV data across our integrated career development tools
+
+Make sure text is center-aligned.
+
+--------------------------------------------------
+ANIMATION REQUIREMENTS
+--------------------------------------------------
+
+- Reuse same animation component or class used in:
+  "Everything You Need for the Perfect CV"
+
+- Do NOT duplicate animation logic
+- Extract animation into reusable IconAnimation component if not already done
+
+Icon behavior should include:
+- Subtle floating / pulse / smooth loop animation
+- Hover interaction effect (if already implemented)
+- Performance optimized (no heavy re-renders)
+
+--------------------------------------------------
+LAYOUT REQUIREMENTS
+--------------------------------------------------
+
+- Section container must match:
+  - Same max-width
+  - Same padding (top/bottom)
+  - Same spacing between title and cards
+- Cards remain grid-based
+- Title and subtitle centered
+- Maintain responsiveness
+
+--------------------------------------------------
+CODE QUALITY
+--------------------------------------------------
+
+- Reuse existing animation classes/components
+- Avoid duplication
+- Keep clean structure
+- Maintain reusable CareerToolsSection component
+- No inline styles
+- Follow existing design system
+
+--------------------------------------------------
+DELIVERABLES
+--------------------------------------------------
+
+1. Center-aligned section heading + subtitle
+2. Consistent container width
+3. Same animated icon effect applied
+4. Clean reusable animation structure
+5. Production-ready code

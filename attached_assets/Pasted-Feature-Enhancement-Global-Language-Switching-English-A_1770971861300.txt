@@ -1,0 +1,126 @@
+Feature Enhancement: Global Language Switching (English ↔ Arabic) with RTL/LTR Support Across CV System
+Current Implementation
+
+We have already implemented:
+
+Language translation toggle (English ↔ Arabic) on /cv/preview
+
+RTL / LTR toggle on /cv/preview
+
+Language data saved properly for both:
+
+Guest users
+
+Registered users
+
+Data stored in respective tables
+
+AI generation works for selected language (currently requires translation option)
+
+Required Enhancements
+1️⃣ Template Gallery Page – /template-gallery
+
+We want to implement the same language switching system here:
+
+Add Language Toggle (English ↔ Arabic)
+
+Add RTL / LTR toggle
+
+When user switches language:
+
+All template previews should update dynamically
+
+Layout direction should change (RTL for Arabic, LTR for English)
+
+Selection should persist when navigating to next step
+
+2️⃣ Basic Info Page – /cv/basic-info
+
+Add the same:
+
+Language Toggle (English ↔ Arabic)
+
+RTL / LTR toggle
+
+User should be able to:
+
+Enter content in English
+
+Enter content in Arabic
+
+Both language versions should be stored separately in database
+
+Must work for:
+
+Guest users
+
+Logged-in users
+
+3️⃣ AI Generation Update
+
+Modify AI generation logic:
+
+When user generates CV with AI:
+
+System should automatically generate content in BOTH:
+
+English
+
+Arabic
+
+Remove the need for manual translation on /cv/preview
+
+Store both language outputs in respective database fields
+
+4️⃣ Preview Page – /cv/preview
+
+Already implemented:
+
+Language toggle
+
+RTL / LTR toggle
+
+Now:
+
+It should simply switch between stored English and Arabic versions
+
+No need for translation API call
+
+Just load saved language content
+
+Maintain layout direction properly
+
+Important Requirements
+
+Maintain same toggle design and logic across all pages
+
+Keep language selection persistent across:
+
+/template-gallery
+
+/cv/basic-info
+
+/cv/preview
+
+Ensure compatibility for:
+
+Guest users (session-based)
+
+Registered users (database-based)
+
+Ensure RTL styles are correctly applied globally when Arabic is selected
+
+All template previews must dynamically reflect selected language + direction
+
+Expected Outcome
+
+Fully bilingual CV builder
+
+English + Arabic generated automatically
+
+No manual translation needed
+
+Seamless RTL/LTR switching across entire flow
+
+Clean UX consistency across all steps
+

@@ -1,0 +1,140 @@
+CV Language System Restructure (EN + AR) – Bug-Free Implementation Required
+🔴 Current Problem
+
+Previously:
+
+Language toggle was working correctly.
+
+When switching between English and Arabic, content was changing properly.
+
+Correct language content was being fetched from the database.
+
+After modifying the flow:
+
+Toggle is now broken.
+
+Language does NOT update when switching.
+
+Content in edit fields and preview does not refresh correctly.
+
+Global header toggle does not sync properly with CV edit toggle.
+
+We need to completely restructure this system properly to avoid further bugs.
+
+✅ Required Final Behavior
+1️⃣ Toggle Sync (Very Important)
+
+If user changes language from CV Edit page,
+→ Global header toggle must automatically switch to the same language.
+
+If user changes language from Global Header,
+→ CV Edit + Preview must update instantly.
+
+Everything must stay synchronized.
+
+2️⃣ Content Behavior
+
+When switching language:
+
+All descriptions in edit fields must show content from that selected language.
+
+Preview page must load the same selected language content.
+
+No mixing of English and Arabic.
+
+No reload bugs.
+
+No partial updates.
+
+🧠 New Required Architecture (Important)
+
+To avoid complexity and timing issues, we will change the database structure.
+
+🔹 Rule:
+
+Every AI-generated content MUST generate in BOTH languages at the same time.
+
+When content is generated:
+
+Generate English version
+
+Generate Arabic version
+
+Store both properly in database
+
+🗄️ Database Structure (Clean Approach)
+For Guest Users:
+
+Create TWO separate tables:
+
+guest_user_cv_en
+
+guest_user_cv_ar
+
+Both tables:
+
+Match records using email as primary key
+
+Store same CV sections in respective languages
+
+When toggle switches:
+
+If EN → fetch from guest_user_cv_en
+
+If AR → fetch from guest_user_cv_ar
+
+For Registered Users:
+
+Current:
+
+Existing cv table → use ONLY for English
+
+Create new table: cv_ar → store Arabic version
+
+When user registers:
+
+If guest data exists with same email:
+
+Migrate BOTH English + Arabic data
+
+Save into:
+
+cv (English)
+
+cv_ar (Arabic)
+
+Do NOT delete one language accidentally.
+
+🔁 Content Flow Summary
+
+User generates CV
+
+System generates:
+
+English version
+
+Arabic version
+
+Store both in respective tables
+
+Toggle only controls:
+
+Which table to fetch data from
+
+Edit + Preview always read from selected language table
+
+⚠️ Critical Requirements
+
+No delay issues
+
+No toggle mismatch
+
+No content mixing
+
+No broken preview
+
+No data loss during guest → registered migration
+
+Must be stable and production-ready
+
+This system is complex and timing-sensitive, but it must be implemented cleanly without bugs.

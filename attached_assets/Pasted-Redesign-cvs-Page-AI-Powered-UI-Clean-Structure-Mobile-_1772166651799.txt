@@ -1,0 +1,257 @@
+Redesign /cvs Page – AI-Powered UI + Clean Structure + Mobile First
+🎯 Objective
+
+We need to fully redesign the /cvs page (View More from Dashboard) to match:
+
+New AI-powered site design
+
+Premium SaaS look
+
+Clean layout
+
+Mobile-first approach
+
+Proper preview functionality
+
+Remove duplicate header
+
+Remove duplicate CV option
+
+Currently the page:
+
+Looks outdated
+
+Has double header
+
+Shows duplicate button
+
+Preview container is broken
+
+Not mobile optimized
+
+Not consistent with dashboard design
+
+1️⃣ Remove Double Header
+❌ Issue:
+
+There is a duplicate header showing on /cvs page.
+
+✅ Required:
+
+Keep only one main global header.
+
+Remove extra header wrapper.
+
+Maintain layout consistency.
+
+Do not break navbar or routing.
+
+2️⃣ Remove “Duplicate CV” Option
+
+Each CV card currently has:
+
+Edit
+
+Download
+
+Delete
+
+Duplicate
+
+❌ Remove:
+
+Duplicate button completely.
+
+After removing:
+
+Re-align action buttons.
+
+Maintain clean spacing.
+
+Keep layout balanced.
+
+3️⃣ Redesign Layout – AI-Powered Style
+🎨 New Design Requirements
+
+Match dashboard and home page:
+
+Same spacing system (8px grid)
+
+Same border radius
+
+Same shadow depth
+
+Same animation style
+
+Same icon family
+
+Same typography
+
+🧩 Page Structure
+Hero Section (Top)
+
+Title:
+“My Resumes”
+
+Subtitle:
+“Manage and optimize your CVs with AI.”
+
+Optional:
+
+Subtle animated background (like dashboard)
+
+Smooth entrance animation
+
+CV Grid Section
+
+Display all resumes (not limited to 4)
+
+Responsive grid:
+
+Desktop: 3 per row
+
+Tablet: 2 per row
+
+Mobile: 1 per row
+
+Each card must show:
+
+Template preview thumbnail
+
+CV Name
+
+Template Name
+
+Last Updated date
+
+FREE / PREMIUM badge
+
+4️⃣ Fix Preview Functionality
+❌ Current Issue:
+
+Preview container is not properly aligned and looks broken.
+
+✅ Required Fix:
+Desktop:
+
+Preview opens in side modal or large centered modal.
+
+Proper container width.
+
+Scrollable content.
+
+Maintain correct aspect ratio.
+
+No overflow issues.
+
+Mobile:
+
+When clicking “Preview”:
+
+Open full-screen modal.
+
+Clean header with close button.
+
+CV preview scrollable.
+
+No layout break.
+
+No horizontal scroll.
+
+5️⃣ Mobile-First Design
+
+Most users are mobile.
+
+Mobile Requirements:
+
+1 CV per row.
+
+Larger touch-friendly buttons.
+
+Clear spacing.
+
+Clean preview modal.
+
+Sticky close button.
+
+No cramped UI.
+
+No broken preview container.
+
+6️⃣ Improve Card Interaction
+
+Add subtle improvements:
+
+Hover lift animation (desktop only)
+
+Smooth shadow transition
+
+Highlight on hover
+
+Smooth preview open animation
+
+Action buttons with consistent icon style
+
+7️⃣ Data Integrity
+
+Ensure:
+
+Correct template preview shown
+
+Correct template name displayed
+
+No stale template state
+
+Correct CV ID mapping
+
+Dashboard and /cvs page consistent
+
+8️⃣ Clean Navigation Flow
+
+Dashboard:
+
+Shows 4 CVs only.
+
+“View More” redirects to /cvs.
+
+/cvs:
+
+Shows full list.
+
+Proper pagination if needed (optional).
+
+No duplication of header.
+
+Clean transition from dashboard.
+
+🚫 Do NOT
+
+Do not reintroduce duplicate header.
+
+Do not re-add duplicate CV option.
+
+Do not break template preview.
+
+Do not use old layout style.
+
+Do not ignore mobile design.
+
+Do not break RTL support.
+
+✅ Final Expected Result
+
+After redesign:
+
+✔ Single header only
+✔ Duplicate CV option removed
+✔ Clean AI-powered layout
+✔ Fully responsive grid
+✔ Mobile-first optimized
+✔ Preview works correctly
+✔ Modal preview on mobile
+✔ Consistent with dashboard design
+✔ Premium SaaS look
+
+This page must feel like part of a modern AI CV platform — clean, intelligent, and premium — not like an old admin list.
+
+Implement carefully and maintain state integrity.

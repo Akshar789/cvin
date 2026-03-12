@@ -1,0 +1,176 @@
+Duplicate CV Issue – Dashboard Showing 2 CVs Instead of 1
+🎯 Test Account
+
+Email: haresh.storestranform@gmail.com
+
+Password: haresh.storestranform@gmail.com
+
+❌ Problem
+
+For this user:
+
+Only one CV was intentionally created
+
+But dashboard is showing two CVs
+
+This should not happen.
+
+We need to investigate how and why an extra CV record was created.
+
+🔎 Investigation Required
+1️⃣ Check Database Records
+
+First, inspect cvs table for this user:
+
+How many records exist for this user_id?
+
+What are their:
+
+id
+
+template_id
+
+created_at
+
+updated_at
+
+status (if any)
+
+Confirm whether:
+
+There are truly 2 rows in database
+OR
+
+Dashboard is duplicating one record visually
+
+2️⃣ Check Guest → Signup Flow
+
+Most likely cause:
+
+During flow:
+
+User created CV as guest.
+
+Then signed up.
+
+System may have:
+
+Created new CV record on signup.
+
+Migrated guest CV to new user.
+
+But failed to delete guest record.
+
+Or inserted duplicate row.
+
+Check:
+
+Does signup create a new CV automatically?
+
+Is there logic like:
+
+createNewCV()
+
+being triggered unintentionally?
+
+Is guest CV being copied instead of reassigned?
+
+3️⃣ Check CV Creation Trigger
+
+Verify that:
+
+“Create New CV” action:
+
+Uses INSERT only once.
+
+Not called twice.
+
+Not triggered on route mount.
+
+Not triggered on signup completion.
+
+Not triggered during auto-save initialization.
+
+4️⃣ Check Auto-Save Initialization
+
+Sometimes auto-save logic may:
+
+Detect no CV ID.
+
+Automatically create new CV.
+
+Even if one already exists.
+
+Ensure:
+
+CV ID is persisted in session properly.
+
+No fallback logic creating extra CV silently.
+
+5️⃣ Dashboard Fetch Logic
+
+Verify:
+
+Dashboard must:
+
+SELECT * FROM cvs WHERE user_id = ?
+
+And not:
+
+Including soft-deleted records
+
+Including draft placeholder records
+
+Including partially created guest CVs
+
+Also check:
+
+Are there hidden placeholder CV entries?
+
+Are incomplete CVs being shown?
+
+🧪 Required Testing After Fix
+
+Using haresh.storestranform@gmail.com
+:
+
+Check DB → confirm exact number of CV rows.
+
+Delete extra CV if ghost record.
+
+Create new CV.
+
+Confirm exactly 2 records.
+
+Signup during guest flow.
+
+Confirm no duplicate created.
+
+Logout → Login.
+
+Dashboard must match DB count exactly.
+
+🚫 Strict Rules
+
+Do not auto-create CV on signup.
+
+Do not duplicate guest CV.
+
+Do not insert placeholder CV silently.
+
+Do not show incomplete draft entries unintentionally.
+
+Do not show deleted CVs.
+
+✅ Final Expected Result
+
+After fix:
+
+✔ Dashboard shows correct number of CVs
+✔ No duplicate records
+✔ Signup does not create extra CV
+✔ Guest migration does not duplicate CV
+✔ Auto-save does not create new CV silently
+✔ Database and dashboard always consistent
+
+This is a CV creation lifecycle bug and must be fixed at the database + flow logic level, not just UI.

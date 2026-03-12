@@ -1,0 +1,137 @@
+Urgent Fix Required – Data Loss + Edit Panel Language Sync Issue
+Current Critical Problems
+
+Even after previous fixes, the issue still exists.
+
+🚨 Issue 1 – Content Missing After Registering (Post CV Creation)
+Flow:
+
+User creates CV (AI or Manual)
+
+Both languages are generated
+
+User registers after CV creation
+
+Default preview loads in Arabic
+
+❌ Content is missing
+
+❌ AI-generated data is not loading properly
+
+❌ Data does not match what was originally generated
+
+This means:
+
+Either data is being overwritten during registration
+
+Or migration from guest → registered user is breaking
+
+Or wrong language version is being loaded as default
+
+Or state is resetting after authentication
+
+This must be fixed completely.
+
+🚨 Issue 2 – Edit Panel Not Syncing with Language Switch
+
+When switching language:
+
+✅ Preview updates correctly
+
+❌ Edit panel still shows English content
+
+❌ Description fields (Professional Summary, Experience descriptions, etc.) remain in English
+
+❌ Not switching to Arabic version in edit panel
+
+This creates inconsistency between:
+
+Edit Panel → English
+Preview Panel → Arabic
+
+This is unacceptable UX.
+
+Required Fix (Must Be Fully Resolved)
+1️⃣ Fix Guest → Register Data Handling
+
+When user registers after CV creation:
+
+Do NOT overwrite CV data.
+
+Properly attach existing CV (with both languages) to user account.
+
+Ensure both:
+
+english_version fields
+
+arabic_version fields
+remain intact.
+
+Ensure no null overwriting.
+
+Ensure correct default language loads based on last selected language.
+
+2️⃣ Always Load Both Language Versions
+
+When loading CV after login/register:
+
+Fetch BOTH English and Arabic data.
+
+Store both in frontend state.
+
+Do NOT fetch only one version based on current language.
+
+Language switch should only change display source.
+
+3️⃣ Real-Time Edit Panel Sync
+
+When switching language:
+
+Replace ALL edit field values in real-time.
+
+This includes:
+
+Professional Summary
+
+Experience descriptions
+
+Education descriptions
+
+Skills
+
+All dynamic sections
+
+No page reload.
+
+No translation API.
+
+Just switch between stored English and Arabic versions.
+
+4️⃣ Global Language State Must Control Everything
+
+Language switch (header or local):
+
+Must update:
+
+✔ Preview content
+✔ Edit content
+✔ Section labels
+✔ Direction (RTL/LTR)
+✔ All dynamic fields
+
+Everything must stay synchronized.
+
+Expected Final Behavior
+
+After CV creation → register/login:
+
+✔ No data loss
+✔ AI-generated content remains intact
+✔ English version preserved
+✔ Arabic version preserved
+✔ Edit panel matches preview panel
+✔ Language switch works perfectly
+✔ No mismatched content
+
+This is now a critical data consistency and state management issue.
+Please refactor the language state handling and guest-to-user migration logic to make it fully robust.

@@ -1,0 +1,48 @@
+modules = ["nodejs-20", "web", "bash", "postgresql-16"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["nspr", "nss", "at-spi2-atk", "cups", "libdrm", "libxkbcommon", "mesa", "pango", "xorg.libX11", "xorg.libXcomposite", "xorg.libXdamage", "xorg.libXext", "xorg.libXfixes", "xorg.libXrandr", "xorg.libxcb", "glib", "gtk3", "alsa-lib", "dbus-glib", "chromium", "unzip"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "dev-server"
+
+[[workflows.workflow]]
+name = "dev-server"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx next dev -p 5000 --hostname 0.0.0.0"
+waitForPort = 5000
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[agent]
+integrations = ["javascript_openai:1.0.0", "javascript_stripe:1.0.0", "javascript_object_storage:1.0.0"]
+expertMode = true
+
+[userenv]
+
+[userenv.shared]
+JWT_SECRET = "f15bb4a926deb313f6a209ee142874a07cadfc6efeb67afc77c41aa117ae5d03"
+NEXTAUTH_SECRET = "698443fb408ffd261942720c3a0587804aa176fa4d608c92cc169f2fb169bbc9"
+NEXTAUTH_URL = "https://8b7daf9c-7382-4257-bdaa-a5c78059f991-00-xfmsoq8cncxw.picard.replit.dev"

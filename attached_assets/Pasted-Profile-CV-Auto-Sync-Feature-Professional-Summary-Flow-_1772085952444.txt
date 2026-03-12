@@ -1,0 +1,175 @@
+Profile → CV Auto Sync Feature + Professional Summary Flow Fix
+🎯 Objective
+
+Now that we store all user data properly in the database (from previous CV steps), we want to improve UX for logged-in users.
+
+When a logged-in user creates a new CV:
+
+They should NOT need to manually re-enter all data again if profile data already exists.
+
+We need to implement a “Sync From Profile” system for each step (except Skills & Certificates).
+
+Also, fix the Professional Summary generation flow.
+
+1️⃣ Add “Sync From Profile” Button (Per Step)
+📌 Scope
+
+Add a button on every step EXCEPT:
+
+❌ Skills
+
+❌ Certificates
+
+Add button on:
+
+Basic Information
+
+Location
+
+Professional Targeting
+
+Work Experience
+
+Education
+
+Professional Summary
+
+🟢 Button Label:
+
+“Sync From Profile”
+
+🔁 Behavior
+
+When user clicks “Sync From Profile”:
+
+System fetches data from Profile Settings (latest stored data)
+
+Automatically fills the current step form fields
+
+Does NOT overwrite manually typed data unless confirmed
+
+Show confirmation modal if step already has data:
+
+“Replace current data with profile data?”
+
+🧠 Data Rules
+
+Pull from latest saved profile data
+
+Pull repeater fields properly (Education & Work Experience arrays)
+
+If profile has multiple entries → populate all entries
+
+If some fields are empty → leave them empty (do not inject null)
+
+User must be able to edit synced data
+
+🔐 Important
+
+Only visible for logged-in users
+
+Guest users should NOT see Sync button
+
+Must not create duplicate entries
+
+Must not overwrite entire CV record silently
+
+2️⃣ Professional Summary Flow Fix
+❌ Current Problem
+
+Right now:
+
+When user reaches Professional Summary step:
+
+It directly shows “Regenerating…”
+
+Instead of:
+
+Showing generated summary first
+
+Then giving regenerate button option
+
+This is incorrect UX.
+
+✅ Required Behavior
+
+When entering Professional Summary step:
+
+First Time:
+
+Generate summary (if not exists)
+
+Display generated summary immediately
+
+Show “Regenerate with AI” button below it
+
+Do NOT auto-regenerate every time user enters step.
+
+After Generation:
+
+Display:
+
+Generated summary (editable textarea)
+
+✨ Regenerate button
+
+Clear loading animation when regenerating
+
+Only regenerate when user clicks the button.
+
+🧠 Regeneration Rules
+
+Do NOT auto-trigger regenerate on step load
+
+Do NOT overwrite user edits unless user confirms
+
+If user edited summary manually → preserve it
+
+Regeneration must replace only when user clicks
+
+3️⃣ Expected UX Flow (Login User)
+
+New CV →
+Step opens →
+User clicks “Sync From Profile” →
+Fields auto-filled →
+User edits if needed →
+Continue →
+Professional Summary shows generated result →
+User can regenerate if needed →
+Continue →
+Preview
+
+Fast. Smart. AI-powered.
+
+4️⃣ Data Integrity Rules
+
+Do NOT overwrite existing CV accidentally
+
+Do NOT create duplicate repeater entries
+
+Do NOT lose profile data
+
+Maintain proper CV ID mapping
+
+Auto-save must work correctly
+
+Sync must not break template selection
+
+5️⃣ Final Expected Result
+
+After implementation:
+
+✔ Login user can auto-fill steps
+✔ No retyping required
+✔ Repeater fields synced properly
+✔ Professional Summary shows first → regenerate optional
+✔ No unwanted auto regeneration
+✔ User edits preserved
+✔ Clean UX
+✔ No data corruption
+✔ Fully mobile responsive
+
+This is a UX enhancement + generation flow correction.
+
+Focus on smooth behavior, safe syncing, and preserving user control.

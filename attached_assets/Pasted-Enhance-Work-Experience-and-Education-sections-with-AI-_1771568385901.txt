@@ -1,0 +1,201 @@
+Enhance Work Experience and Education sections with AI-powered description generation.
+
+Also ensure complete bilingual (English + Arabic) support across the entire CV flow with seamless switching.
+
+🤖 1️⃣ AI GENERATE OPTION – DESCRIPTION FIELDS (IMPORTANT)
+
+In:
+
+Work Experience (including repeater items)
+
+Education (including repeater items)
+
+Each Description field must have:
+
+✨ “Generate with AI” button
+
+Behavior:
+
+Generates professional, job-winning description
+
+Uses:
+
+User role (Student / Employer)
+
+Job Title
+
+Job Domain
+
+Experience years
+
+Company name
+
+Education info
+
+Existing description (if any)
+
+🔄 REGENERATE FUNCTION
+
+When user clicks Regenerate:
+
+Call AI again
+
+Return 3 different improved variations
+
+Display as selectable options
+
+User chooses one
+
+Replace current content
+
+AI output must:
+
+Be professional
+
+Highlight impact
+
+Use strong action verbs
+
+ATS-friendly
+
+Increase hiring chances
+
+🌍 LANGUAGE SUPPORT
+
+AI must generate content based on current language:
+
+If English selected → Generate English
+
+If Arabic selected → Generate Arabic
+
+Proper RTL formatting for Arabic
+
+No mixed language.
+
+🔀 2️⃣ LANGUAGE SWITCHER – FULL FLOW SUPPORT
+
+We already have language toggle in Template Gallery.
+
+Now:
+
+Add Language Toggle beside Progress Bar on every step.
+
+Requirements:
+
+Switching language:
+
+Updates UI instantly
+
+Updates labels & placeholders
+
+Keeps user data intact
+
+Does NOT reset form
+
+Does NOT lose progress
+
+Resume content fields stay stored properly
+
+Save language preference per session
+
+💾 3️⃣ DATA STORAGE RULES
+
+Ensure:
+
+AI-generated descriptions save correctly
+
+Both manual & AI content stored properly
+
+Guest & logged-in user logic preserved
+
+No duplicate records
+
+No overwriting wrong entries
+
+Each repeater item saved correctly
+
+Resume ID consistent across steps
+
+🧠 4️⃣ STUDENT & EMPLOYER SEAMLESS EXPERIENCE
+
+Ensure:
+
+Student flow:
+
+AI works for Education
+
+No Experience logic errors
+
+Employer flow:
+
+AI works for Experience
+
+Regenerate works per entry
+
+Switching role mid-process does not break state
+
+📱 5️⃣ MOBILE & RTL STABILITY
+
+AI buttons responsive
+
+No layout shift
+
+RTL layout correct
+
+No overflow issues
+
+Smooth transitions
+
+Loading states clean
+
+⚠️ IMPORTANT RULES
+
+Do NOT break existing database schema
+
+Do NOT change business logic
+
+Keep architecture clean
+
+Avoid unnecessary refactor
+
+Keep performance optimized
+
+Ensure no console errors
+
+✅ SUCCESS CRITERIA
+
+AI generate works in every description field
+
+Regenerate returns 3 options
+
+Works for repeater items
+
+Language toggle works on every step
+
+No data loss on language change
+
+Student & Employer flows stable
+
+AI respects selected language
+
+Clean UI
+
+No bugs
+
+No performance degradation
+
+🎯 FINAL GOAL
+
+Deliver a seamless AI-powered CV builder that:
+
+Works flawlessly in English & Arabic
+
+Feels intelligent
+
+Generates high-quality job-winning content
+
+Works for both Students & Employers
+
+Maintains clean UX
+
+Production-ready and stable

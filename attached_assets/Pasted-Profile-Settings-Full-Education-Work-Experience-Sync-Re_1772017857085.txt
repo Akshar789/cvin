@@ -1,0 +1,235 @@
+Profile Settings – Full Education & Work Experience Sync (Repeater Support Required)
+🎯 Objective
+
+We must properly align Profile Settings with the CV step flow — especially:
+
+Education (repeater)
+
+Work Experience (repeater)
+
+Currently, this is not fully aligned.
+
+We need:
+
+All step fields saved correctly in database
+
+All repeater entries stored properly
+
+All data displayed correctly in Profile Settings
+
+No data loss
+
+No missing entries
+
+Clean mapping
+
+Future-safe for second CV generation
+
+⚠️ Critical Requirement
+
+Education and Work Experience BOTH support repeater fields.
+
+Profile Settings must also support repeater display.
+
+It must NOT show only a single entry.
+
+It must show ALL entries saved in database.
+
+🧩 1️⃣ Education – Required Fields (From Steps)
+
+We collect:
+
+Institution
+
+Degree
+
+Field of Study
+
+Start Year
+
+Graduation Year
+
+Description (optional)
+
+Required Fix:
+A. Database
+
+Ensure every education entry is saved properly
+
+Each entry must be linked to:
+
+CV ID
+
+User ID
+
+Must support multiple entries
+
+No overwriting of previous entries
+
+B. Profile Settings Display
+
+In Settings → Education section:
+
+Show ALL saved education entries
+
+Use repeater-style layout
+
+Display:
+
+Institution
+
+Degree
+
+Field of Study
+
+Duration (Start Year – Graduation Year)
+
+Description (if exists)
+
+If Description is empty:
+→ Show education entry without description
+→ Do NOT hide entire entry
+
+🧩 2️⃣ Work Experience – Required Fields (From Steps)
+
+We collect:
+
+Company Name
+
+Job Title
+
+City
+
+Start Date (Month + Year)
+
+End Date (Month + Year OR Present)
+
+Description (optional)
+
+Supports repeater.
+
+Required Fix:
+A. Database
+
+Ensure every work experience entry is saved properly
+
+Must not overwrite previous jobs
+
+Must be linked to correct CV
+
+Must store:
+
+Start Month
+
+Start Year
+
+End Month
+
+End Year
+
+Present flag (if selected)
+
+B. Profile Settings Display
+
+In Settings → Work Experience:
+
+Display ALL saved positions
+
+Properly formatted:
+
+Job Title at Company
+
+City
+
+Duration (Start – End or Present)
+
+Description (if exists)
+
+If Description is empty:
+→ Still show job entry.
+
+🔄 3️⃣ Data Integrity Rule (Very Important)
+
+We must ensure:
+
+No single database field is missed
+
+All repeater entries are stored
+
+All entries are retrievable
+
+All entries appear in Profile Settings
+
+No data overwritten accidentally
+
+No null replacement of valid data
+
+Proper array handling (not flat structure)
+
+🔁 4️⃣ Purpose – Future CV Generation
+
+This is critical because:
+
+When user generates second CV:
+
+We must:
+
+Reuse stored Education
+
+Reuse stored Work Experience
+
+Allow editing
+
+Avoid re-entering everything
+
+Avoid data loss
+
+Profile Settings must reflect exactly what was saved in steps.
+
+🔍 5️⃣ Validate These Cases
+
+Test:
+
+Add 2 education entries → Both must appear.
+
+Add 3 work experiences → All must appear.
+
+Leave description empty → Entry must still show.
+
+Create second CV → Previous data must remain.
+
+Refresh page → No data disappears.
+
+Edit one entry → Only that entry updates.
+
+🚫 Do NOT
+
+Do not flatten repeater structure
+
+Do not overwrite entire education array on update
+
+Do not hide entries because optional field is empty
+
+Do not duplicate entries
+
+Do not mix data between CVs
+
+Do not break existing CV preview logic
+
+✅ Final Expected Result
+
+After fix:
+
+✔ Education supports full repeater in Profile
+✔ Work Experience supports full repeater in Profile
+✔ All fields saved correctly in database
+✔ No missing fields
+✔ No accidental overwrite
+✔ Data reusable for second CV
+✔ Accurate display in Settings
+✔ Clean structure
+✔ Production-ready
+
+This is a database integrity + repeater sync task, not a design change.
+
+Focus on correct storage, retrieval, mapping, and multi-entry support.

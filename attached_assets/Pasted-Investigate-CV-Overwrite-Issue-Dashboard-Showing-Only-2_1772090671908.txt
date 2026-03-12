@@ -1,0 +1,159 @@
+Investigate CV Overwrite Issue – Dashboard Showing Only 2 Instead of 3
+🎯 Objective
+
+We need to audit and understand how the system handles CV creation and saving.
+
+Scenario:
+
+I already had 2 CVs created in the past.
+
+Today, I created a new CV (with same data but possibly different template).
+
+Instead of showing 3 CVs in dashboard,
+
+The newest CV replaced one of the existing ones.
+
+This means something in the system is overwriting instead of creating a new record.
+
+🔍 What Needs to Be Investigated
+1️⃣ CV Creation Logic
+
+Check:
+
+When user clicks “Create New CV”
+
+Does system:
+
+Create a NEW row in cvs table?
+
+OR reuse last CV record?
+
+OR update existing CV by default?
+
+We need to verify:
+
+Is there a unique CV ID generated?
+
+Is INSERT being used?
+
+Or is UPDATE being triggered accidentally?
+
+2️⃣ Check How CV ID Is Managed
+
+Questions to validate:
+
+Is the system storing current CV ID in session?
+
+Is “Create New CV” accidentally reusing last CV ID?
+
+Is auto-save updating the wrong CV record?
+
+We must confirm:
+
+Each new CV must:
+
+Generate a new unique CV ID
+
+Be inserted into database
+
+Be linked to correct user_id
+
+Not override existing CV
+
+3️⃣ Database Structure Check
+
+In cvs table:
+
+Verify:
+
+id (primary key)
+
+user_id
+
+template_id
+
+created_at
+
+updated_at
+
+Confirm:
+
+Multiple rows exist per user_id
+
+No unique constraint on user_id
+
+No logic forcing single CV per user
+
+4️⃣ Auto-Save Behavior Check
+
+Check:
+
+When user creates new CV
+
+Is auto-save immediately updating previous CV?
+
+Is CV ID passed correctly during navigation?
+
+Is template change triggering update instead of insert?
+
+5️⃣ Expected Correct Flow
+
+When user clicks:
+
+“Create New CV”
+
+System must:
+
+Generate new CV ID
+
+Insert new record into cvs table
+
+Associate with logged-in user
+
+Save step-by-step data into that new record
+
+Dashboard must fetch ALL CVs by user_id
+
+Show all CVs sorted by updated_at DESC
+
+🧪 Test Case to Validate
+
+Using test account:
+
+Check number of CV records in DB.
+
+Create new CV.
+
+Confirm a new row is inserted.
+
+Confirm old CV rows still exist.
+
+Confirm dashboard shows all rows.
+
+Logout & login → still shows all.
+
+🚫 Things That Must NOT Happen
+
+Do not overwrite existing CV when creating new one.
+
+Do not reuse previous CV ID.
+
+Do not auto-update last CV on new creation.
+
+Do not limit user to only 2 CVs.
+
+Do not silently delete older CV.
+
+✅ Final Expected Result
+
+After investigation & fix:
+
+✔ Every “Create New CV” creates new database record
+✔ No overwriting of previous CV
+✔ Dashboard shows all CVs
+✔ Auto-save updates correct CV only
+✔ Template switching doesn’t override other CVs
+✔ System fully supports multiple CVs per user
+
+This is a database flow validation and correction task.
+Focus on INSERT vs UPDATE logic and correct CV ID handling.

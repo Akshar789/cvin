@@ -1,0 +1,149 @@
+📍 Current User Flow (Expected)
+
+Guest User (Not Logged In)
+
+User enters the site
+
+Clicks Browse Templates
+
+Redirected to Template Gallery
+
+Selects a CV template
+
+Redirected to /cv/basic-info
+
+Basic Info Step
+
+User fills Basic Information
+
+Chooses one option:
+
+AI Generation → CV content auto-generated
+
+Manual Continue → User fills details manually
+
+Preview Step
+
+User is redirected to /cv/preview
+
+Selected template is shown with updated content
+
+User can edit and adjust the CV
+
+Guest Save
+
+Since the user is not logged in:
+
+Download is disabled
+
+User clicks Save
+
+CV is saved in guest_cvs table
+
+User is redirected to Login / Register page
+
+After Login / Register
+
+User is redirected to Dashboard
+
+CVs are fetched based on email address
+
+User should be able to:
+
+See the CV created as a guest
+
+Preview it
+
+Edit it
+
+Download it
+
+❌ Current Issues
+Issue 1: Selected Template Is Lost After Login
+
+After login, when the user:
+
+Previews or edits the CV
+
+The original selected template is NOT shown
+
+This indicates that:
+
+Guest CVs are not saving the template data properly
+
+Or template reference is not being mapped after login
+
+Issue 2: Downloaded CV Uses Wrong Template
+
+When a logged-in user downloads the CV:
+
+The downloaded CV structure/layout is different from the template selected
+
+User changes are present, but the template structure is incorrect
+
+✅ Expected Fix / Implementation Requirements
+1️⃣ Guest CV Saving (Critical)
+
+While saving CV as a guest:
+
+Store selected template ID / slug / key
+
+Store template structure reference
+
+Store all CV content linked to that template
+
+Ensure guest CV data is complete and consistent
+
+2️⃣ Guest → Logged-In CV Mapping
+
+After login or registration:
+
+Match guest CVs using email address
+
+Properly migrate or link guest CVs to the logged-in user
+
+Preserve:
+
+Selected template
+
+CV structure
+
+User edits and adjustments
+
+3️⃣ Preview After Login
+
+When user previews a CV after login:
+
+Load the same template originally selected
+
+Populate it with saved data
+
+Ensure preview matches what the user saw before login
+
+4️⃣ Download Consistency
+
+When downloading the CV:
+
+Use the same template layout
+
+Apply all user changes correctly
+
+Ensure:
+
+Preview layout === Downloaded layout
+
+No template switching or fallback templates
+
+🎯 Goal
+
+Ensure template persistence from:
+
+Guest creation → Save → Login → Dashboard → Preview → Download
+
+Guarantee that:
+
+The selected template never changes
+
+User edits remain intact
+
+Downloaded CV exactly matches the preview

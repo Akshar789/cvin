@@ -1,0 +1,155 @@
+Update Required – Saudi Phone Number Validation (Client + Server Side)
+Page Affected:
+
+/cv/basic-info
+
+Phone Number field
+
+Current Issue
+
+We added phone number validation for Saudi numbers, but it does not seem to be working correctly.
+
+After reviewing official Saudi numbering rules, we need to properly validate numbers according to Saudi telecom standards.
+
+All Saudi numbers use:
+
+Country Code: +966
+
+✅ Required Validation Rules
+1️⃣ Mobile Numbers (Saudi)
+
+Format Rules:
+
+International format: +9665XXXXXXXX
+
+Local format: 05XXXXXXXX
+
+After country code (+966), mobile must start with 5
+
+Total digits:
+
+Local: 10 digits (05XXXXXXXX)
+
+International: 12 digits (+9665XXXXXXXX)
+
+Valid Mobile Prefixes:
+STC:
+
+050
+
+053
+
+055
+
+0573
+
+Mobily:
+
+054
+
+056
+
+Zain:
+
+058
+
+059
+
+MVNO:
+
+Virgin: 0570, 0571, 0572
+
+Lebara: 0576, 0577, 0578
+
+Salam Mobile: 051
+
+Red Bull: 0574, 0575
+
+2️⃣ Landline Numbers (Geographic)
+
+Format:
+
+Local: 01XXXXXXXX
+
+International: +9661XXXXXXXX
+
+Valid Area Codes:
+
+011 – Riyadh
+
+012 – Western Region
+
+013 – Eastern Province
+
+014 – Northern Region
+
+016 – Qassim/Hail
+
+017 – Southern Region
+
+3️⃣ Business & Special Numbers
+
+Toll-Free: Starts with 800
+
+Universal Access: Starts with 9200
+
+VoIP/Virtual: May use 0811 format
+
+🔧 Required Implementation
+A) Client-Side Validation
+
+Validate using regex
+
+Allow:
+
+Local format
+
+International format (+966)
+
+Show clear error message if invalid:
+
+"Please enter a valid Saudi phone number."
+
+Remove any incorrect hardcoded validation logic
+
+Trim spaces automatically
+
+Prevent non-numeric characters (except + at beginning)
+
+B) Server-Side Validation (Mandatory)
+
+Validate again on backend
+
+Do NOT rely only on frontend
+
+Reject invalid numbers with proper error response
+
+Normalize format before saving:
+
+Store numbers consistently in one format (preferably international +966 format)
+
+C) Additional Requirements
+
+Must work for:
+
+English version
+
+Arabic version
+
+Must work for:
+
+Guest users
+
+Registered users
+
+Ensure no conflict with AI-generated data
+
+Expected Result
+
+Only valid Saudi mobile, landline, or business numbers are accepted.
+
+Both client-side and server-side validation enforced.
+
+Proper error handling.
+
+Clean and normalized phone number storage format.

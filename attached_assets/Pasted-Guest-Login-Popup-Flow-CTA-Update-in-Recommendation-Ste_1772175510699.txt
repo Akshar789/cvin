@@ -1,0 +1,134 @@
+Guest Login Popup Flow + CTA Update in Recommendation Step
+🎯 Objective
+
+Improve the guest user flow in the Recommendation step and make it more seamless and conversion-focused.
+
+Currently:
+
+Guest users see Login / Sign Up buttons.
+
+Clicking them redirects to /auth/login page.
+
+“Preview My CV” button exists in recommendation step.
+
+We want to improve this experience.
+
+1️⃣ Replace Redirect with Popup Login / Signup Modal
+❌ Current Behavior
+
+Clicking Login / Sign Up redirects user to /auth/login.
+
+✅ Required Behavior
+
+Instead of redirecting:
+
+Open authentication form in a modal popup
+
+Same design as the popup used when guest clicks Download
+
+Should include:
+
+Login tab
+
+Signup tab
+
+Smooth transition between tabs
+
+Proper validation
+
+Clean mobile layout
+
+🔄 After Successful Login / Signup
+
+When authentication succeeds:
+
+Close modal automatically
+
+Redirect user to:
+
+CV Preview / Edit page
+
+Preserve CV state
+
+Preserve selected template
+
+Allow user to:
+
+Edit
+
+Download
+
+Continue normally
+
+No data loss.
+No restart of flow.
+
+2️⃣ Update Button Text in Recommendation Step
+
+Currently button text:
+“Preview My CV”
+
+✅ Change To:
+
+“Download My CV”
+
+🔄 Behavior After Change
+
+When user clicks “Download My CV”:
+
+If Logged-In:
+
+Redirect to Preview / Edit page
+
+Allow download
+
+If Guest:
+
+Open login/signup popup modal
+
+After successful auth:
+
+Redirect to Preview / Edit page
+
+3️⃣ UX Improvements
+
+Keep animation smooth
+
+Maintain design consistency
+
+Ensure RTL compatibility
+
+Ensure mobile responsiveness
+
+Maintain typography consistency
+
+No layout shifts
+
+No flash of redirect page
+
+4️⃣ Important Technical Requirements
+
+Preserve CV ID in session or state
+
+Do NOT create new CV after login
+
+Do NOT reset template selection
+
+Do NOT regenerate content
+
+Maintain selected language state
+
+Ensure no conflict with bilingual system
+
+✅ Final Expected Result
+
+✔ Guest clicks Download My CV → login popup appears
+✔ After login → user redirected to preview/edit page
+✔ CV data preserved
+✔ Selected template preserved
+✔ No redirect to standalone login page
+✔ Smooth modal UX
+✔ Fully responsive
+✔ Clean conversion-focused experience
+
+This improves conversion and makes the flow seamless and professional.

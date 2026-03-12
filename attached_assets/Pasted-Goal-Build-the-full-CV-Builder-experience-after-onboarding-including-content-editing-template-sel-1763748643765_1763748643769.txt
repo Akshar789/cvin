@@ -1,0 +1,253 @@
+Goal: Build the full CV Builder experience after onboarding, including content editing, template selection, AI support, and subscription-based access control.
+
+🔷 1. Build the Main CV Builder Screen (3-Step Flow)
+
+Create a multi-step UI flow:
+
+Step 1 — Content Builder
+Step 2 — Template & Design
+Step 3 — Download & Export
+
+Use a top stepper like:
+Content → Design & Format → Download
+
+🔷 2. STEP 1: Content Builder (AI-Supported)
+
+Build a structured CV form divided into clear sections:
+
+Personal Information (pre-filled from onboarding + editable)
+
+Professional Summary
+
+Experience (Multiple Entries)
+
+Education
+
+Skills
+
+Courses & Certifications
+
+Languages
+
+AI Integration Buttons (Per Section):
+
+"Generate Section with AI"
+
+"Improve This Section"
+
+"Rewrite for ATS"
+
+"Translate to Arabic/English"
+
+AI behavior:
+
+Use stored user profile fields to generate tailored text.
+
+Keep calls section-based (token-efficient).
+
+If user uploaded a CV earlier, auto-suggest imported content.
+
+UI requirement:
+
+Clean two-column layout: form on right, live preview placeholder on left (template-neutral).
+
+🔷 3. STEP 2: Template & Design Selection
+
+Create a left preview + right configuration panel.
+
+A. Template Options
+
+Show two templates:
+
+Template 1 — Classic ATS (Free & Pro)
+
+Standard black/white
+
+One-column
+
+ATS-friendly
+
+No photo
+
+Clean typography
+
+Optimized for job portals
+
+Template 2 — Attractive Template (Pro Only)
+
+Color header/sidebar
+
+Strong visual hierarchy
+
+Optional photo upload
+
+User can modify:
+
+Primary color
+
+Accent color
+
+Background for header/sidebar
+
+Layout inspired by the reference CV:
+/mnt/data/Clerkenwell_A4_CV.pdf
+
+B. Access Control Logic
+
+Free Users:
+
+Can view Attractive Template preview in blurred/locked mode.
+
+Can use only Classic ATS for generation + download.
+
+Subscribed Users:
+
+Full access to both templates.
+
+Unlimited editing, colors, photo upload.
+
+C. Photo Upload Panel (Pro Only)
+
+Show “Add Profile Photo” section only when Attractive template is active.
+
+Allow uploading JPG/PNG.
+
+Show circular preview.
+
+D. Change Template Toggle
+
+Add “Change Template” button/icon in the top of preview.
+Switch templates without losing content.
+
+🔷 4. STEP 3: Download & Export Section
+
+Show final CV preview (full page).
+Provide buttons based on subscription tier:
+
+Free Users
+
+Download PDF (Classic ATS Only)
+
+Button to upgrade if they:
+
+Choose Attractive template
+
+Try to download Word
+
+Try to generate unlimited versions
+
+Subscribed Users
+
+Download PDF (ATS or Attractive)
+
+Download Word (.docx)
+
+Unlimited AI regenerations
+
+Also add:
+
+“Share CV Link” (placeholder)
+
+“Save CV to Dashboard”
+
+🔷 5. Subscription Enforcement
+
+Implement a simple, front-end only gating system:
+
+Free Plan:
+
+1 CV creation
+
+Classic ATS template
+
+PDF export only
+
+Limited AI usage
+
+Attractive template = view only (locked)
+
+Pro Plan:
+
+Unlimited CVs
+
+Both templates (ATS + Attractive)
+
+Full color/theme editing
+
+Photo upload
+
+AI unlimited generation + rewriting
+
+PDF + Word exports
+
+When a Free user clicks a Pro feature, show a modal:
+
+Upgrade message
+
+Benefits checklist
+
+“Upgrade Now” button
+
+🔷 6. Core Components to Build
+
+Create the following React components:
+
+CvBuilderLayout (stepper + navigation)
+
+ContentFormSection
+
+AiActionButtons (Generate, Improve, Rewrite)
+
+TemplateSelector
+
+TemplatePreview
+
+TemplateSettingsPanel
+
+Color pickers
+
+Photo upload
+
+Layout options
+
+DownloadPanel
+
+SubscriptionLockModal
+
+SaveToDashboardButton
+
+🔷 7. Technical Requirements
+
+Use React or Next.js.
+
+Use context/global state to store:
+
+cvData
+
+selectedTemplate
+
+userSubscription
+
+theme settings (colors, photo)
+
+Use mock AI functions (placeholder) for now.
+
+Preload sample design from reference PDF for style guidance.
+
+🔷 8. Final Expected Output
+
+Produce a fully functional UI/UX prototype of the CV Builder where users can:
+
+Edit CV content with AI aid
+
+Switch between ATS and Attractive templates
+
+Customize Attractive template (colors + photo)
+
+Download based on subscription level
+
+Save CV to dashboard
+
+View locked features for Free users
+
+No backend or real AI calls required at this stage—only proper UX structure and flow.

@@ -1,0 +1,189 @@
+Create “About Us” & “Contact” Pages (Match Full Site Design)
+🎯 Objective
+
+Create two new pages:
+
+About Us
+
+Contact
+
+These pages must:
+
+Match the entire site design system
+
+Use the same layout structure
+
+Use the same header & footer
+
+Use the same typography
+
+Use the same animation style
+
+Be fully responsive
+
+Support RTL
+
+Feel premium and consistent
+
+After creation, link them properly in the footer.
+
+1️⃣ About Us Page
+Route:
+
+/about-us
+
+Structure:
+Hero Section
+
+Same animated background style as dashboard/legal pages
+
+Page title: “About CVin”
+
+Subtitle: Short mission statement
+
+Example content structure:
+
+Section 1 – Who We Are
+Explain CVin as AI-powered CV builder helping professionals land jobs.
+
+Section 2 – Our Mission
+Empower job seekers with intelligent tools.
+
+Section 3 – Why CVin
+
+AI-powered optimization
+
+Professional templates
+
+Career tools integration
+
+Secure & private
+
+Use:
+
+Card layout
+
+Clean spacing
+
+Subtle animations
+
+Icon consistency
+
+2️⃣ Contact Page
+Route:
+
+/contact
+
+Structure:
+Hero Section
+
+Same consistent animated background
+
+Title: “Contact Us”
+
+Subtitle: “We’re here to help.”
+
+Contact Information Section
+
+Display:
+
+Email: support@cvin.sa
+
+Location: Saudi Arabia
+
+Response time note
+
+Use icon-based layout matching site style.
+
+Contact Form Section
+
+Fields:
+
+Full Name
+
+Email
+
+Subject
+
+Message
+
+Features:
+
+Validation
+
+Clean input styling
+
+Loading state
+
+Success message after submit
+
+Error handling
+
+Mobile optimized
+
+If backend email not implemented yet:
+Store submission in database for now.
+
+3️⃣ Footer Linking
+
+Update footer links:
+
+About Us → /about-us
+Contact → /contact
+
+Ensure:
+
+No 404
+
+Correct routing
+
+Active link styling works
+
+Works on mobile
+
+RTL compatible
+
+4️⃣ Design Consistency Rules
+
+Must match:
+
+Same header
+
+Same footer
+
+Same spacing system (8px grid)
+
+Same button style
+
+Same border radius
+
+Same shadow depth
+
+Same animation style
+
+Same icon family
+
+Do NOT create different visual style.
+
+5️⃣ Remove Double Header
+
+Ensure:
+
+Only one header appears
+
+No duplicate navigation bar
+
+Consistent across both new pages
+
+6️⃣ Final Validation Checklist
+
+✔ Pages load correctly
+✔ No 404
+✔ Footer links work
+✔ Fully responsive
+✔ RTL works
+✔ Clean animation
+✔ Premium SaaS look
+✔ No console errors
+
+This is a clean content + layout implementation aligned with the full site system.

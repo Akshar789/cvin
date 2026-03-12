@@ -1,0 +1,214 @@
+OBJECTIVE
+
+Most homepage redesign is complete, but several improvements are still required:
+
+Add CV-related animation GIFs
+
+Add animated icons
+
+Convert template grid into a slider with larger preview
+
+Replace footer logo with newly added icon
+
+Add animation to “Just Three Simple Steps” section
+
+Maintain clean architecture and app design consistency.
+
+🎬 1. ADD CV-RELATED ANIMATION GIFS (IMPORTANT)
+
+Currently, no animation GIFs are visible.
+
+We need to properly integrate animation related to CV building.
+
+Add Animation In:
+🔹 A. “Just Three Simple Steps” Section
+
+Add small, professional animation near each step:
+
+Step 1: Resume template preview animation
+
+Step 2: Typing / editing animation
+
+Step 3: Download/export animation
+
+These can be:
+
+Optimized GIFs
+OR
+
+Lottie animations (preferred for performance)
+
+Requirements:
+
+Lightweight
+
+Optimized for mobile
+
+Lazy loaded
+
+Do not affect performance
+
+Positioned cleanly beside icons or above titles
+
+Smooth fade-in animation on scroll
+
+🎨 2. ANIMATE “JUST THREE SIMPLE STEPS” SECTION
+
+Current section is static.
+
+Add:
+
+Scroll-triggered animation
+
+Step cards fade in one by one
+
+Slight upward motion (translateY effect)
+
+Soft shadow hover effect
+
+Number badges animated pop-in
+
+Keep it professional, not overdone.
+
+Use subtle motion consistent with the app.
+
+🖼 3. TEMPLATE SECTION – CONVERT GRID TO SLIDER
+
+Currently:
+6 templates displayed in grid.
+
+This is NOT correct.
+
+Required:
+
+Replace grid with horizontal slider / carousel
+
+Show larger template previews
+
+Center-focused slider
+
+Partial preview of next/previous template
+
+Smooth sliding animation
+
+Mobile swipe enabled
+
+Desktop:
+
+2–3 visible at once
+
+Center template highlighted
+
+Mobile:
+
+1 large template per view
+
+Swipe enabled
+
+Use lightweight slider library or custom implementation.
+Do NOT introduce heavy dependencies.
+
+Add:
+
+👉 “View All Templates” button
+Redirect to /template-gallery
+
+🏷 4. REPLACE FOOTER LOGO
+
+We have already added the new footer logo.
+
+Now:
+
+Remove old footer logo completely
+
+Replace with newly provided logo
+
+Ensure:
+
+Proper size
+
+Clean alignment
+
+Responsive behavior
+
+No distortion
+
+Remove any remaining old branding references.
+
+🤖 5. ADD AI VISUAL FEEL (SUBTLE)
+
+Add subtle animated elements:
+
+Gradient glow behind CTA
+
+Slight floating effect on hero image
+
+Soft hover animation on buttons
+
+Micro-interactions on cards
+
+Make it feel intelligent and AI-powered.
+
+But keep it clean and professional.
+
+📱 6. MOBILE-FIRST PERFORMANCE CHECK
+
+Ensure:
+
+Slider works smoothly on mobile
+
+Animations don’t cause layout shift
+
+No overflow issues
+
+RTL still works for Arabic
+
+Animations adapt correctly in RTL mode
+
+⚠️ IMPORTANT RULES
+
+Do NOT modify backend logic
+
+Do NOT change template gallery functionality
+
+Only adjust frontend components
+
+Keep performance optimized
+
+Do not add heavy animation libraries unnecessarily
+
+Keep bundle size controlled
+
+✅ SUCCESS CRITERIA
+
+Animation GIFs visible and working
+
+“Just Three Simple Steps” section animated on scroll
+
+Template section converted to slider with larger preview
+
+Mobile swipe enabled
+
+Footer logo replaced correctly
+
+Smooth animations across homepage
+
+RTL still working properly
+
+No performance degradation
+
+🎯 FINAL GOAL
+
+Deliver a modern, animated, AI-feel homepage that:
+
+Looks premium
+
+Is visually engaging
+
+Uses motion professionally
+
+Highlights templates properly
+
+Works perfectly on mobile
+
+Maintains clean architecture

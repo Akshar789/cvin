@@ -1,0 +1,239 @@
+CV Flow Verification + Data Integrity + Profile Sync Improvements
+🎯 Objective
+
+We need to review and fix the complete CV creation flow, preview logic, dashboard listing, and profile settings synchronization to ensure:
+
+Proper data storage
+
+Correct preview rendering
+
+Multiple CV support
+
+Accurate profile field mapping
+
+Improved CV → Profile sync behavior
+
+This is a logic + database + rendering validation task, not UI redesign.
+
+✅ 1️⃣ Full CV Creation Flow Audit
+
+Please review the entire flow carefully:
+
+User selects template
+
+User fills Basic Information
+
+User completes step-by-step sections
+
+Data saves progressively to database
+
+User views Resume Preview
+
+User downloads CV
+
+CV appears in Dashboard
+
+Ensure:
+
+Each CV has a unique ID
+
+CV is correctly linked with user_id
+
+New CV does NOT overwrite old CV
+
+Editing existing CV updates only that CV
+
+Data persists correctly across sessions
+
+❌ 2️⃣ Education Section Rendering Issue (Critical)
+Problem:
+
+User entered:
+
+Institution
+
+Degree
+
+Field of Study
+
+Start Year
+
+Graduation Year
+
+But did NOT enter:
+
+Description
+
+On Resume Preview → Entire education section disappears.
+
+✅ Required Fix:
+
+Education must display if core fields exist.
+
+New logic:
+
+If Institution exists → Show education entry.
+
+Description must be OPTIONAL.
+
+If description is empty → Render without description.
+
+Do NOT hide entire education block.
+
+Rendering must depend on required fields only, not optional ones.
+
+❌ 3️⃣ Dashboard Showing Only One CV
+Problem:
+
+User created:
+
+One CV in past
+
+Another CV recently
+
+Completed steps and downloaded
+
+Dashboard shows only ONE CV.
+
+✅ Required Fix:
+
+Dashboard must:
+
+Fetch ALL CVs linked to logged-in user
+
+Sort by latest updated
+
+Display multiple CVs properly
+
+Ensure no overwriting unless explicitly editing
+
+Verify correct user_id filtering
+
+Ensure insert vs update logic is correct
+
+🔄 4️⃣ Profile Settings Page – Field Mapping & Sync Improvement
+🎯 Requirement:
+
+Profile Settings page should ONLY show the fields that we are currently asking in the CV creation steps.
+
+Do NOT add extra fields that are not part of step-by-step flow.
+
+This ensures:
+
+Clean structure
+
+Accurate mapping
+
+Easy synchronization
+
+No unused or duplicate data
+
+✅ Required Behavior:
+A. Auto-Fill Profile Data
+
+Profile page must pull data from database based on:
+
+users table
+
+Relevant cvs table fields (if needed)
+
+Only display fields that exist in CV steps:
+
+Full Name
+
+Email
+
+Phone
+
+Location
+
+Profession
+
+Headline (if collected)
+
+Profile Image (if collected)
+
+If data exists → Pre-fill automatically.
+
+B. Improve “Sync From CV” Functionality
+
+Current sync works, but can be improved.
+
+Improve logic so:
+
+It pulls latest CV data
+
+It does NOT overwrite existing profile fields with null
+
+It merges safely
+
+It updates only matching fields
+
+It does NOT break user data
+
+Add safeguards:
+
+If profile field already has value and CV field is empty → do not overwrite.
+
+Only sync non-empty CV values.
+
+🔍 What To Validate
+Education:
+
+Rendering conditions
+
+Required vs optional field logic
+
+Dashboard:
+
+Insert vs update logic
+
+CV uniqueness
+
+Proper filtering by user_id
+
+Correct fetch query
+
+Profile Settings:
+
+Database mapping accuracy
+
+Auto-fill logic
+
+Sync safety logic
+
+No unused fields shown
+
+No duplicate data sources
+
+⚠️ Important Rules
+
+Do NOT modify database structure unnecessarily
+
+Do NOT remove existing CV data
+
+Do NOT break existing step-by-step flow
+
+Do NOT hide sections incorrectly
+
+Do NOT overwrite unrelated records
+
+Keep logic clean and scalable
+
+✅ Expected Final Result
+
+After implementation:
+
+✔ Education shows even without description
+✔ Description remains optional
+✔ Multiple CVs appear correctly in dashboard
+✔ No accidental overwriting
+✔ Proper user → CV mapping
+✔ Profile page shows only relevant fields
+✔ Profile auto-fills from database
+✔ Sync from CV works safely and intelligently
+✔ Data integrity maintained across system
+
+This task focuses on data consistency, rendering accuracy, profile synchronization, and multi-CV integrity across the entire platform.
+
+Ensure everything works seamlessly together.

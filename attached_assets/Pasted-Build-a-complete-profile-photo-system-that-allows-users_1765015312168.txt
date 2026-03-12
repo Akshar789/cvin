@@ -1,0 +1,201 @@
+Build a complete profile photo system that allows users to upload a professional photo inside their Profile, then optionally include it in eligible CV templates.
+CV builder should NOT allow uploading a new photo — it must use the photo stored in the profile.
+
+Follow the instructions below.
+
+🔷 1. Add “Profile Photo” Section in User Profile
+
+Create a new section labeled “Profile Photo / الصورة الشخصية.”
+
+Requirements:
+
+Upload button: “Upload Photo”
+
+Accepted formats: JPG, PNG, JPEG
+
+Maximum size: 5MB
+
+Recommended aspect ratio: Square 1:1
+
+Show instant preview
+
+Include “Change Photo” and “Remove Photo”
+
+Add “Saved ✓” indicator after upload
+
+Display:
+Use a rounded or soft-square frame (similar to LinkedIn).
+
+🔷 2. Show Professional Guidelines (Below Upload)
+English:
+
+Professional Photo Guidelines:
+
+Use a clear headshot with proper lighting
+
+Wear business or business-casual attire
+
+Avoid distracting backgrounds
+
+Look confident and approachable
+
+Use a high-resolution image
+
+Arabic:
+
+إرشادات الصورة الاحترافية:
+
+استخدم صورة واضحة بإنارة جيدة
+
+ارتدِ ملابس مهنية أو رسمية
+
+تجنب الخلفيات المشتتة
+
+ابتسم أو اجعل المظهر احترافيًا
+
+استخدم صورة عالية الجودة
+
+🔷 3. Integrate Photo Into CV Builder (Toggle Only)
+
+Inside the CV Builder, add a simple toggle:
+
+“Include Profile Photo in CV” — ON / OFF
+Behavior:
+
+If ON → automatically use the saved profile photo
+
+If OFF → hide the photo
+
+No photo upload allowed inside the builder
+
+If the selected template does NOT support photos → hide the toggle
+
+🔷 4. Mandatory Requirement — ATS Template Rule
+🚫 ATS Templates MUST NOT allow photos.
+
+The toggle must not appear in ATS templates
+
+Even if the user has a photo, ATS templates must exclude it completely
+
+PDF generation must ignore any “include photo” setting
+
+Only PRO templates may allow adding photo:
+
+Modern
+
+Creative
+
+Minimal
+
+Premium layouts
+
+Behavior in Pro Templates:
+
+Toggle appears
+
+If Pro subscription is required → show lock icon if user is not Pro
+
+🔷 5. Missing Photo Behavior
+
+If user turns ON “Include Photo in CV” but no photo exists, show notification:
+
+“No profile photo found. Please upload a professional photo in your Profile page.”
+
+Then:
+
+Turn the toggle OFF
+
+Show button: “Go to Profile Photo Settings”
+
+Prevent PDF generation for templates requiring a photo
+
+🔷 6. Template Integration Rules
+
+For templates that allow photos:
+
+Positioning:
+
+Top-left or top-right
+
+Consistent size (e.g., 120×120 px)
+
+Shape determined by template (circle or square)
+
+ATS Templates:
+
+Never show a photo
+
+Never embed photo during PDF generation
+
+Never show photo toggle
+
+This ensures full ATS compliance.
+
+🔷 7. Photo Storage
+
+Store each user’s photo in:
+
+/userdata/profilephotos/<userid>.jpg
+
+
+Also store metadata:
+
+photoURL
+updatedAt
+includePhotoInCV (true/false)
+
+🔷 8. Add Photo to PDF Export (Pro Templates Only)
+
+During PDF generation:
+
+If template = PRO and includePhotoInCV = true:
+
+Embed photo into template
+
+Scale properly and ensure high-quality DPI
+
+Respect margins and layout
+
+If template = ATS:
+
+Do NOT embed photo
+
+Ignore includePhotoInCV flag
+
+🔷 9. UI Requirements
+
+Follow CVPro’s brand style
+
+Rounded cards, soft shadows, gradient buttons
+
+RTL support for Arabic
+
+Add “Saved ✓” indicators where appropriate
+
+🔷 10. Best Practice Behavioral Logic
+
+Ensure:
+
+Photo loads instantly after upload
+
+Cached for faster rendering
+
+Changing or removing photo updates it everywhere
+
+Removing photo automatically disables “Include Photo in CV”
+
+Templates follow consistent dimensions and placement rules
+
+ATS templates stay photo-free and ATS-compliant at all times
+
+🎯 Final Goal
+
+Create a professional, intuitive, globally-standard photo system where:
+
+✔ Users upload their photo once in their profile
+✔ CV builder only toggles photo usage
+✔ ATS templates never allow a photo
+✔ Only Pro templates support photos
+✔ Missing photo triggers a redirect + notification
+✔ Photo appears consistently in preview and PDF
+✔ System remains clean, simple, and user-friendly

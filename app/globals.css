@@ -1,0 +1,474 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@font-face {
+  font-family: 'PP Telegraf';
+  src: url('/fonts/PPTelegraf-Ultralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Telegraf';
+  src: url('/fonts/PPTelegraf-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Telegraf';
+  src: url('/fonts/PPTelegraf-Ultrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --brand-navy: #1B395D;
+  --brand-navy-light: #24497A;
+  --brand-navy-dark: #122640;
+  --brand-orange: #E57D30;
+  --brand-orange-light: #F09A56;
+  --brand-orange-dark: #C96A22;
+  --brand-white: #FFFFFF;
+  --brand-black: #000000;
+  --radius-brand: 12px;
+  --radius-brand-lg: 16px;
+  --shadow-soft: 0 2px 8px rgba(27, 57, 93, 0.08);
+  --shadow-md: 0 4px 16px rgba(27, 57, 93, 0.12);
+  --shadow-lg: 0 8px 32px rgba(27, 57, 93, 0.16);
+}
+
+body {
+  font-family: 'Inter', 'PP Telegraf', system-ui, -apple-system, sans-serif;
+  color: #1a1a2e;
+  background: #f8f9fc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'PP Telegraf', 'Inter', system-ui, sans-serif;
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Global Input Styles - Fix for mobile text visibility */
+input,
+textarea,
+select {
+  background-color: white !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  opacity: 1 !important;
+  font-size: 16px !important; /* Prevents iOS zoom on focus */
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9CA3AF !important;
+  -webkit-text-fill-color: #9CA3AF !important;
+  opacity: 1 !important;
+}
+
+/* Fix for disabled inputs */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #F3F4F6 !important;
+  color: #6B7280 !important;
+  -webkit-text-fill-color: #6B7280 !important;
+  opacity: 1 !important;
+}
+
+/* Fix for autofill styles on WebKit browsers (iOS Safari, Chrome) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827 !important;
+}
+
+/* RTL text direction support */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select,
+.rtl input,
+.rtl textarea,
+.rtl select {
+  text-align: right;
+}
+
+/* A4 Page Size and Multi-page Support */
+.cv-pages-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  counter-reset: page-counter;
+  padding: 20px 0;
+}
+
+.cv-page {
+  width: 210mm;
+  max-width: 100%;
+  min-height: 297mm;
+  padding: 15mm;
+  padding-bottom: calc(15mm + 16px + 4px);
+  background: white;
+  box-sizing: border-box;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+  overflow: visible;
+  counter-increment: page-counter;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Fixed height page for multi-page support */
+.cv-page-fixed {
+  height: 297mm !important;
+  min-height: 297mm !important;
+  overflow: hidden !important;
+}
+
+/* CV Preview Content Container */
+.cv-preview-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: white;
+}
+
+/* CV Preview Inner - Contains all content that flows across pages */
+.cv-preview-inner {
+  position: relative;
+  width: 100%;
+  background: white;
+}
+
+/* Multi-page container that shows page breaks and page numbers */
+.cv-page-multi {
+  position: relative;
+}
+
+/* Add page break lines and page numbers every 297mm */
+.cv-page-multi::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(297mm - 16px),
+      #e5e7eb calc(297mm - 16px),
+      #e5e7eb 297mm
+    );
+  background-size: 100% 297mm;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Add page numbers using pseudo-elements - this is complex, so we'll use a different approach */
+.cv-page-multi {
+  counter-reset: page-num 0;
+}
+
+/* Add page break indicators every 297mm with page numbers */
+.cv-preview-multi {
+  position: relative;
+}
+
+/* No visual page break indicators */
+.cv-page-multi::before {
+  display: none;
+}
+
+.cv-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* Visual page break indicator - Simple gap only, no text */
+.cv-page-break-indicator {
+  display: none;
+}
+
+/* Ensure content doesn't overlap with page break */
+.cv-preview {
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 5;
+  background-color: white;
+}
+
+/* Section spacing to prevent overlap */
+.cv-section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  padding-bottom: 8px; /* Extra padding to prevent content cut-off */
+}
+
+/* Individual entries should not break across pages */
+.cv-entry {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 12px;
+  padding-bottom: 4px; /* Prevent entry from being cut */
+}
+
+/* Section headings should stay with their content */
+.cv-section h2 {
+  page-break-after: avoid;
+  break-after: avoid;
+  margin-bottom: 12px;
+}
+
+/* Prevent content from overlapping page break indicator */
+.cv-page .cv-preview {
+  max-height: calc(297mm - 30mm - 16px - 4px);
+  overflow: visible;
+  padding-bottom: 20px; /* Extra padding to prevent content cut-off at bottom */
+}
+
+
+/* Simple page gap - no visual separator */
+.cv-page:not(:last-child)::before {
+  display: none;
+}
+
+/* Ensure content doesn't overflow page boundaries */
+.cv-preview {
+  position: relative;
+  z-index: 5;
+  background-color: white;
+  padding-bottom: 20px; /* Extra padding to prevent content cut-off */
+}
+
+/* Template container should have proper padding */
+.cv-preview-content {
+  padding-bottom: 25mm !important; /* Ensure content doesn't get cut at page bottom */
+}
+
+/* A4 page maintains fixed size - container handles scrolling */
+.a4-page {
+  width: 210mm !important;
+  height: 297mm !important;
+  min-width: 210mm !important;
+  min-height: 297mm !important;
+  padding-bottom: 5mm !important; /* Extra bottom padding to prevent content cut-off */
+  box-sizing: border-box !important;
+}
+
+/* Scale down A4 page to fit viewport if needed - prevents horizontal overflow */
+@media (max-width: 1400px) {
+  .cv-page {
+    width: min(210mm, calc(100vw - 8rem));
+  }
+}
+
+@media (max-width: 1024px) {
+  .cv-page {
+    width: min(210mm, calc(100vw - 4rem));
+  }
+}
+
+@media (max-width: 768px) {
+  .cv-page {
+    width: min(210mm, calc(100vw - 2rem));
+    padding: 10mm;
+  }
+  
+  .a4-page {
+    transform: scale(0.8);
+    transform-origin: top center;
+  }
+}
+
+/* Visual page break indicator - shows where pages would break */
+.cv-page-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    #d1d5db 0,
+    #d1d5db 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Create visual page breaks every 297mm */
+@supports (height: 297mm) {
+  .cv-page-container {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(297mm - 2px),
+      #e5e7eb calc(297mm - 2px),
+      #e5e7eb 297mm
+    );
+    background-size: 100% 297mm;
+    background-position: 0 0;
+  }
+}
+
+/* Page break utilities for sections */
+.cv-section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* Ensure proper page breaks when printing */
+@media print {
+  .cv-page-container {
+    width: 210mm;
+    min-height: 297mm;
+    page-break-after: always;
+    break-after: page;
+  }
+  
+  .cv-page-container:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  
+  .cv-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+/* Page break utilities */
+.page-break-before {
+  page-break-before: always;
+  break-before: page;
+}
+
+.page-break-after {
+  page-break-after: always;
+  break-after: page;
+}
+
+.page-break-inside-avoid {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* Section break points - prevent sections from splitting awkwardly */
+.cv-section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* Smart page breaks - only break before major sections if they would overflow */
+.cv-section.page-break-before {
+  page-break-before: auto;
+  break-before: auto;
+}
+
+/* Ensure sections don't split across pages when printing */
+@media print {
+  .cv-page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  
+  .cv-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  
+  .cv-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

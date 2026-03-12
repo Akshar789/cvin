@@ -1,0 +1,122 @@
+Update the CV builder section navigation to ensure that each step is saved before the user can move to the next step. Apply the following changes to the page shown in the screenshot (Professional Summary page) and apply the same logic across all CV builder steps.
+
+🔷 1. Replace the “Next” button with “Next & Save”
+
+Change the button label from “Next” to “Next & Save”.
+
+When clicked, it must:
+
+Save the current section data to the user’s CV state
+
+Validate mandatory fields
+
+Move to the next section only after a successful save
+
+Example behavior:
+
+onClick = async () => {
+   await saveSectionData();
+   goToNextSection();
+}
+
+🔷 2. Add Auto-Save Confirmation Indicator (“Saved ✓”)
+
+For each section, show a small flag/indicator that updates when the section is successfully saved.
+
+Requirements:
+
+Display text: “Saved ✓”
+
+Style as a small, subtle badge (top-right or bottom-right of the section card)
+
+Should update immediately after save succeeds
+
+Should change to “Saving…” while saving
+
+Should change to “Error saving” if saving fails
+
+🔷 3. Enforce Sequential Navigation (Step-by-Step Flow)
+
+The user must complete the current section before moving to the next.
+
+Enforce:
+
+User cannot skip sections
+
+User cannot click “Next & Save” unless:
+
+Mandatory fields are filled
+
+Validation passes
+
+Save is successful
+
+🔷 4. Add Mandatory Field Validation Before Save
+
+This page requires:
+
+Professional Summary (min 50 characters)
+
+Validation rule example:
+
+if (summary.length < 50) {
+   showError("Professional summary must be at least 50 characters.");
+   blockNext();
+}
+
+
+When valid → show success and allow saving.
+
+🔷 5. Auto-Save on AI Generate
+
+If the user clicks AI Generate, after the content is inserted:
+
+Automatically trigger saveSectionData()
+
+Update Saved ✓ indicator
+
+🔷 6. Keep UI Styling Consistent
+
+Keep current design style (screenshot reference).
+
+Do not redesign the layout.
+
+Only modify:
+
+Button function
+
+Button label
+
+Save indicator
+
+Validation logic
+
+🔷 7. Apply Same Logic to All Builder Sections
+
+The following CV sections must all have:
+
+“Next & Save” button
+
+Save indicator
+
+Validation
+
+Sequential navigation rules
+
+Sections include:
+
+Personal Information
+
+Professional Summary
+
+Education
+
+Experience
+
+Skills
+
+Certificates
+
+Languages
+
+Final Review

@@ -1,0 +1,134 @@
+Fix Template Recommendation Confusion – Premium Must Clearly Outperform Free
+
+The recommendation logic is still confusing.
+
+Current Problem:
+
+After selecting a premium template:
+
+Other templates show things like:
+
+“18% Upgrade”
+
+Free template shows 75% match
+
+As a user, this creates confusion.
+
+It feels like the free template might be better than premium.
+
+This destroys the perception of value.
+
+🎯 We Need a Clear & Strong Strategy
+
+We must completely redesign the scoring and messaging logic.
+
+✅ New Clear Rule (Non-Negotiable)
+
+Premium templates must always:
+
+Show match score 90% and above
+
+Be labeled as:
+
+“ATS Optimized”
+
+“High Impact Layout”
+
+“Recruiter Preferred”
+
+“Professional Upgrade”
+
+Free templates must:
+
+Show match between 65% – 75%
+
+Be positioned as:
+
+“Good Match”
+
+“Basic Layout”
+
+“Standard Structure”
+
+Free template must NEVER:
+
+Show higher match than premium
+
+Show “better” than premium
+
+Display upgrade logic against premium
+
+🧠 Change the Logic Approach
+
+Instead of comparing template vs template,
+compare template vs career optimization level.
+
+Premium = Optimized Structure
+Free = Basic Structure
+
+Scoring model example:
+
+Free:
+65% – 75%
+
+Premium:
+90% – 96%
+
+No overlap.
+No equality.
+No contradiction.
+
+🚫 Remove Confusing Messaging
+
+Remove:
+
+“+15% better”
+
+“Upgrade +18%”
+
+Any relative comparison between free and premium.
+
+Instead show:
+
+For premium:
+✔ Best Fit for Your Experience
+✔ ATS Optimized
+✔ Structured for Mid/Senior Level
+✔ Higher Recruiter Impact
+
+For free:
+✔ Good Starting Template
+✔ Basic Clean Layout
+
+🎨 UX Messaging Should Feel Like This
+
+If user selects free template:
+
+Premium suggestion should feel like:
+“Upgrade to unlock optimized layout tailored to your experience.”
+
+If user selects premium template:
+
+Do NOT show free template as competitive.
+Free should feel like downgrade.
+
+✅ Expected Final Result
+
+✔ Premium templates always appear superior
+✔ No confusing percentages
+✔ Clear hierarchy between free and premium
+✔ Strong upgrade psychology
+✔ ATS-focused positioning
+✔ No contradictory match values
+✔ System feels intelligent and strategic
+
+We need a clean scoring hierarchy:
+
+Free = 65–75%
+Premium = 90%+
+
+No overlap.
+No contradiction.
+No confusion.
+
+This must feel intentional and premium-driven.

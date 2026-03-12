@@ -1,0 +1,127 @@
+Critical Fix Required – Sync AI Generated Content in Edit Panel with Language Switch
+Pages Affected:
+
+/cv/preview
+
+Global Language Switcher (Header)
+
+Current Problem
+
+We are generating and storing CV in both languages (English + Arabic).
+
+When switching language:
+
+✅ Preview panel updates correctly.
+
+❌ Edit panel content remains in English.
+
+❌ AI-generated fields like:
+
+Professional Summary
+
+Professional Experience
+
+Skills
+
+Education
+
+Other dynamic sections
+are still showing English content even when Arabic is selected.
+
+This creates a mismatch between:
+
+Edit Panel (English)
+
+Preview Panel (Arabic)
+
+Required Implementation
+1️⃣ Real-Time Edit Panel Language Switching
+
+When user switches language (English ↔ Arabic):
+
+Replace ALL editable field content dynamically.
+
+Load:
+
+English stored version if English selected.
+
+Arabic stored version if Arabic selected.
+
+This must work in real-time.
+
+No page reload.
+
+No translation API.
+
+2️⃣ AI Generated Fields Must Also Switch
+
+For AI-generated content:
+
+Professional Summary
+
+Professional Experience
+
+Skills
+
+Education
+
+Any dynamic section
+
+If Arabic is selected:
+→ Load stored Arabic AI content
+If English is selected:
+→ Load stored English AI content
+
+Both versions already exist in database — just switch source.
+
+3️⃣ Global Header Language Switcher Must Also Control This
+
+We have a global language switcher in the header.
+
+When switching from header:
+
+Edit panel content must update.
+
+Preview panel must update.
+
+Direction must update.
+
+Section labels must update.
+
+Everything must stay synchronized.
+
+4️⃣ Direction Handling
+
+Arabic → RTL applied globally
+
+English → LTR applied globally
+
+Edit + Preview must follow instantly.
+
+Important
+
+Do NOT translate on the fly.
+
+Do NOT call any API.
+
+Just switch between stored english_version and arabic_version.
+
+Must work for:
+
+Guest users
+
+Registered users
+
+Expected Final Behavior
+
+Switch Language →
+
+✔ Preview content updates
+✔ Edit content updates
+✔ Section labels update
+✔ AI-generated content updates
+✔ Layout direction updates
+✔ Global switcher works everywhere
+✔ No mismatch between edit and preview
+
+This is a synchronization issue between language state and edit data source. Implement proper global language state handling so everything updates consistently.

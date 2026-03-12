@@ -1,0 +1,69 @@
+Please do the following:
+
+⸻
+
+1. Reduce Overall Page Height & Scrolling
+	•	Review all sections on the landing page and minimize vertical space:
+	•	Reduce excessive top and bottom padding in large sections (hero, banners, gradients).
+	•	Reduce the height of large gradient blocks and empty areas.
+	•	Tighten spacing between sections, headings, and buttons.
+	•	Target: on a typical laptop viewport, the full page should be accessible with no more than one or two scrolls.
+
+⸻
+
+2. Focus on Core Content & Remove Redundancy
+	•	Identify duplicate or redundant payment/subscription blocks and:
+	•	Merge them into a single concise pricing/plan section, OR
+	•	Convert the secondary ones into small callouts instead of full-width blocks.
+	•	Prioritize these elements above the fold and in the first scroll:
+	1.	Clear hero section:
+	•	Short headline (what CVPro does)
+	•	One strong subheading (benefit)
+	•	Primary CTA buttons: “Create CV / Get Started Free” and “Login”
+	2.	Key benefits/features (3–5 bullet cards max).
+	3.	A simple pricing preview or “Free vs Pro” teaser (not multiple repeated tags).
+	•	Remove or compress any content that does not directly support:
+	•	Understanding the product
+	•	Encouraging signup/login
+	•	Showing the value of the app
+
+⸻
+
+3. Improve Layout Structure
+	•	Use a sectioned layout with clear blocks:
+	•	Hero
+	•	Key Features / Benefits
+	•	Sample CV or screenshots (optional, compact)
+	•	Pricing / subscription summary (single section)
+	•	Footer
+	•	Convert long text sections into:
+	•	Short bullet lists
+	•	2–3 column grids on desktop to reduce vertical height.
+	•	Make sure important call-to-action buttons are visible in:
+	•	Hero
+	•	At least one place near the middle of the page.
+
+⸻
+
+4. Desktop & Mobile Behavior
+	•	Optimize primarily for desktop first (since scrolling issue is most visible there), but:
+	•	Ensure mobile still looks clean and not overly tall.
+	•	Avoid huge vertical gaps on mobile.
+
+⸻
+
+5. Keep Existing Functionality Intact
+	•	Do not change the login, signup, or payment logic.
+	•	Only adjust layout, spacing, and content hierarchy.
+	•	Make sure all existing links and CTAs still work after the redesign.
+
+⸻
+
+6. Visual Style
+	•	Keep the current brand colors and overall style, but:
+	•	Reduce oversized sections.
+	•	Make the page feel more compact, modern, and focused.
+	•	Ensure that when a new user lands, they immediately understand:
+	•	What the platform does
+	•	Why it is valuable
+	•	How to start (login / get started button)

@@ -1,0 +1,217 @@
+Implement a desktop-only “Profile Settings Dashboard” for the user profile page, using a two-column layout similar to the structure shown in the screenshot (categories on the left + content on the right).
+This addition must NOT affect the existing mobile layout or break current functionality.
+Follow all instructions below.
+
+🔷 1. General Layout (Desktop-Only)
+
+Build a two-column dashboard layout for desktop screens only (min-width: 1024px):
+
+Left Sidebar: Navigation categories
+
+Right Panel: Detailed content section for each category
+
+Mobile should keep the existing CVPro layout with no changes.
+
+Use a clean, professional style as shown in the screenshot (LinkedIn-like structure).
+
+🔷 2. Categories in Left Sidebar
+
+Profile Information
+
+Professional Details
+
+Security & Login
+
+Visibility Settings
+
+Privacy & Data Usage
+
+Subscriptions & Billing
+
+Notifications
+
+Legal Documents
+
+🔷 3. Right Panel — Section Behaviors
+A. Profile Information
+
+Show: Name, Email, Phone, Location, Profile Photo
+
+Include buttons: Edit Profile, Change Photo
+
+Important:
+Ensure that the information in the Profile Information section matches exactly with the data stored in the system to avoid inconsistencies. This guarantees smooth integration with AI features, CV generation, and all linked functionalities.
+
+B. Professional Details
+
+Show all structured fields:
+
+Target Job Domain
+
+Industry
+
+Career Level
+
+Years of Experience
+
+Degree Level (Diploma/Bachelor/Master/PhD)
+
+Academic Specialization
+
+Skills
+
+Strengths
+
+Languages
+
+Career Goals
+
+All fields must:
+✔ Display current system values
+✔ Be read-only here
+✔ Link to existing edit profile page for editing
+✔ Maintain strict data consistency with the profile database
+
+Add:
+Ensure that the information displayed here reflects exactly the data stored in the user profile. All fields must remain in sync to prevent conflicts, ensure accurate AI processing, and support seamless CV generation.
+
+🔷 4. Privacy & Data Usage (Saudi PDPL Section)
+
+Show:
+
+All stored data fields
+
+Purpose of each field
+
+Whether required or optional
+
+Retention period
+
+Consent status
+
+“Delete My Data” button
+
+“Download My Data” button
+
+Consent timestamps
+
+🔷 5. Visibility Settings
+
+Options:
+
+CV visibility (Private / Limited Link / Public*)
+
+Enable/disable shared link
+
+Show/hide profile photo
+
+Show/hide contact info on generated CVs
+
+(*Public only if added later — default = Private per PDPL)
+
+🔷 6. Security & Login
+
+Change Password
+
+Active Sessions
+
+Log Out of All Devices
+
+2FA placeholder (optional future feature)
+
+🔷 7. Subscriptions & Billing
+
+Show:
+
+Current Plan
+
+Status
+
+Renewal Date
+
+“Upgrade to Pro” button
+(No backend changes required.)
+
+🔷 8. Notifications
+
+Allow toggles for:
+
+Email Notifications
+
+Feature Updates
+
+AI Suggestions
+
+Reminders
+
+(Default OFF, per PDPL minimization.)
+
+🔷 9. Legal Documents (View Only)
+
+Provide links for:
+
+Terms of Use
+
+Privacy Policy
+
+AI Usage Disclosure
+
+Data Retention Policy
+
+Cross-Border Processing Notice
+
+All appear inside a clean card.
+
+🔷 10. UX Requirements
+
+Dual-language support (English + Arabic)
+
+RTL alignment for Arabic
+
+Clean spacing and section cards
+
+Professional layout with consistent margins
+
+Desktop only — do NOT modify mobile layout
+
+No impact on existing profile or AI logic
+
+🔷 11. Technical Requirements
+
+Do NOT alter existing user-profile save logic
+
+Newly added dashboard is a presentation layer only
+
+All data must be pulled from current user profile store
+
+Keep component structure modular
+
+Validate sync between displayed data and stored profile data
+
+Ensure strict data consistency across:
+
+Profile page
+
+Edit profile page
+
+AI CV builder
+
+Required information page
+
+Privacy & consent system
+
+🎯 GOAL
+
+Deliver a desktop-only, professional-grade, privacy-compliant Profile Settings Dashboard that:
+
+Gives users full visibility over their data
+
+Maintains strict consistency across all profile fields
+
+Enhances trust and usability
+
+Supports PDPL legal compliance
+
+Does NOT break existing functionality
+
+Improves overall UX professionalism

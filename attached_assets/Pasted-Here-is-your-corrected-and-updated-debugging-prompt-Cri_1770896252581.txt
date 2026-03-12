@@ -1,0 +1,144 @@
+Here is your corrected and updated debugging prompt:
+
+🚨 Critical Issue: CV Content & Language Mismatch Across Browsers
+
+I have tested the system and found a serious data consistency issue.
+
+❌ Current Problem
+Test Scenario:
+
+I created a CV (default language is English).
+
+I completed the full CV content.
+
+I logged out.
+
+I logged in using the SAME user in a different browser.
+
+Unexpected Result:
+
+CV language changed to Arabic.
+
+Some content is missing.
+
+I cannot properly switch back to English.
+
+Content does not match what I previously saved.
+
+Data appears inconsistent across browsers.
+
+🔎 Root Cause Suspicion
+
+We are likely:
+
+Storing some state in localStorage / sessionStorage
+
+Not storing content_language properly in the database
+
+Not storing text_direction properly
+
+Possibly overriding language on login
+
+Falling back to Arabic as default
+
+Or partially saving translated/structured data
+
+This is causing:
+
+Cross-browser inconsistency
+
+Content loss
+
+Language mismatch
+
+Database and frontend state not synced
+
+✅ Required Investigation & Fix
+1️⃣ Database Audit
+
+Verify we are properly saving in DB:
+
+content_language (English / Arabic)
+
+text_direction (LTR / RTL)
+
+full CV content (all sections)
+
+template_id
+
+theme/color settings
+
+updated_at timestamp
+
+Database must be the single source of truth.
+
+2️⃣ Remove Local-Only Critical Logic
+
+If any of these are stored only in:
+
+localStorage
+
+sessionStorage
+
+frontend-only state
+
+Move them to database storage.
+
+No critical CV data should depend on browser storage.
+
+3️⃣ Fix Login Load Logic
+
+On login:
+
+Load CV strictly from database.
+
+Do NOT merge with browser state.
+
+Do NOT fallback to Arabic automatically.
+
+Respect saved content_language.
+
+Respect saved text_direction.
+
+Ensure the latest updated record is loaded.
+
+4️⃣ Ensure Cross-Browser Consistency
+
+Same user
+Same CV
+Any browser
+Any device
+
+Must show:
+
+Same language
+
+Same content
+
+Same template
+
+Same direction
+
+Same layout
+
+100% identical.
+
+⚠ Important
+
+Do NOT break:
+
+Auto-save
+
+Guest → User migration
+
+Template switching
+
+LTR / RTL enforcement
+
+Download PDF rendering
+
+🎯 Final Goal
+
+Database = single source of truth.
+No CV state should depend on localStorage.
+Cross-browser login must always load identical CV without language switching or content loss.

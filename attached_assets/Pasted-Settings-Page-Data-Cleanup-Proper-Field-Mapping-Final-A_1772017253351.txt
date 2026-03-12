@@ -1,0 +1,197 @@
+Settings Page – Data Cleanup & Proper Field Mapping (Final Adjustment)
+🎯 Objective
+
+We need to clean and properly align the Profile Settings page with the actual CV step flow and database structure.
+
+The settings page must:
+
+Only display fields that we are collecting in the CV creation steps.
+
+Fetch accurate data from the database.
+
+Avoid duplicate or unnecessary fields.
+
+Show clean, non-empty, and correct values.
+
+Maintain design consistency with redesigned UI.
+
+❌ 1️⃣ Remove “Professional Summary” from Profile Edit
+
+In the Settings → Profile Edit page:
+
+Remove:
+
+❌ Professional Summary field
+
+Reason:
+Professional Summary belongs inside CV content only, not inside global profile settings.
+
+It should not appear in profile settings.
+
+🔄 2️⃣ Employment Status Mapping (Student / Professional Logic)
+
+In CV steps, we first ask user:
+
+Are you a Student?
+
+Or a Professional?
+
+Based on this selection, we must:
+
+Store and map this value as → Employment Status in profile settings.
+
+Required:
+
+If user selected:
+
+Student → Show Employment Status: Student
+
+Professional → Show Employment Status: Professional
+
+Do NOT create a new manual dropdown.
+Fetch directly from stored step data.
+
+❌ 3️⃣ Remove “Degree Level” and “Education Level”
+
+Remove these fields from Settings page:
+
+❌ Degree Level
+
+❌ Education Level
+
+Reason:
+We already collect education data inside the Education step.
+
+We should fetch education details directly from stored education entries instead of using duplicate static fields.
+
+No redundant fields.
+
+🔄 4️⃣ Professional Targeting Section – Sync Properly
+
+In steps, we collect:
+
+Years of Experience
+
+Target Job Domain
+
+Location (City, Country)
+
+Employment Status (Student / Professional)
+
+These should appear inside Settings under a clean section like:
+
+Professional Targeting
+
+Display:
+
+Years of Experience
+
+Target Job Domain
+
+Preferred Location
+
+Employment Status
+
+All values must be fetched from database.
+
+No empty fields.
+No hardcoded values.
+No mismatched data.
+
+🔄 5️⃣ Years of Experience Mapping
+
+We already collect:
+
+0–1 years
+1–3 years
+3–5 years
+5+ years
+
+This must be displayed exactly as selected.
+
+Do NOT convert incorrectly.
+Do NOT leave blank.
+Fetch from stored step data.
+
+🔄 6️⃣ Education Display Logic
+
+From Education step:
+
+We store:
+
+Institution
+
+Degree
+
+Field of Study
+
+Start Year
+
+Graduation Year
+
+Description (optional)
+
+In Settings page:
+
+Display only valid stored data.
+
+If description is empty:
+→ Do NOT hide entire education.
+→ Just show education without description.
+
+If multiple education entries:
+→ Show properly structured list.
+
+No wrong data.
+No empty placeholders.
+
+🧠 7️⃣ Data Integrity Rules
+
+Do NOT show empty fields.
+
+Do NOT show null values.
+
+Do NOT duplicate data from different tables.
+
+Always fetch from correct table (users or cvs).
+
+Make sure correct CV data is mapped (latest active CV).
+
+No mismatch between profile and CV steps.
+
+🎨 8️⃣ Keep Clean Premium Layout
+
+Maintain:
+
+Same design system
+
+Same animation style
+
+Same spacing
+
+Same card UI
+
+Same typography hierarchy
+
+RTL compatibility
+
+But structure must feel clean and logical.
+
+✅ Final Expected Result
+
+After changes:
+
+✔ Professional Summary removed
+✔ Degree Level removed
+✔ Education Level removed
+✔ Employment Status mapped from Student/Professional step
+✔ Years of Experience synced properly
+✔ Target Job Domain synced
+✔ Location synced
+✔ Education displayed correctly
+✔ No empty fields
+✔ No wrong data
+✔ Fully synced with database
+✔ Clean and accurate profile settings page
+
+This update ensures the Settings page becomes a true reflection of the structured CV creation flow and database logic — no duplication, no inconsistencies, and no unnecessary fields.

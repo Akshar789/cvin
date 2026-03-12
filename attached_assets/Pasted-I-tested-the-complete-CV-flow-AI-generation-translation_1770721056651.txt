@@ -1,0 +1,180 @@
+I tested the complete CV flow (AI generation, translation, preview, and download) and noticed multiple issues related to page breaks, Arabic translation preview, and language handling.
+Before moving further, we need to fix these issues and also confirm that our implementation aligns with the real Milestone-1 scope.
+
+🛠️ PART 1: Issues Found During Testing (Must Fix)
+1️⃣ Text Breaking Between Pages (Critical)
+
+CV text is still breaking or cutting between pages in preview and/or download.
+
+This should never happen.
+
+Required Fix
+
+Prevent content from breaking awkwardly between pages
+
+Ensure:
+
+Sections stay intact
+
+Text flows naturally across pages
+
+No overlap or cut-off content
+
+This must work for:
+
+All CV templates
+
+LTR and RTL
+
+Arabic and English content
+
+2️⃣ Arabic Translation Not Visible in Preview
+
+When I:
+
+Create a CV
+
+Click Translate to Arabic
+
+The translation:
+
+Works correctly in download
+
+But does NOT appear in preview
+
+Required Fix
+
+After translating:
+
+Preview must immediately show the Arabic content
+
+Preview and download must always match
+
+Translation should reflect:
+
+Correct RTL layout
+
+Proper fonts and alignment
+
+3️⃣ No Revert to English After Translation
+
+Once the CV is translated to Arabic:
+
+There is no option to revert back to English
+
+This causes repeated translation calls and unnecessary API usage.
+
+Required Fix (Optimization)
+
+Store CV content in both languages:
+
+English version
+
+Arabic version
+
+Allow user to:
+
+Toggle between English ↔ Arabic instantly
+
+Without re-translating each time
+
+This will:
+
+Save API credits
+
+Reduce translation calls
+
+Improve performance
+
+🧠 PART 2: Confirming We Are on the Right Track (Milestone-1 Scope)
+
+Below is the actual scope I performed and expect for Milestone 1 – First Impression with CV.
+Please ensure current implementation strictly follows this.
+
+🎯 Milestone 1 – First Impression with CV (Plan of Action)
+Goal
+
+Create a smooth first-time experience where:
+
+A student or employer can generate a CV for free
+
+Signup is required only at download time
+
+Step 1: Website Entry
+
+User (Student / Employer) visits the website
+
+Clear CTA on homepage:
+👉 “Start with FREE CV”
+
+Step 2: Personal Information Form
+
+On clicking CTA, redirect to a simple form
+
+Fields to collect:
+
+Full Name
+
+Email Address
+
+Phone Number
+
+Job Domain
+
+Location
+
+Career Level (Student / Fresher / Experienced)
+
+Latest Job / Current Status
+
+✔ Keep form short and clean
+✔ No signup required at this stage
+
+Step 3: Generate CV Using AI
+
+User clicks Generate CV
+
+AI generates a complete CV based on:
+
+Personal details
+
+Career level
+
+Job domain
+
+Generated CV is:
+
+Displayed on screen
+
+Fully previewable
+
+Editable
+
+Step 4: Download Restriction & Free Signup
+
+When user clicks Download CV:
+
+Show popup:
+👉 “Create a free account to download your CV”
+
+User completes free signup
+
+After signup:
+
+CV download is enabled
+
+✅ What Needs Confirmation
+
+Fix the listed issues first
+
+Confirm current development matches Milestone-1 scope exactly
+
+No extra complexity beyond this milestone
+
+🏁 Goal
+
+Fix preview, translation, and page-break issues
+
+Optimize language handling (English + Arabic storage)
+
+Ensure we are building exactly what Milestone-1 requires,

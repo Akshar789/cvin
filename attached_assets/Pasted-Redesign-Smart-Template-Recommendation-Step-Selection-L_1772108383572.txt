@@ -1,0 +1,289 @@
+Redesign Smart Template Recommendation Step – Selection Logic + UX Upgrade
+🎯 Objective
+
+We need to redesign and fix the Template Recommendation step completely.
+
+Currently:
+
+User selects template in Template Gallery (e.g., Strong CV).
+
+Fills all steps.
+
+System recommends new templates (e.g., Two Column Pro, Elegant, Premium).
+
+But user can only preview.
+
+Template is not actually selected.
+
+Final preview sometimes shows old template.
+
+Flow feels confusing.
+
+Design looks cluttered.
+
+Language switching is inconsistent.
+
+We need a cleaner, smarter, and more professional flow.
+
+🔁 Desired New Flow
+1️⃣ Initial Template Selection
+
+User selects template in Template Gallery:
+Example: Strong CV
+
+This becomes:
+
+current_template_id
+
+2️⃣ After Completing Steps → Smart Recommendation Step
+
+Now system:
+
+Analyzes user profile.
+
+Recommends:
+
+2–3 Free templates
+
+2 Premium templates
+
+BUT:
+
+User must be able to:
+
+✔ Preview
+✔ Actually Select
+✔ Switch between templates
+✔ Confirm final template
+
+✅ Required Behavior Changes
+A. Allow Real Template Selection
+
+Currently:
+User can preview recommended templates but cannot truly select them.
+
+Fix:
+
+When user clicks:
+
+“Use This Template”
+
+System must:
+
+Update template_id immediately
+
+Persist to database
+
+Mark it as selected
+
+Show confirmation:
+“Two Column Pro selected”
+
+Now this becomes the active template.
+
+B. Show Current Template Clearly
+
+At top of step show:
+
+“Your Current Template”
+
+Display:
+
+Thumbnail
+
+Template name
+
+FREE / PREMIUM badge
+
+Label:
+“Currently Selected”
+
+If user changes template:
+This section must update instantly.
+
+C. Final Preview Must Use Selected Template
+
+When user clicks:
+
+“Final Preview”
+
+System must:
+
+Use latest template_id
+
+Not fallback to original Strong CV
+
+Not show outdated template
+
+Not rely on cached state
+
+Final preview must reflect actual selected template.
+
+🎨 Design Upgrade Required
+
+Current layout feels crowded and confusing.
+
+Proposed Layout
+Split Layout:
+
+LEFT SIDE:
+
+Template list
+
+Highlighted current selection
+
+Match % badge
+
+AI reasoning text:
+“Best for experienced professionals.”
+“Optimized for structured content.”
+
+RIGHT SIDE:
+
+Large live preview panel
+
+Smooth transition animation
+
+Template preview updates instantly
+
+Improve Visual Hierarchy
+
+Add spacing between cards
+
+Remove visual clutter
+
+Stronger selection border
+
+Clear “Selected” badge
+
+Animated hover effects
+
+Premium lock overlay for paid templates
+
+Make it feel like:
+
+✨ AI Career Design Assistant
+Not just template browsing.
+
+🌍 Full Language Support (Critical)
+
+This step must support full EN/AR translation.
+
+Requirements:
+
+All UI labels bilingual
+
+AI reasoning text bilingual
+
+Template names bilingual (if supported)
+
+Preview content bilingual
+
+No mixing
+
+Respect current language toggle
+
+When switching language → preview re-renders correctly
+
+No English leaking into Arabic view.
+
+🔄 Premium Handling
+
+If user selects Premium template:
+
+If Free user:
+
+Show upgrade modal
+
+Do NOT update template_id
+
+Do NOT persist selection
+
+If Premium user:
+
+Allow selection
+
+Save template_id
+
+Update preview
+
+🧠 Smart Recommendation Logic Improvement
+
+Instead of generic suggestions:
+
+Calculate match score
+
+Show match %
+
+Do not recommend currently selected template again
+
+Diversify suggestions
+
+Explain why recommended
+
+Example:
+“Highlights leadership roles effectively.”
+“Better suited for technical roles.”
+“Improves readability for ATS systems.”
+
+🧪 Testing Requirements
+
+Using test user:
+
+akshar.storestranform@gmail.com
+
+Test:
+
+Select Strong CV initially.
+
+Go through steps.
+
+Recommendation step loads.
+
+Select Two Column Pro.
+
+Confirm selected changes.
+
+Go to Final Preview.
+
+Confirm Two Column Pro is used.
+
+Go to Dashboard.
+
+Confirm Two Column Pro appears.
+
+Logout → Login.
+
+Confirm persistence.
+
+Switch language → no mix.
+
+🚫 Do NOT
+
+Do not restrict selection to original template only.
+
+Do not preview without saving.
+
+Do not fallback to original template silently.
+
+Do not ignore language state.
+
+Do not auto-save wrong template.
+
+✅ Final Expected Result
+
+After implementation:
+
+✔ User can preview AND select recommended template
+✔ Selected template persists everywhere
+✔ Clear “Currently Selected” indicator
+✔ Clean and premium layout
+✔ Smart AI explanation
+✔ Final preview reflects actual selection
+✔ Fully bilingual
+✔ No confusion
+✔ Production-ready flow
+
+This step must feel intelligent, clean, and decisive — not confusing.
+
+Implement carefully with proper template_id persistence and language-aware rendering.

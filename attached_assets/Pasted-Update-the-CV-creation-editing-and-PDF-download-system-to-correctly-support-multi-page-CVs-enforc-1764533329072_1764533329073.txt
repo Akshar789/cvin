@@ -1,0 +1,223 @@
+Update the CV creation, editing, and PDF download system to correctly support multi-page CVs, enforce required CV fields, and ensure dynamic content fitting across all templates.
+Apply all improvements below without affecting existing logic or breaking current features.
+
+🔷 1. Add Dynamic Multi-Page PDF Support (1–5+ pages)
+
+Modify the PDF generator to support multiple pages based on content length:
+
+Requirements:
+
+Use A4 size for all CVs:
+
+width: 210mm
+height: 297mm
+
+
+Add auto-page breaks using CSS:
+
+.page-break { page-break-before: always; }
+section { page-break-inside: avoid; }
+
+
+The system must automatically expand the PDF to as many pages as required (1–5+ pages).
+
+No text should overlap, clip, or overflow onto margins.
+
+For each template, ensure:
+
+Content wraps properly.
+
+Sections stretch fluidly.
+
+Text scales to fit.
+
+Content Fit Rules:
+
+Long summaries, long experience entries, or many skills should automatically extend to the next page.
+
+Avoid fixed heights—use flexible grids.
+
+Add fallback scaling when content exceeds page space.
+
+🔷 2. Mandatory CV Sections (User Must Complete Before PDF Download)
+
+Add validation rules that block progress in the editing stage until these required fields are filled:
+
+Mandatory Information:
+A. Personal Information
+
+Name
+
+Phone Number
+
+Email
+
+B. CV Content
+
+Professional Summary
+
+Education
+
+Work Experience
+
+If user is a fresh graduate, allow:
+✔ Cooperative Training Experience
+✔ Internship Experience
+✔ OR empty section (AI must NOT generate content)
+
+Certificates
+
+Skills
+
+Languages
+
+Validation Behavior:
+
+Disable “Next” and “Generate CV” buttons until mandatory fields are complete.
+
+Show clear warnings for missing items:
+
+“Please complete the required fields to continue.”
+
+🔷 3. Editing Page Flow — Section-by-Section Validation
+
+Inside the editing page:
+
+User cannot move to the next section unless required fields in the current section are completed.
+
+Add inline validation (red border + error message).
+
+Display a checklist in the sidebar:
+
+✔ Personal Info
+
+✔ Summary
+
+✔ Education
+
+✔ Experience
+
+✔ Certificates
+
+✔ Skills
+
+✔ Languages
+
+User must complete all checkmarks before downloading.
+
+🔷 4. PDF Generator Upgrade (for Arabic + English)
+
+Apply these improvements:
+
+✔ Use Puppeteer or Playwright instead of React-PDF.
+✔ Embed full Arabic font stacks:
+
+Cairo
+
+Amiri
+
+Noto Sans Arabic
+
+✔ Apply language direction rules:
+<html dir="rtl"> (Arabic)
+<html dir="ltr"> (English)
+
+✔ Apply RTL-safe CSS:
+direction: rtl;
+unicode-bidi: embed;
+
+✔ Templates must support both languages without breaking layout.
+🔷 5. Multi-Template System With Color & Layout Options
+
+Support 4 template families, each with color themes:
+
+Templates:
+
+Classic ATS
+
+Modern
+
+Creative Bold
+
+Minimal Clean
+
+Color Themes:
+
+Blue
+
+Green
+
+Gold
+
+Purple
+
+Gray
+
+Technical Requirements:
+
+Store templates under /templates/template-name/
+
+Use CSS variables for color themes
+
+Use HTML/CSS template engines with dynamic user data injection
+
+Ensure every template fully supports multi-page expansion
+
+🔷 6. Fix Data Sync Between Profile → Editor → PDF
+
+To prevent missing information:
+
+Ensure all user profile fields correctly pass to the editing page.
+
+Any edits override profile data only for current CV generation.
+
+Ensure PDF templates receive a fully merged data object:
+
+{
+  "name": "",
+  "email": "",
+  "phone": "",
+  "location": "",
+  "summary": "",
+  "education": [],
+  "experience": [],
+  "certificates": [],
+  "skills": [],
+  "languages": []
+}
+
+
+Missing fields must NOT result in blank PDF sections unless intended.
+
+🔷 7. Quality Checks Before Final PDF Generation
+
+Before generating PDF:
+
+Validate:
+
+All mandatory fields complete
+
+Selected template is valid
+
+Language direction set properly
+
+Font selected correctly
+
+Page breaks auto-applied
+
+Content sanitized (avoid special character issues)
+
+Generate:
+
+HTML preview identical to PDF output
+
+Clean formatting
+
+No missing sections
+
+Accurate, complete user data
+
+Deliver:
+
+PDF file with correct naming:
+CVPro-<UserName>-CV.pdf

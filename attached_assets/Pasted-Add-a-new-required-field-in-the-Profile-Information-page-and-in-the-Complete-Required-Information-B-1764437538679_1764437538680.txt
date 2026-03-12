@@ -1,0 +1,140 @@
+Add a new required field in the Profile Information page and in the “Complete Required Information Before Generating CV” step called:
+
+“Education Specialization / Major”
+
+Arabic: “تخصص الدراسة / التخصص الأكاديمي”
+
+1. Field Requirements
+✔ Field Name:
+
+Education Specialization / Major
+
+✔ Description:
+
+“Select or type your academic specialization (e.g., Business Administration, HR, Computer Science, Accounting). This will help us personalize your CV summary and content.”
+
+Arabic description:
+"اختر أو اكتب تخصصك الأكاديمي (مثل إدارة الأعمال، الموارد البشرية، علوم الحاسب، المحاسبة). هذا يساعدنا في تخصيص السيرة الذاتية بدقة أكبر."
+
+✔ Include options + smart search:
+
+Business Administration
+
+Human Resources
+
+Computer Science
+
+Information Technology
+
+Accounting
+
+Finance
+
+Marketing
+
+Engineering
+
+Logistics
+
+Nursing
+
+Education
+
+Law
+
+Other (free text)
+
+Arabic versions must also be included.
+
+2. Add Degree Level (If Not Already Added)
+
+Add a Degree Level selector:
+
+Diploma
+
+Bachelor
+
+Master
+
+PhD
+
+Other
+
+Arabic:
+
+دبلوم
+
+بكالوريوس
+
+ماجستير
+
+دكتوراه
+
+This must be a required field before generating the CV.
+
+3. Integrate Both Fields With AI CV Generation
+
+These new fields must be included in the AI data model:
+
+education_specialization: "",
+degree_level: "",
+
+
+And must be passed to the AI with every CV generation request.
+
+4. Update AI Logic (Must-Have Rules)
+The AI must use these fields to:
+
+Enhance the professional summary
+
+Choose the correct tone and keywords
+
+Suggest skills aligned with specialization
+
+Improve experience bullets
+
+Enhance career development plan
+
+Produce LinkedIn “About” content tailored to the field
+
+Add the following instruction to the AI prompt:
+Use the user's degree level and academic specialization to personalize the CV summary, skills, and experience tone. 
+Ensure that the summary reflects the user's field of study and aligns with the target job domain and industry. 
+Do not invent degrees or specializations; only use what the user explicitly provided.
+
+5. UI/UX Requirements
+
+Place this field in the Profile Completion page under Education.
+
+Also include it in the Pre-Generation Required Information step.
+
+Make it mandatory before the “Generate CV” button is enabled.
+
+Ensure bilingual labels (English + Arabic).
+
+Use smart dropdown + manual input.
+
+6. Validation
+
+If specialization is empty → show error:
+“Please enter your specialization to personalize your CV.”
+Arabic:
+"يرجى إدخال تخصصك لتخصيص سيرتك الذاتية."
+
+If degree level is empty → block CV generation.
+
+7. Summary of Deliverable
+
+Replit must:
+
+Add the Degree Level and Specialization/Major fields.
+
+Make them required before generating a CV.
+
+Save them to the user profile.
+
+Include them in the AI request structure.
+
+Apply them to the AI logic for summary, skills, bullets, development plan, and LinkedIn content.
+
+Ensure the AI never invents or assumes degrees or specializations.

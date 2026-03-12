@@ -1,0 +1,202 @@
+CRITICAL: Edit & Preview Showing Different Templates (Color / Layout Mismatch)
+🎯 Issue
+
+Even after previous fixes:
+
+Edit page shows one template design
+
+Preview page shows completely different template (different colors/layout)
+
+This is NOT a minor bug.
+This means template rendering logic is inconsistent.
+
+This must be fixed at architecture level.
+
+🔍 ROOT CAUSE INVESTIGATION REQUIRED
+
+We need to verify 4 critical layers:
+
+1️⃣ Verify Template ID Is Identical in Both Pages
+
+On:
+
+/cv/edit/:id
+
+/cv/preview/:id
+
+Log:
+
+CV ID
+
+Template ID from database
+
+Template ID being rendered
+
+Template component being loaded
+
+They MUST match.
+
+If:
+
+DB template_id = elegant
+Preview renders simple-professional
+
+Then preview is NOT reading template_id correctly.
+
+2️⃣ Check If Edit Page Uses Live Template But Preview Uses Default Template
+
+Possible issue:
+
+Edit page reads from CV state
+
+Preview page defaults to fallback template
+
+Or preview page imports wrong template component
+
+Check:
+
+Does preview page use something like:
+
+const template = templates[cv.template_id] || defaultTemplate
+
+If fallback triggers → that’s the bug.
+
+Remove silent fallback.
+
+3️⃣ Verify Template Rendering Logic Is Centralized
+
+Right now likely:
+
+Edit page uses TemplateRendererA
+
+Preview page uses TemplateRendererB
+
+This creates mismatch.
+
+✅ Required Fix
+
+Create ONE central template rendering system:
+
+renderTemplate(template_id, cvData)
+
+Both:
+
+Edit page
+
+Preview page
+
+Must use same renderer.
+
+No duplicate template logic.
+
+4️⃣ Check Theme / Color System Conflict
+
+If template ID is correct but colors differ:
+
+Then problem is:
+
+Theme variables overridden
+
+CSS variables not updated
+
+Global theme overriding template theme
+
+Tailwind class conflict
+
+Dark/light theme interfering
+
+Ensure:
+
+When template_id = elegant
+
+Both edit and preview:
+
+Load same CSS variables
+
+Same color tokens
+
+Same layout wrapper
+
+Same typography
+
+Same spacing
+
+No global theme override.
+
+🧪 REQUIRED DEBUG OUTPUT
+
+Temporarily log:
+
+On Edit page:
+
+Editing CV ID:
+Template ID:
+Template Component:
+Primary Color:
+
+On Preview page:
+
+Previewing CV ID:
+Template ID:
+Template Component:
+Primary Color:
+
+They MUST match exactly.
+
+🚫 REMOVE THESE BAD PRACTICES
+
+No fallback to default template
+
+No hardcoded template in preview
+
+No separate theme wrapper
+
+No global color override
+
+No re-mapping template_id incorrectly
+
+No caching previous template component
+
+🔁 TEST FLOW AFTER FIX
+
+Using:
+
+akshar.storestranform@gmail.com
+
+Test:
+
+Open CV A → Note template.
+
+Click Edit → Confirm template visually.
+
+Click Preview → Must look identical.
+
+Refresh preview → Still identical.
+
+Go to Dashboard → Card matches.
+
+Logout → Login → Still identical.
+
+No color difference.
+No layout difference.
+No mismatch.
+
+✅ FINAL EXPECTED RESULT
+
+After fix:
+
+✔ Edit and Preview render identical template
+✔ Same color
+✔ Same layout
+✔ Same typography
+✔ Same spacing
+✔ Same template_id
+✔ No fallback
+✔ No global override
+✔ 100% visual consistency
+
+This is a template rendering architecture issue — not a small patch.
+
+Fix it at source level so both pages use the same template engine.
+
+System must be deterministic and consistent.

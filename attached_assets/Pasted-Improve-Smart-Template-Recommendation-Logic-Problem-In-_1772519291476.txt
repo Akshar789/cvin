@@ -1,0 +1,148 @@
+Improve Smart Template Recommendation Logic
+🎯 Problem
+
+In the Template Recommendation step, I noticed a major issue with the match percentage logic.
+
+Currently:
+
+The user’s selected template sometimes shows 95% match.
+
+Suggested templates show 65%, 75%, 80%, etc.
+
+Sometimes even premium templates show lower match than the selected free template.
+
+This creates a bad impression:
+
+It looks like:
+
+The premium template is worse.
+
+The AI recommendation is weak.
+
+The system is not smart.
+
+There is no strong reason to switch templates.
+
+This defeats the purpose of a recommendation system.
+
+❌ Why This Is a Problem
+
+If the selected template has 95% match and suggestions are lower:
+
+Why would user switch?
+
+Why would user upgrade?
+
+It looks like we are downgrading.
+
+It does not feel AI-powered.
+
+It feels random.
+
+✅ Required Smarter Approach
+
+We need to redesign the recommendation logic so that:
+
+Suggested templates must always:
+
+Look better.
+
+Feel more structured.
+
+Appear more optimized.
+
+Show stronger match than current selection.
+
+Match score strategy must be intelligent:
+
+Current template should not always dominate.
+
+Suggested template (especially premium) should show higher or optimized match.
+
+Match values must feel logical and aspirational.
+
+Suggested templates should:
+
+Be ranked based on:
+
+Experience level
+
+Career stage (Student vs Professional)
+
+Years of experience
+
+Job domain
+
+Content density
+
+Section richness
+
+Highlight structural advantages:
+
+Better hierarchy
+
+Better section distribution
+
+More professional layout
+
+More readable format
+
+🧠 Smarter Recommendation Strategy
+
+Instead of just static % match:
+
+Show improvement-based scoring.
+
+Show “Optimized for your experience level”
+
+Show “Better suited for mid-level professionals”
+
+Show “More impact-driven layout”
+
+Show “ATS-friendly layout”
+
+For premium templates:
+
+Highlight clear advantages.
+
+Make them feel upgraded.
+
+Make match score slightly higher than selected template when logically valid.
+
+Avoid making premium appear weaker.
+
+🎨 UX Improvement
+
+Current template can show:
+“Your Current Selection”
+
+Suggested template can show:
+“Recommended Upgrade”
+“Better Alignment”
+“Stronger Impact Layout”
+
+Match % must support that logic.
+
+🚫 Do NOT
+
+Do not randomly inflate numbers.
+
+Do not mislead.
+
+Do not downgrade premium template match.
+
+Do not show lower match for better template.
+
+Do not make system look inconsistent.
+
+✅ Expected Result
+
+After improvement:
+
+✔ Suggested templates look smarter
+✔ Match scores feel logical
+✔ Premium templates appear premium
+✔ Clear reason to switch
+✔ Recommendation feels AI-powered
+✔ User feels system is intelligent
+✔ Upgrade flow feels natural

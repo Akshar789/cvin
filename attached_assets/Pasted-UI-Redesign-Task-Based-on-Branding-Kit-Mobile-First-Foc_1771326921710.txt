@@ -1,0 +1,303 @@
+UI Redesign Task – Based on Branding Kit (Mobile-First Focus)
+📦 Assets Provided
+
+A ZIP file containing full Branding Kit:
+
+✅ Main Logo
+
+✅ Social Logo
+
+✅ Brand Fonts
+
+✅ Brand Colors
+
+✅ Backgrounds
+
+✅ Image Assets
+
+You must extract and strictly follow this branding system.
+
+🎯 Main Objective
+
+Redesign the UI to make it:
+
+Modern
+
+Premium
+
+Clean
+
+Professional
+
+Mobile-first optimized
+
+Visually aligned with branding kit
+
+High conversion focused
+
+Current UI is too simple and not professional.
+
+📱 Priority: MOBILE FIRST
+
+⚠️ Most users come from mobile devices.
+
+You MUST:
+
+Design for 360px–430px width first
+
+Then scale for tablet and desktop
+
+Improve spacing, hierarchy, and tap areas
+
+Improve readability and UX clarity
+
+Make UI feel like a premium SaaS product
+
+🧩 Pages to Redesign
+1️⃣ /cv/preview
+Goals:
+
+Make it look like a professional CV builder SaaS
+
+Clean layout separation between:
+
+Edit panel
+
+Live preview
+
+Improve language toggle UI
+
+Improve regenerate button styling
+
+Improve section headers
+
+Improve template color selection UI
+
+Improve RTL experience
+
+Add better spacing & visual hierarchy
+
+Mobile Version:
+
+Stack edit & preview vertically
+
+Add sticky bottom action bar (Save / Download / Next)
+
+Make regenerate button more modern (AI sparkle style)
+
+Improve typography readability
+
+2️⃣ /template-gallery
+Goals:
+
+Make template cards premium
+
+Add hover effects (desktop)
+
+Add subtle shadow depth
+
+Add clean badge styling (Popular / Recommended)
+
+Improve CTA buttons (Use Template)
+
+Make selection feel interactive
+
+Mobile:
+
+1 template per row
+
+Large preview
+
+Clear CTA button
+
+Better spacing between cards
+
+3️⃣ /cv/basic-info
+Goals:
+
+Improve form styling
+
+Better input fields
+
+Floating labels or modern form UI
+
+Larger tap areas
+
+Better section grouping
+
+Progress indicator at top
+
+Improve file upload UI (if exists)
+
+Mobile:
+
+Full width inputs
+
+16px minimum font size
+
+Clear focus states
+
+Sticky Next button at bottom
+
+🎨 Design System Rules
+
+Extract from Branding ZIP:
+
+Primary color
+
+Secondary color
+
+Accent color
+
+Font family (headings + body)
+
+Background textures
+
+Button style
+
+Border radius style
+
+Shadow style
+
+Then create:
+
+Design Tokens:
+--primary-color:
+--secondary-color:
+--accent-color:
+--heading-font:
+--body-font:
+--border-radius:
+--shadow-soft:
+
+
+Use consistent styling everywhere.
+
+✨ Visual Improvements Required
+
+Smooth transitions
+
+Subtle animations
+
+Better button styling
+
+Modern card design
+
+Clean spacing system (8px grid)
+
+Soft shadows
+
+Rounded corners (modern SaaS feel)
+
+Improved RTL alignment
+
+Modern toggle switches
+
+🧠 UX Improvements
+
+Reduce clutter
+
+Improve hierarchy
+
+Clear primary CTA
+
+Improve section separation
+
+Improve empty states
+
+Better loading states
+
+Add skeleton loaders
+
+Add subtle micro-interactions
+
+📐 Layout Guidelines
+Desktop:
+
+Max width container (1200px)
+
+Balanced whitespace
+
+Proper grid system
+
+Mobile:
+
+Full width
+
+Comfortable padding (16–20px)
+
+Thumb-friendly buttons
+
+Sticky bottom CTA where necessary
+
+🌍 Language Support
+
+Must support RTL (Arabic)
+
+Clean mirrored layout
+
+Typography adjustments for Arabic
+
+Font must support Arabic properly
+
+🚫 Do NOT
+
+Do not hardcode colors randomly
+
+Do not mix fonts
+
+Do not ignore mobile spacing
+
+Do not break existing functionality
+
+Do not remove regenerate feature
+
+✅ Expected Final Result
+
+Premium SaaS look
+
+Consistent branding
+
+Modern UI
+
+Clean typography
+
+Smooth UX
+
+Fully responsive
+
+Mobile optimized
+
+Feels like a paid product
+
+Professional enough for production
+
+🎯 Deliverables
+
+Updated CSS / Tailwind system
+
+Updated components for:
+
+CV Preview
+
+Template Gallery
+
+Basic Info
+
+Mobile-first layout structure
+
+Reusable UI components
+
+Clean structured code
+
+If needed:
+
+Refactor layout structure
+
+Create shared layout wrapper
+
+Create reusable Button / Card / Input components
+
+Improve global theme system
+
+Make it visually impressive and conversion-focused while keeping performance optimized.

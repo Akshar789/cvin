@@ -1,0 +1,9 @@
+.next
+node_modules
+.env.local
+.env
+.git
+.local
+.config
+*.log
+.replit

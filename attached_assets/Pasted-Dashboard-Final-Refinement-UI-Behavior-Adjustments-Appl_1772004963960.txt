@@ -1,0 +1,144 @@
+Dashboard Final Refinement – UI & Behavior Adjustments
+⚠️ Apply These Changes Exactly As Written
+
+This is a refinement update. Follow strictly.
+
+1️⃣ Remove Duplicate CV Option
+
+In “Manage Your CVs” section:
+
+❌ Remove the Duplicate CV button/icon completely.
+
+Keep only:
+
+Edit
+
+Download
+
+Delete
+
+Do NOT leave empty space.
+Rebalance spacing after removing the duplicate icon.
+
+2️⃣ Replace Static Text with Typing Animation (Like Home Page)
+
+Currently after username we have dynamic text but it does NOT use typing cursor animation.
+
+Required:
+
+Use the SAME typing animation system used on the homepage hero section.
+
+Include:
+
+Cursor blinking effect
+
+Typewriter animation
+
+Smooth text transition
+
+Looping motivational phrases
+
+Example rotating phrases:
+
+“Let’s build your next opportunity.”
+
+“Upgrade your CV with AI.”
+
+“Your dream job starts here.”
+
+“Stand out with confidence.”
+
+Animation must:
+
+Match homepage speed
+
+Match homepage cursor style
+
+Match homepage animation smoothness
+
+Do NOT create a new animation style.
+Reuse existing logic/component.
+
+3️⃣ Remove “Dashboard Overview” Label
+
+❌ Completely remove the text:
+“Dashboard Overview”
+
+No replacement text.
+
+4️⃣ Smart Greeting System (Time-Based)
+
+Replace static “Welcome back” system with dynamic greeting:
+
+Based on user local time (NOT hardcoded):
+
+Morning (5AM – 12PM):
+→ “Good Morning, {Name}”
+
+Afternoon (12PM – 5PM):
+→ “Good Afternoon, {Name}”
+
+Evening (5PM – 10PM):
+→ “Good Evening, {Name}”
+
+Night (10PM – 5AM):
+→ “Good Night, {Name}”
+
+5️⃣ Add Animated Greeting Icon
+
+Next to greeting text:
+
+Morning → Animated Sun icon ☀️
+Afternoon → Half Sun icon 🌤
+Evening → Moon + Star 🌙
+Night → Moon icon 🌙
+
+Requirements:
+
+Subtle animation (slow rotation or glow)
+
+Same icon style family as rest of dashboard
+
+Not emoji (use SVG icon)
+
+Smooth animation (not distracting)
+
+Matches brand colors
+
+6️⃣ Remove “Active” Status Tab
+
+In top stats section:
+
+❌ Remove the “Active” status card completely.
+
+Rebalance layout so remaining stat cards align properly.
+
+Do NOT leave visual gap.
+
+7️⃣ Maintain Premium Look
+
+After these removals:
+
+Ensure spacing still balanced
+
+Ensure no layout break
+
+Ensure mobile layout still clean
+
+Ensure RTL still works
+
+Ensure animations don’t cause layout shift
+
+✅ Final Expected Result
+
+Dashboard should:
+
+✔ No duplicate CV button
+✔ Typing animation like homepage
+✔ Dynamic greeting (morning/afternoon/evening/night)
+✔ Animated time-based icon
+✔ No “Dashboard Overview” label
+✔ No “Active” status card
+✔ Balanced layout
+✔ Clean mobile design
+✔ Premium SaaS feel

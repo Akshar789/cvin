@@ -1,0 +1,206 @@
+Fix CV Download – Content Splitting Across Pages (PDF Layout Optimization)
+🎯 Problem
+
+Sometimes when downloading the CV:
+
+Content splits awkwardly across two pages.
+
+Sections get cut in the middle.
+
+Layout looks perfect in Preview.
+
+But downloaded PDF looks broken.
+
+Especially noticeable in longer resumes.
+
+Affects both English (LTR) and Arabic (RTL).
+
+Preview = Correct
+Downloaded PDF = Layout broken
+
+This must be fixed properly at PDF rendering level.
+
+🎯 Goal
+
+Make PDF download:
+
+✔ Look exactly like preview
+✔ Avoid section breaking mid-content
+✔ Avoid awkward page splits
+✔ Maintain RTL/LTR support
+✔ Maintain spacing and structure
+✔ Smart page break handling
+✔ No layout distortion
+
+🔎 Root Cause Likely
+
+PDF rendering engine:
+
+Not handling page breaks properly.
+
+Splitting elements without checking height.
+
+Ignoring section boundaries.
+
+Not calculating dynamic content height.
+
+Not respecting RTL layout in pagination.
+
+✅ Required Smart Fix
+1️⃣ Implement Smart Page Break Logic
+
+Before rendering each section:
+
+Calculate section height.
+
+Check remaining space on current page.
+
+If section won’t fit:
+
+Move entire section to next page.
+
+Do NOT split section title from content.
+
+Do NOT split job title from description.
+
+Do NOT split education header from entries.
+
+2️⃣ Prevent Breaking Inside Critical Blocks
+
+Apply:
+
+page-break-inside: avoid
+
+break-inside: avoid
+
+keep-together logic
+
+To:
+
+Work Experience blocks
+
+Education blocks
+
+Skill sections
+
+Summary section
+
+Header block
+
+3️⃣ Maintain RTL/LTR Integrity
+
+When generating PDF:
+
+Ensure dir="rtl" applied properly for Arabic.
+
+Ensure margins reverse correctly.
+
+Ensure text alignment preserved.
+
+Ensure no horizontal overflow.
+
+Ensure correct font rendering for Arabic.
+
+4️⃣ Preserve Preview Layout
+
+PDF engine must:
+
+Use same template structure as preview.
+
+Use same CSS variables.
+
+Use same spacing.
+
+Use same fonts.
+
+Not inject default PDF styles.
+
+Not shrink content unexpectedly.
+
+5️⃣ Implement Smart Scaling (Optional but Recommended)
+
+If content slightly overflows:
+
+Instead of splitting badly:
+
+Slightly reduce spacing.
+
+Slightly reduce font scale (within safe limit).
+
+Or adjust margins dynamically.
+
+But DO NOT:
+
+Shrink excessively.
+
+Break readability.
+
+6️⃣ Handle Long Descriptions Properly
+
+For very long job descriptions:
+
+Allow natural paragraph wrapping.
+
+Avoid breaking mid-line.
+
+Avoid breaking between bullet icon and text.
+
+Maintain bullet alignment.
+
+7️⃣ Test Cases (Mandatory)
+
+Test in:
+
+English short CV
+
+English long CV
+
+Arabic short CV
+
+Arabic long CV
+
+Mixed long sections
+
+1-page resume
+
+2-page resume
+
+Ensure:
+
+✔ Clean page break
+✔ No half-cut sections
+✔ No broken titles
+✔ No overlapping content
+✔ No weird margin gaps
+✔ No RTL alignment issues
+
+🚫 Do NOT
+
+Do not change template structure.
+
+Do not remove spacing randomly.
+
+Do not hardcode page height blindly.
+
+Do not break RTL direction.
+
+Do not fallback to default PDF layout.
+
+Do not flatten layout.
+
+✅ Final Expected Result
+
+After fix:
+
+✔ PDF matches preview visually
+✔ Clean professional page breaks
+✔ No cut content
+✔ No awkward splits
+✔ RTL works perfectly
+✔ English works perfectly
+✔ Multi-page CV looks professional
+✔ High-end production-ready output
+
+This is a PDF rendering and layout intelligence fix, not a UI change.
+
+The downloaded CV must look as polished and professional as the preview — in both languages.

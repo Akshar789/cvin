@@ -1,0 +1,179 @@
+Fix “Sync From CV” Not Working + Missing Email Field + Multi-CV Selection
+
+Test Account:
+Email: akshar.storestranform@gmail.com
+
+Password: akshar.storestranform@gmail.com
+
+We found multiple issues in Settings → Sync From CV flow.
+
+1️⃣ 🚨 “Sync From CV” Is Not Working Properly
+❌ Problem
+
+Sync From CV does not populate fields correctly.
+
+Some fields remain empty.
+
+Language handling may be incorrect.
+
+Repeater fields may not map correctly.
+
+✅ Required Fix
+
+When user clicks Sync From CV:
+
+System must:
+
+Fetch correct CV record from database.
+
+Respect current selected language (EN / AR).
+
+Populate all matching profile fields.
+
+Handle repeater fields (Education, Experience) properly.
+
+Not overwrite unrelated fields.
+
+Not inject wrong language.
+
+Add console logs to confirm:
+
+CV ID being used
+
+Language used during sync
+
+Fields updated
+
+2️⃣ ❌ Email Field Missing in Personal Information
+
+In Settings → Personal Information:
+
+Email field is missing.
+
+✅ Required Fix
+
+Add Email field back.
+
+Fetch from users table.
+
+Make it:
+
+Read-only (recommended)
+OR
+
+Editable (if system allows email change safely).
+
+Must display correct logged-in user email.
+
+3️⃣ 🚨 Major UX Issue – Which CV Is Being Used for Sync?
+
+If user has multiple CVs:
+
+System currently syncs without asking which CV to use.
+
+This creates confusion.
+
+✅ Required UX Improvement
+
+When user clicks Sync From CV:
+
+If user has ONLY 1 CV:
+
+Sync directly.
+
+If user has MULTIPLE CVs:
+
+Show selection modal:
+
+Title:
+“Select CV to Sync From”
+
+Display list:
+
+CV Name
+
+Template name
+
+Last updated date
+
+User selects one CV.
+Then system syncs data from selected CV.
+
+🔒 Important Rules
+
+Do NOT default to latest CV silently.
+
+Do NOT overwrite profile without confirmation.
+
+Show confirmation message:
+“Profile updated successfully from [CV Name]”
+
+4️⃣ Language Awareness (Critical)
+
+When syncing:
+
+If language = Arabic:
+→ Sync .ar fields only.
+
+If language = English:
+→ Sync .en fields only.
+
+No fallback to English.
+No mixing.
+
+5️⃣ Repeater Field Sync Rules
+
+Education & Work Experience:
+
+Must replace entire array only after confirmation.
+
+Must not merge incorrectly.
+
+Must not duplicate entries.
+
+Must not lose bilingual structure.
+
+🧪 Required Testing
+
+Using test account:
+
+Ensure Email field appears.
+
+Click Sync From CV.
+
+If multiple CVs → modal appears.
+
+Select specific CV.
+
+Confirm correct data appears.
+
+Switch language → sync again → correct language appears.
+
+Refresh → data persists.
+
+🚫 Do NOT
+
+Do not auto-pick random CV.
+
+Do not ignore language.
+
+Do not partially sync.
+
+Do not overwrite English with Arabic.
+
+Do not remove repeater structure.
+
+✅ Final Expected Result
+
+After fix:
+
+✔ Sync From CV works correctly
+✔ User selects which CV to sync from
+✔ Email field visible
+✔ Language-aware sync
+✔ Repeater fields synced properly
+✔ No confusion
+✔ Clean UX
+✔ Production-ready behavior
+
+This is a logic + UX correction task to make Sync From CV fully reliable and transparent.

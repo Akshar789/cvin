@@ -1,0 +1,198 @@
+Settings Page – Subscription & Privacy (Make Fully Functional)
+🎯 Objective
+
+Now we need to make the Subscription and Privacy sections in the Settings page fully functional.
+
+Currently:
+
+Subscription section is static
+
+Privacy section actions are not working
+
+No real backend connection
+
+No database update logic
+
+We need everything production-ready.
+
+✅ 1️⃣ Subscription Section – Functional Implementation
+Current Requirement:
+
+For now, user plan is always:
+
+Free Plan
+
+Required:
+
+Dynamically fetch current plan from database (users table → subscription_type or similar field)
+
+Display correct plan badge
+
+If no subscription found → default to Free
+
+Example display:
+
+Current Plan: Free
+Status: Active
+Upgrade Button (optional for future)
+
+Backend Requirements:
+
+Ensure subscription field exists in users table
+
+If not → create proper field
+
+On login → fetch and display correct plan
+
+No hardcoded text
+
+🔐 2️⃣ Privacy Section – Full Functionality Required
+
+We need 2 working features:
+
+A. Change Password (Fully Functional)
+Requirements:
+
+Input fields:
+
+Current Password
+
+New Password
+
+Confirm New Password
+
+Validation:
+
+Current password must match database
+
+New password must:
+
+Meet minimum length
+
+Not match old password
+
+Confirm password must match new password
+
+Behavior:
+
+On success:
+
+Update password securely (hashed)
+
+Show success message
+
+Clear input fields
+
+On failure:
+
+Show proper error message
+
+Do NOT expose plain passwords.
+Use secure hashing.
+
+B. Delete Account (Fully Functional)
+Requirements:
+
+Add “Delete Account” button
+
+On click → show confirmation modal:
+
+Message:
+“Are you sure? This action cannot be undone.”
+
+Buttons:
+Cancel
+Delete Permanently
+
+If user confirms:
+
+System must:
+
+Delete user record from database
+
+Delete all related CVs
+
+Delete all related profile data
+
+Destroy session
+
+Redirect to homepage
+
+No partial deletion.
+No orphan CV records.
+No leftover data.
+
+🔄 3️⃣ Database Integrity Rules
+
+Deleting user must cascade delete related CVs
+
+Password update must not break login
+
+Subscription field must remain intact
+
+No hardcoded values
+
+🎨 4️⃣ UI Requirements
+
+Maintain:
+
+Same premium design
+
+Same animation style
+
+Same spacing system
+
+Same typography
+
+Clean validation messages
+
+Smooth transitions
+
+Mobile optimized
+
+Delete button should be styled carefully (danger style).
+
+🧪 5️⃣ Test Cases
+
+Test:
+
+Change password → logout → login with new password.
+
+Wrong current password → error shown.
+
+Delete account → user fully removed.
+
+Deleted user cannot login.
+
+CVs also deleted.
+
+Subscription plan shows correctly.
+
+🚫 DO NOT
+
+Do not hardcode plan
+
+Do not store password in plain text
+
+Do not allow delete without confirmation
+
+Do not leave orphan data
+
+Do not break session logic
+
+✅ Final Expected Result
+
+After implementation:
+
+✔ Subscription shows correct plan dynamically
+✔ Change password fully functional
+✔ Password securely hashed
+✔ Delete account fully functional
+✔ All user data removed properly
+✔ CVs deleted correctly
+✔ Session destroyed
+✔ Clean UX
+✔ Mobile responsive
+✔ Production-ready
+
+This completes the Settings page functionality and ensures it is fully operational and secure.

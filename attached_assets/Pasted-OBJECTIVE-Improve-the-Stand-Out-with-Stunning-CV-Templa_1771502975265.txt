@@ -1,0 +1,208 @@
+OBJECTIVE
+
+Improve the “Stand Out with Stunning CV Templates” section and enhance the Hero section with animation.
+
+Current issues:
+
+Templates are displayed in grid
+
+Template previews are too small
+
+Hard to read
+
+Not visually premium
+
+Hero section lacks animation
+
+We need to redesign both sections.
+
+🖼 1️⃣ CONVERT TEMPLATE GRID TO LARGE SLIDER
+❌ Remove:
+
+Grid layout
+
+Small template previews
+
+Tight spacing
+
+✅ Replace With:
+
+A horizontal slider / carousel with:
+
+Large CV preview
+
+Center-focused layout
+
+Premium spacing
+
+Smooth animation
+
+Mobile swipe support
+
+🎨 SLIDER DESIGN REQUIREMENTS
+Desktop:
+
+1 large centered template
+
+Partial preview of next/previous template
+
+Smooth transition
+
+Slight scale effect on active slide
+
+Subtle shadow for depth
+
+Mobile:
+
+One full-width template per slide
+
+Swipe enabled
+
+Smooth snapping
+
+No overflow issues
+
+🖥 Template Preview Size
+
+Make preview:
+
+Large enough to read headings
+
+Clear and visually sharp
+
+Proper aspect ratio
+
+Responsive
+
+It must feel premium and professional.
+
+🎬 Animation Behavior
+
+Slide transition smooth
+
+Slight zoom effect on active template
+
+Fade transition optional
+
+No aggressive motion
+
+Lightweight implementation
+
+Avoid heavy libraries.
+
+➕ Keep Button:
+
+“View All Templates”
+
+Redirect to:
+
+/template-gallery
+
+🤖 2️⃣ ADD ANIMATION TO HERO SECTION
+
+The Hero section needs visual movement to feel AI-powered and premium.
+
+🎬 Add One of the Following:
+Option A – Animated CV Preview
+
+Resume preview auto-scroll
+
+Section highlighting animation
+
+Smart keyword glow effect
+
+Option B – AI Typing Effect
+
+Typing animation in summary
+
+Auto-formatting effect
+
+Smart suggestions appearing
+
+Option C – Floating CV Card
+
+Subtle floating motion
+
+Soft glow behind document
+
+Light gradient animation background
+
+🎨 Animation Style
+
+Must be:
+
+Subtle
+
+Elegant
+
+Professional
+
+Not distracting
+
+AI-inspired
+
+CV-focused
+
+No flashy effects.
+
+📱 MOBILE-FIRST
+
+Ensure:
+
+Slider works perfectly on mobile
+
+No layout shifting
+
+Smooth swiping
+
+Hero animation optimized for mobile
+
+RTL support maintained
+
+⚠️ IMPORTANT RULES
+
+Do NOT change backend
+
+Do NOT change template gallery page
+
+Only redesign homepage section
+
+Keep performance optimized
+
+No heavy animation libraries
+
+Maintain bilingual (EN + AR)
+
+✅ SUCCESS CRITERIA
+
+Templates displayed in large slider (not grid)
+
+Previews readable and premium
+
+Smooth animation transitions
+
+Hero section animated
+
+Minimal but powerful design
+
+Mobile optimized
+
+RTL fully working
+
+Homepage feels AI-powered and professional
+
+🎯 FINAL GOAL
+
+Make this section feel like:
+
+“Premium CV platform with intelligent design.”
+
+User should:
+
+Clearly see template quality
+
+Feel confidence
+
+Want to click and explore more
+
+Feel impressed instantly

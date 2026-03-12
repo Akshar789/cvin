@@ -1,0 +1,315 @@
+Add LinkedIn Page Review + AI Evaluation + Rewrite + Download Report
+
+Objective:
+Allow the user to paste their LinkedIn profile URL.
+The system will automatically extract publicly available profile data, evaluate it, rewrite it, and give the user a complete improvement report following ATS + LinkedIn SEO standards.
+
+🔷 1. Create a New LinkedIn Import Flow
+
+When user clicks: “Import from LinkedIn”
+→ Show a popup with:
+
+Input field: “Paste your LinkedIn profile URL”
+
+Button: Analyze Profile
+
+Note: “Only public data will be analyzed.”
+
+🔷 2. Backend Logic — LinkedIn Scraper (Public Data Only)
+
+Implement a server-side function:
+
+fetchLinkedInPublicData(linkedinURL)
+
+It should attempt to retrieve only publicly visible fields:
+
+Extract:
+
+Name
+
+Headline
+
+About Summary
+
+Experience (job titles, companies, dates, descriptions)
+
+Education
+
+Licenses & Certifications
+
+Skills (if public)
+
+Endorsements (optional)
+
+Volunteer experience (public)
+
+Notes:
+
+Use a public HTML parser (Cheerio or Playwright).
+
+If profile visibility is restricted → show message:
+“This LinkedIn profile is private. Please enable public visibility temporarily.”
+
+Store extracted data in:
+
+/linkedin/raw/<userid>.json
+
+🔷 3. AI Analysis Pipeline
+
+After scraping, trigger pipeline:
+
+Step 1 — Data Cleaning
+
+Normalize text, remove extra characters, trim whitespace.
+
+Step 2 — Compare with User CV
+
+Find misalignments:
+
+Missing jobs
+
+Missing skills
+
+Weak descriptions
+
+Inconsistent dates
+
+Summary gaps
+
+Step 3 — AI Improvement
+
+Generate:
+
+🔹 AI Headline Rewrite
+
+3 optimized options:
+
+ATS-friendly
+
+Keyword-rich
+
+Recruiter-attractive
+
+🔹 AI About Section Rewrite
+
+Based on:
+
+CV professional summary
+
+LinkedIn extracted data
+
+Target job domain
+
+Provide 2–3 versions:
+
+Corporate tone
+
+Conversational tone
+
+Leadership tone
+
+🔹 Experience Rewrite
+
+For each position, AI must:
+
+Rewrite bullets using STAR/CAR framework
+
+Highlight impact with measurable outcomes
+
+Remove weak or generic phrases
+
+Keep only TRUE information — never hallucinate
+
+🔹 Skill Gap Analysis
+
+AI identifies:
+
+Skills listed in CV but missing on LinkedIn
+
+Skills missing from both but required for the target role
+
+Skills to add for ranking better in LinkedIn search
+
+🔹 Profile Score (0–100)
+
+Based on:
+
+Completeness
+
+Keyword match
+
+Summary strength
+
+Experience detail
+
+Achievements visibility
+
+Branding & consistency
+
+🔷 4. User Interface — Progress Popup
+
+After user submits the LinkedIn URL, show a modal:
+
+🔍 Reviewing Your LinkedIn Profile…
+AI is analyzing your sections, extracting important information, and comparing it to your CV.
+This may take 15–30 seconds.
+
+
+Show animated progress:
+
+Extracting Public Data
+
+Cleaning & Normalizing
+
+Comparing with Your CV
+
+Generating Recommendations
+
+Preparing Report
+
+Then show “Your LinkedIn Optimization Report is Ready”.
+
+🔷 5. LinkedIn Optimization Report Page
+
+Create a full report page with editable sections:
+
+A. Recommended Headline
+
+3 generated options
+
+“Use This” button
+
+Editable text box
+
+B. Recommended About Summary
+
+2–3 variations
+
+Editable
+
+C. Experience Improvements
+
+Show side-by-side:
+
+| Original | Improved Version |
+
+Allow:
+
+Edit
+
+Save
+
+D. Skills Recommendations
+
+Skills to Add
+
+Skills to Improve
+
+Skills missing for target job
+
+E. Profile Score
+
+Show radar chart or progress bar.
+
+F. Export & Save
+
+User can:
+
+Download report as PDF
+
+Copy each section to clipboard
+
+Save report to /linkedin/reports/<userid>.json
+
+🔷 6. AI System Rules
+
+Apply global safeguards:
+
+❗ NO HALLUCINATION
+
+AI may ONLY rewrite or reorganize existing content.
+Never invent:
+
+Fake companies
+
+Fake achievements
+
+Fake certificates
+
+Fake dates
+
+Fake job titles
+
+❗ Tone & SEO
+
+Every rewrite must:
+
+Use recruiter-friendly language
+
+Use industry-specific keywords
+
+Remain accurate
+
+Stay within LinkedIn’s visibility best practices
+
+🔷 7. Best Practices (Global Standard)
+✔ LinkedIn SEO rules
+
+Use 120–220 characters in headline
+
+Use 200–260 words in About
+
+Use 3–5 bullets per job
+
+Use measurable achievements
+
+Keywords must match target job domain
+
+✔ ATS Alignment
+
+Use clean language
+
+Avoid heavy buzzwords
+
+Use clear verbs
+
+Keep consistent formatting
+
+🔷 8. Storage Requirements
+
+Save:
+
+Raw scraped data → /linkedin/raw/<userid>.json
+
+AI rewritten content → /linkedin/optimized/<userid>.json
+
+User edited final version → /linkedin/final/<userid>.json
+
+PDF export → /linkedin/pdf/<userid>.pdf
+
+🔷 9. UX Requirements
+
+Keep UI aligned with your current design
+
+Use same card-based layout
+
+Provide step-by-step workflow
+
+Include “Saved ✓” flags
+
+Full Arabic + English support
+
+RTL rules for Arabic
+
+🎯 Final Goal
+
+Deliver a complete, user-friendly LinkedIn optimization tool that:
+
+✔ Uses AI intelligently
+✔ Uses CV data as the truth source
+✔ Analyzes the user’s LinkedIn profile
+✔ Rewrites all core elements
+✔ Generates an editable report
+✔ Allows download or copy
+✔ Strengthens the user’s professional branding
+✔ Matches global best standards used by leading career platforms

@@ -1,0 +1,101 @@
+Premium Match Logic + Profile Image Integration Fix
+1️⃣ Premium Template Match % Must Always Be Higher
+
+I noticed a major issue in the Template Recommendation step:
+
+Sometimes a free template shows 14% match.
+
+A premium template also shows 14% match.
+
+Sometimes premium even shows lower match than free.
+
+This is not acceptable.
+
+Required Fix:
+
+Premium templates must always have a higher match % than free ones when shown together.
+
+The recommendation system must prioritize premium templates logically.
+
+Premium match % must never be equal to free.
+
+Premium must always feel like an upgrade.
+
+The scoring logic must ensure premium appears better aligned and optimized.
+
+The system must feel smart, strategic, and aspirational — not random.
+
+2️⃣ Profile Picture Not Auto Linking When Switching to Premium Template
+
+Scenario:
+
+I am a premium member.
+
+I first select a free template.
+
+Then in the recommendation step I select “Structured Sidebar Pro” (which supports profile image).
+
+The system does NOT auto use my existing profile picture.
+
+The profile image does not appear in preview.
+
+This is incorrect.
+
+Required Fix:
+
+If user already has a profile picture in Profile Settings:
+
+When switching to a template that supports images,
+
+The system must automatically show that profile picture in preview.
+
+No need for user to re-upload if image already exists.
+
+Maintain sync between:
+
+Profile Settings
+
+CV Basic Info step
+
+CV Preview
+
+Download
+
+3️⃣ Premium Template Image Upload Field in Edit Page
+
+When:
+
+User has Premium access.
+
+User selects a premium template from the template slider.
+
+Template supports profile image.
+
+Then:
+
+The “Upload Profile Picture” field must appear automatically in Edit panel.
+
+User must be able to upload or change image easily.
+
+Image must instantly reflect in preview.
+
+Same behavior as:
+
+Basic Information step
+
+Profile Settings page.
+
+No missing field.
+No hidden logic.
+No broken sync.
+
+4️⃣ Expected Final Behavior
+
+✔ Premium templates always have higher match %
+✔ No equal % between free and premium
+✔ Premium feels superior
+✔ Profile picture auto loads if already uploaded
+✔ Image sync works across system
+✔ Upload field appears conditionally for image-supported templates
+✔ Premium user not restricted
+✔ Preview and Download both show correct image

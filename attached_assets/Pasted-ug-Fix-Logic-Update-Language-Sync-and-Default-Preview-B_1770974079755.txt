@@ -1,0 +1,104 @@
+ug Fix & Logic Update – Language Sync and Default Preview Behavior
+1️⃣ Issue on /cv/basic-info
+
+While testing, I noticed:
+
+When changing the language (English ↔ Arabic),
+
+The input fields are NOT switching properly to Arabic.
+
+The UI direction may change, but field values and behavior are not updating correctly.
+
+Required Fix:
+
+When user switches language:
+
+The form fields should switch to the selected language version.
+
+If Arabic is selected → show Arabic fields.
+
+If English is selected → show English fields.
+
+Ensure proper RTL/LTR layout switching.
+
+Ensure data binding works correctly for both guest and registered users.
+
+2️⃣ CV Generation Logic Update (AI + Manual)
+Required Behavior:
+
+Whether the user:
+
+Generates CV using AI
+OR
+
+Creates CV manually
+
+👉 The system should ALWAYS create and store BOTH:
+
+English version
+
+Arabic version
+
+Default Preview Logic:
+
+If user selects English in /cv/basic-info:
+
+Default preview language on /cv/preview should be English
+
+If user selects Arabic in /cv/basic-info:
+
+Default preview language on /cv/preview should be Arabic
+
+Preview should automatically respect the last selected language.
+
+3️⃣ Language Persistence from /template-gallery
+
+We have already added language toggle in /template-gallery.
+
+Required Behavior:
+
+If user selects English in /template-gallery:
+
+/cv/basic-info should load with English selected by default.
+
+If user selects Arabic in /template-gallery:
+
+/cv/basic-info should load with Arabic selected by default.
+
+Language selection must persist across:
+
+/template-gallery
+
+/cv/basic-info
+
+/cv/preview
+
+For both:
+
+Guest users (session/local storage)
+
+Registered users (database)
+
+Final Expected Flow
+
+User selects language in /template-gallery
+
+Same language auto-selected in /cv/basic-info
+
+User creates CV (AI or Manual)
+
+System generates & stores both English + Arabic
+
+/cv/preview opens in the last selected language by default
+
+User can still toggle language anytime
+
+Ensure:
+
+Proper RTL/LTR switching
+
+Field data binding works correctly
+
+Language state is globally synced
+
+No mismatch between selected language and preview default

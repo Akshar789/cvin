@@ -1,0 +1,170 @@
+UI Fix Task – “Enhance Your Career Journey” Section (Home Page)
+📌 Issue
+
+We recently added the “Enhance Your Career Journey” section on the Home Page (content pulled from Dashboard).
+
+However:
+
+❌ Background does NOT match other home sections
+
+❌ Icon style does NOT match card design
+
+❌ Visual hierarchy feels inconsistent
+
+❌ Section breaks overall design flow
+
+We need to redesign this section to match the Home Page design system.
+
+🎯 Objective
+
+Make this section:
+
+Visually consistent with other home sections
+
+Fully aligned with branding system
+
+Modern and premium
+
+Mobile-optimized
+
+Design-balanced
+
+Consistent in spacing and card styling
+
+🔧 Required Fixes
+1️⃣ Background Fix
+
+Current background looks different and breaks flow.
+
+Action:
+
+Use same background style as surrounding sections
+OR
+
+Apply brand-approved soft gradient/background from branding kit
+
+Maintain consistent padding (same as other sections)
+
+Keep 8px spacing grid system
+
+Do NOT use random background colors.
+
+2️⃣ Icon Styling Fix
+
+Current icon:
+
+Does not match card shape
+
+Different radius
+
+Different shadow
+
+Feels disconnected
+
+Action:
+
+Use consistent icon container:
+
+Same border radius as other cards
+
+Same background tone (primary light or accent soft)
+
+Same shadow system
+
+Keep icon centered inside container
+
+Proper spacing between icon and text
+
+3️⃣ Card UI Alignment
+
+Make card style consistent with:
+
+Template gallery cards
+
+Feature cards
+
+Other home UI elements
+
+Apply:
+
+Same border-radius
+
+Same shadow depth
+
+Same hover animation (desktop)
+
+Same spacing system
+
+Same typography hierarchy
+
+4️⃣ Typography Fix
+
+Heading font must match brand heading font
+
+Use correct weight hierarchy
+
+Improve line-height for readability
+
+Subtitle should use secondary text color
+
+Keep consistent font sizing with other home sections
+
+5️⃣ Mobile Optimization (High Priority)
+
+On mobile:
+
+Stack content properly
+
+Maintain 16–20px horizontal padding
+
+Proper vertical spacing between cards
+
+Make cards touch-friendly
+
+Improve readability
+
+Avoid cramped layout
+
+6️⃣ Animation Improvement (Optional but Recommended)
+
+Subtle fade-in animation on scroll
+
+Soft hover lift effect (desktop only)
+
+Smooth transition effects
+
+Keep it subtle and professional.
+
+🎨 Design Rules
+
+Follow branding kit strictly:
+
+Primary color
+
+Accent color
+
+Font family
+
+Border radius
+
+Shadow system
+
+Background tones
+
+Do NOT introduce new styles outside design system.
+
+✅ Expected Final Result
+
+Section blends perfectly with home page
+
+Icon + card visually connected
+
+Premium SaaS look
+
+Mobile-first clean layout
+
+Balanced spacing
+
+Consistent UI system
+
+Feels intentional, not inserted

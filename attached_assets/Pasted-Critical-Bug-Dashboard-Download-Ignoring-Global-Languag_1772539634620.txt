@@ -1,0 +1,97 @@
+Critical Bug – Dashboard Download Ignoring Global Language Toggle
+Current Scenario
+
+I am on the Dashboard page and downloading my created CV directly from there.
+
+Here’s what happens:
+
+I first go to the Edit page.
+
+I switch the language using the page toggle (global toggle works correctly).
+
+I download the CV in both languages from the Edit page → works correctly.
+
+I go back to the Dashboard.
+
+The global language is set to English.
+
+I download the CV from Dashboard.
+
+It downloads in Arabic instead of English.
+
+I switch the global toggle 2–3 times.
+
+It still downloads in Arabic.
+
+Then I go back to Edit page, switch to English, add some text (auto-save triggers).
+
+Return to Dashboard and download again.
+
+Now the downloaded CV contains mixed language (part English, part Arabic).
+
+❌ Problem
+
+The download from Dashboard is:
+
+Ignoring the global language toggle.
+
+Using stale or incorrect language state.
+
+Possibly using stored language in DB instead of current UI state.
+
+Causing mixed-language PDF output.
+
+This is a major bilingual integrity issue.
+
+✅ Required Fix
+
+When downloading from Dashboard:
+
+It must strictly respect the current global language toggle.
+
+If global = English → Download must be fully English.
+
+If global = Arabic → Download must be fully Arabic.
+
+No mixed content.
+
+No fallback to stored language.
+
+No dependency on last edited state.
+
+The Dashboard download must:
+
+Fetch correct CV ID.
+
+Fetch correct language content.
+
+Render PDF in only the selected language.
+
+Apply proper RTL/LTR formatting.
+
+🔎 Things to Check
+
+Is Dashboard download reading from:
+
+Cached language?
+
+CV default language?
+
+Last edited language?
+
+Is it merging .en and .ar fields?
+
+Is the PDF generator using wrong language key?
+
+Is global language state not passed into download function?
+
+🎯 Expected Final Behavior
+
+✔ Dashboard download respects global language toggle
+✔ No mixed-language PDFs
+✔ No stale state
+✔ English → Fully English
+✔ Arabic → Fully Arabic
+✔ Works consistently without needing to re-edit
+
+The download system must behave deterministically and always align with the current global language state.

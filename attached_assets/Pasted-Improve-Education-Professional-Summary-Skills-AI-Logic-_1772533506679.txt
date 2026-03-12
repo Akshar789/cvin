@@ -1,0 +1,153 @@
+Improve Education + Professional Summary + Skills AI Logic
+
+I tested the updated prompts and they are working better, but I found some important issues that need to be fixed globally.
+
+1️⃣ Education Summary – Edit Field Missing
+
+Issue:
+
+The Education Summary is visible in CV Preview.
+
+But there is NO edit field for Education Summary in the Preview & Edit page.
+
+This is inconsistent.
+
+Required Fix:
+
+Add an editable field for Education Summary in the CV Preview & Edit page.
+
+It must:
+
+Support EN / AR
+
+Support Regenerate with AI
+
+Autosave properly
+
+Sync correctly with database
+
+Follow the 1-line summary rule
+
+Preview and Edit must always match.
+
+2️⃣ Professional Summary – AI Not Using Real User Data
+
+Issue:
+
+I added:
+
+3–5 years experience
+
+Work Experience:
+
+June 2022 – May 2023
+
+June 2023 – Present
+
+But AI generated:
+
+"2 years of experience..."
+
+This is wrong.
+
+AI must NEVER guess experience.
+It must calculate from actual dates.
+
+Required Fix – Professional Summary Prompt
+
+The AI must:
+
+Calculate total years from work experience dates.
+
+Use exact data from:
+
+Work experience timeline
+
+Skills
+
+Job Title
+
+Job Domain
+
+Years of Experience selection
+
+Never hardcode or estimate.
+
+Updated prompt logic:
+
+You are a professional CV writer.
+Use ONLY the user’s provided data.
+Calculate total years of experience from the employment dates.
+Do not guess or round incorrectly.
+Do not reduce experience.
+Use real skills from the skills section.
+Make it professional, impact-driven, and ATS-friendly.
+Keep it concise (4–6 lines max).
+Language: {selected_language}
+
+No hallucination.
+No default "2 years".
+No generic summaries.
+
+3️⃣ Skills AI – Too Repetitive
+
+Issue:
+
+Every time I test, AI generates almost the same skills.
+It feels repetitive and generic.
+
+This makes the system look weak.
+
+Required Fix – Skills Generation Prompt
+
+AI must:
+
+Analyze:
+
+Job Title
+
+Job Domain
+
+Work Experience description
+
+Generate:
+
+Relevant technical skills
+
+Relevant soft skills
+
+Industry-aligned skills
+
+Avoid repeating the same default list.
+
+Avoid always giving:
+
+Git
+
+Visual Studio Code
+
+Communication
+
+Problem-solving (unless truly relevant)
+
+Make it dynamic and role-based.
+
+Prompt improvement:
+
+Generate relevant, role-specific skills based strictly on the job title, job domain, and experience description.
+Avoid generic default skills unless supported by the data.
+Mix technical + functional skills.
+Do not repeat previously generated skill patterns.
+
+🎯 Final Expected System Behavior
+
+✔ Education Summary editable
+✔ Professional Summary calculates real experience
+✔ No incorrect years
+✔ Skills generation feels intelligent
+✔ No repetitive outputs
+✔ Strong AI feels smarter than manual writing
+✔ EN / AR fully supported
+✔ All templates compatible
+
+We need the AI to feel truly intelligent and data-driven — not generic and repetitive.

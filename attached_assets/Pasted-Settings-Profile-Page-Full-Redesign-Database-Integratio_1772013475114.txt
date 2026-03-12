@@ -1,0 +1,278 @@
+Settings / Profile Page – Full Redesign & Database Integration
+🎯 Objective
+
+Now that:
+
+✅ Home page is redesigned
+
+✅ Template Gallery is redesigned
+
+✅ CV Preview is redesigned
+
+✅ Dashboard is redesigned
+
+We must redesign and fully optimize the Settings / Profile page to:
+
+Match the same premium design system
+
+Use same animation style
+
+Maintain design consistency
+
+Remove layout issues
+
+Fully connect with database
+
+Be mobile-first optimized
+
+Be production-ready
+
+⚠️ 1️⃣ Remove Duplicate Header
+
+Currently the Settings page shows two headers.
+
+Required:
+
+❌ Remove the second header completely.
+
+Keep only the main page header.
+
+Maintain clean hero structure (same style as dashboard).
+
+No double title.
+No visual clutter.
+
+🎨 2️⃣ Match New Design System (Strictly)
+
+The Settings page must match:
+
+Dashboard hero style
+
+Same gradient background system
+
+Same typography hierarchy
+
+Same icon style
+
+Same border radius
+
+Same shadow depth
+
+Same spacing system (8px grid)
+
+Same animation smoothness
+
+This page should NOT look older or separate.
+
+It must feel part of the same premium SaaS system.
+
+🧠 3️⃣ Auto-Fill Profile Data From Database
+
+We are already collecting user basic info during CV creation.
+
+That data is stored in:
+
+users table
+
+cvs table
+
+Required:
+
+Automatically pre-fill profile fields from database.
+
+If user has:
+
+name
+
+email
+
+phone
+
+location
+
+profession
+
+profile image
+
+Display it directly in Settings page form fields.
+
+No empty form if data exists.
+
+🔗 4️⃣ Database Mapping (Very Important)
+
+Map all Settings form fields correctly to database fields.
+
+Example mapping:
+
+From users table:
+
+full_name → Name field
+
+email → Email field
+
+phone → Phone field
+
+profile_image → Avatar
+
+language_preference → Language toggle
+
+subscription_type → Plan badge
+
+From cvs table (if needed):
+
+profession
+
+headline
+
+location
+
+Ensure:
+
+On update → data updates correctly
+
+No overwrite of unrelated fields
+
+No null reset issues
+
+Proper validation before save
+
+✨ 5️⃣ Improve Layout Structure
+Suggested Layout:
+Hero Section:
+
+Title: “Profile Settings”
+
+Subtitle: “Manage your account and preferences”
+
+Same animated background style as dashboard
+
+Section 1: Personal Information
+
+Card layout with:
+
+Profile image upload (modern UI)
+
+Full name
+
+Email (read-only if needed)
+
+Phone
+
+Location
+
+Use:
+
+Floating labels
+
+Modern input styling
+
+Smooth focus animations
+
+Consistent button style
+
+Section 2: Account Preferences
+
+Language selection
+
+Notification toggle
+
+Theme toggle (if exists)
+
+Subscription status badge
+
+Section 3: Security
+
+Change password
+
+Reset password
+
+Account deletion option (styled carefully)
+
+📱 6️⃣ Mobile Optimization (High Priority)
+
+On mobile:
+
+Full-width cards
+
+16–20px padding
+
+Large touch-friendly inputs
+
+Sticky Save button at bottom
+
+Clear spacing between sections
+
+No cramped layout
+
+Must feel clean and premium on mobile.
+
+✨ 7️⃣ Add Subtle Animations
+
+Use same animation style as:
+
+Dashboard
+
+Home page
+
+Include:
+
+Fade-in section load
+
+Smooth hover states (desktop)
+
+Soft button transitions
+
+Clean icon animations
+
+Do NOT overuse animation.
+
+Keep it premium and subtle.
+
+🔐 8️⃣ Form Behavior Requirements
+
+Validate fields properly
+
+Prevent duplicate submissions
+
+Show loading spinner on save
+
+Show success toast:
+“Profile updated successfully”
+
+Show error message if failed
+
+Maintain EN / AR RTL compatibility
+
+🚫 Do NOT
+
+Do not break existing auth logic
+
+Do not create new database structure unnecessarily
+
+Do not duplicate data fields
+
+Do not hardcode values
+
+Do not ignore mobile layout
+
+Do not leave second header
+
+✅ Expected Final Result
+
+After redesign:
+
+✔ Only one header
+✔ Same premium look as dashboard
+✔ Animated hero background
+✔ Clean card-based layout
+✔ Fully connected to database
+✔ Auto-filled user data
+✔ Proper save/update logic
+✔ Mobile-first optimized
+✔ RTL compatible
+✔ Smooth animations
+✔ Production-ready
+
+This page must feel like a polished SaaS account management system — not a basic settings form.
+
+Focus on design consistency + database integrity + UX polish.

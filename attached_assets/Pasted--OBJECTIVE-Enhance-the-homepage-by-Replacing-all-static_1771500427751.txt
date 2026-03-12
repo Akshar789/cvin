@@ -1,0 +1,201 @@
+🎯 OBJECTIVE
+
+Enhance the homepage by:
+
+Replacing all static icons with animated CV-related GIFs or Lottie animations
+
+Maintaining a minimal, AI-powered SaaS look
+
+Ensuring mobile-first performance
+
+Replacing the footer icon with the newly provided official icon
+
+This should make the homepage feel intelligent, modern, and visually engaging.
+
+🔄 1. REMOVE STATIC ICONS
+
+Remove all:
+
+SVG icons
+
+Icon library components
+
+Static vector icons
+
+Do NOT leave any static icon placeholders.
+
+🎬 2. REPLACE WITH CV-RELATED ANIMATIONS
+
+Replace each previous icon with:
+
+Lightweight optimized GIF
+OR
+
+Lottie animation (preferred for performance)
+
+Animations must:
+
+Be related to CV/resume building
+
+Look professional and minimal
+
+Loop smoothly and subtly
+
+Not distract the user
+
+📌 SECTION-SPECIFIC ANIMATION REQUIREMENTS
+🟢 A. Just Three Simple Steps
+Step 1 – Pick Your Template
+
+Animation idea:
+
+Resume template preview sliding
+
+CV layout switching
+
+Step 2 – Add Your Information
+
+Animation idea:
+
+Typing effect
+
+AI suggestions appearing
+
+Smart formatting happening
+
+Step 3 – Download & Apply
+
+Animation idea:
+
+CV export animation
+
+Download confirmation
+
+File saved preview
+
+Animations must:
+
+Fade in on scroll
+
+Have slight upward motion
+
+Be smooth and subtle
+
+Not be aggressive or flashy
+
+🟢 B. Everything You Need for the Perfect CV
+
+Replace each feature icon with animations such as:
+
+AI auto-writing effect
+
+Smart keyword highlighting
+
+Resume formatting animation
+
+Section optimization effect
+
+Document enhancement motion
+
+Keep the look clean, elegant, and premium.
+
+🤖 3. AI-POWERED MOTION STYLE
+
+The homepage should feel like:
+
+AI is actively helping build a CV
+
+The platform is intelligent and modern
+
+Add subtle:
+
+Soft glow effects
+
+Floating motion
+
+Light gradient movement
+
+Micro hover interactions
+
+Avoid:
+
+Cartoon-like animations
+
+Heavy bounce effects
+
+Fast or distracting motion
+
+📱 4. PERFORMANCE REQUIREMENTS
+
+Animations must:
+
+Be optimized and lightweight
+
+Lazy-loaded where possible
+
+Responsive across devices
+
+Not cause layout shift
+
+Not increase bundle size significantly
+
+Work smoothly on mobile
+
+If possible, prefer Lottie over heavy GIFs.
+
+🌍 5. BILINGUAL SUPPORT
+
+Ensure animations:
+
+Align properly in RTL mode (Arabic)
+
+Do not break layout in either language
+
+Maintain spacing consistency
+
+🦶 6. FOOTER ICON UPDATE (IMPORTANT)
+
+Replace the current footer icon/logo with the newly provided official icon.
+Ensure proper sizing, alignment, responsiveness, and remove any previous footer icon completely.
+
+⚠️ IMPORTANT RULES
+
+Do NOT modify backend logic
+
+Do NOT break layout structure
+
+Do NOT introduce heavy animation libraries unnecessarily
+
+Maintain clean component structure
+
+Keep the design minimal and premium
+
+✅ SUCCESS CRITERIA
+
+No static icons remain
+
+All icons replaced with CV-related animations
+
+Footer icon replaced with provided new icon
+
+Animations are subtle and professional
+
+Mobile performance remains smooth
+
+RTL works correctly
+
+Homepage feels modern, intelligent, and AI-powered
+
+🎯 FINAL GOAL
+
+Deliver a homepage that feels:
+
+Alive and intelligent
+
+AI-powered but CV-focused
+
+Minimal yet powerful
+
+Professional and premium
+
+Engaging enough for users to revisit

@@ -1,0 +1,111 @@
+📍 Context
+
+Our application already supports LTR and RTL layouts and includes Arabic language support. We now need to extend this support fully to the CV system, including preview, editing, AI-generated content, and downloads.
+
+✅ Required Features & Fixes
+1️⃣ Full RTL & LTR Support for CVs
+
+All CV templates must support:
+
+LTR (Left-to-Right)
+
+RTL (Right-to-Left)
+
+Layout direction must:
+
+Reflect correctly in editor
+
+Reflect correctly in preview
+
+Be preserved exactly in the downloaded CV
+
+2️⃣ RTL / LTR Toggle
+
+Add a toggle switch allowing users to:
+
+Choose LTR or RTL
+
+When toggled:
+
+The CV layout updates instantly in preview
+
+The chosen direction is saved with the CV
+
+Downloaded CV uses the same selected direction
+
+3️⃣ Arabic Translation Support
+
+Add an option to translate the entire CV into Arabic
+
+Translation should apply to:
+
+Manually entered content
+
+AI-generated content
+
+Once translation is applied:
+
+All sections must appear in Arabic
+
+Text direction should automatically switch to RTL
+
+Translated content must be:
+
+Visible in preview
+
+Saved correctly
+
+Reflected accurately in the downloaded CV
+
+4️⃣ Download = Preview Consistency
+
+Ensure:
+
+Preview layout exactly matches downloaded output
+
+Font, alignment, spacing, and direction remain unchanged
+
+No content mismatch between preview and download
+
+5️⃣ Page Break & Content Cut Fix
+
+Fix the issue where CV content:
+
+Gets cut between pages
+
+Overlaps or disappears in the downloaded file
+
+Ensure:
+
+Proper page breaks
+
+Content flows naturally across pages
+
+This works for all templates, both RTL and LTR
+
+6️⃣ Template Safety (Current & Future)
+
+All existing CV templates must:
+
+Support RTL, LTR, and Arabic text
+
+Respect page flow rules
+
+Any future templates added must:
+
+Automatically inherit RTL/LTR and translation behavior
+
+Follow the same page-break and layout rules
+
+🎯 Goal
+
+Provide a seamless multilingual CV experience where:
+
+Users can switch between RTL and LTR
+
+Translate the full CV into Arabic
+
+See identical results in preview and download
+
+Never experience content cutting or layout breaks
+across any CV template

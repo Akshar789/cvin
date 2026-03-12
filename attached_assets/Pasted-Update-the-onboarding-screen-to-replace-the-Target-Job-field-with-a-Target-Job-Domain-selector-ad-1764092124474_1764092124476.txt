@@ -1,0 +1,152 @@
+Update the onboarding screen to replace the Target Job field with a “Target Job Domain” selector, add a full Industry dropdown list (Arabic + English), support smart searching, and ensure all fields integrate with the AI content-generation flow for tailoring CV output.
+
+🔷 1. Replace “Target Job Title” with “Target Job Domain”
+Requirements:
+
+Replace the current field with:
+Target Job Domain (Domain الوظيفة المستهدفة)
+
+Single smart-search dropdown.
+
+User can either:
+
+Select from list
+
+Or type to search
+
+Or type “Other / أخرى” if no match exists
+
+Domains to include:
+
+(English + Arabic)
+
+Human Resources (الموارد البشرية)
+
+Administration (الإدارة)
+
+Customer Service (خدمة العملاء)
+
+Accounting & Finance (المحاسبة والمالية)
+
+Sales (المبيعات)
+
+Marketing (التسويق)
+
+IT Support (الدعم الفني)
+
+Data Entry (إدخال البيانات)
+
+Project Coordination (تنسيق المشاريع)
+
+Logistics / Supply Chain (الخدمات اللوجستية وسلسلة الإمداد)
+
+Operations (العمليات)
+
+Procurement (المشتريات)
+
+Quality & HSE (الجودة والصحة والسلامة)
+
+Education & Training (التعليم والتدريب)
+
+Engineering (الهندسة)
+
+Business Development (تطوير الأعمال)
+
+Hospitality (قطاع الضيافة)
+
+Banking & Insurance (البنوك والتأمين)
+
+Call Center (مراكز الاتصال)
+
+Graphic Design (التصميم الجرافيكي)
+
+Software Development (تطوير البرمجيات)
+
+Legal Affairs (الشؤون القانونية)
+
+Medical / Healthcare (القطاع الصحي)
+
+Other / أخرى as open text field
+
+Smart Search Behavior:
+
+As user types:
+
+Show exact match
+
+Show closest match
+
+Match Arabic AND English
+
+Allow arrow key selection
+
+If no match → show “Add custom domain”
+
+🔷 2. Replace Industry Field With Full Dropdown (Arabic + English)
+Industry (Sector) dropdown list:
+
+Same smart search behavior
+
+Complete bilingual list:
+
+Technology (التقنية)
+
+Government (القطاع الحكومي)
+
+Education (التعليم)
+
+Healthcare (الرعاية الصحية)
+
+Energy (الطاقة)
+
+Oil & Gas (النفط والغاز)
+
+Real Estate (العقار)
+
+Construction (الإنشاءات)
+
+Transportation (النقل)
+
+Telecommunications (الاتصالات)
+
+Food & Beverage (الأغذية والمشروبات)
+
+Retail (التجزئة)
+
+Aviation (الطيران)
+
+Banking (البنوك)
+
+FinTech (التقنية المالية)
+
+Manufacturing (التصنيع)
+
+Consulting (الاستشارات)
+
+Security (الأمن)
+
+Sports & Entertainment (الرياضة والترفيه)
+
+Automotive (السيارات)
+
+Non-Profit (القطاع غير الربحي)
+
+Media (الإعلام)
+
+Marketing Agencies (وكالات التسويق)
+
+Pharmaceuticals (الأدوية)
+
+Other / أخرى (open text)
+
+Smart Search:
+
+Use fuzzy search library
+
+Automatically detect user language
+
+Suggest top 5 closest results while typing
+
+🔷 3. All Fields Must Be Linked to the AI CV Generator (Critical)
+
+For each onboarding field, add mapping into a shared state:

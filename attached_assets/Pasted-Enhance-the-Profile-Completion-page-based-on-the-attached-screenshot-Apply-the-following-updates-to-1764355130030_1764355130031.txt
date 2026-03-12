@@ -1,0 +1,72 @@
+Enhance the Profile Completion page based on the attached screenshot. Apply the following updates to improve visual appeal, user motivation, and professional branding:
+
+1. Add a Strong Dual-Language Header (English + Arabic)
+
+Keep the user’s name dynamically inserted.
+
+Use a more attractive and motivational tone.
+
+English Example:
+“Welcome, Ali Ahmed! 👋
+Start shaping your professional future with the most reliable CV and career development platform.”
+
+Arabic Example:
+"مرحبًا علي أحمد! 👋
+ابدأ الآن في بناء مستقبلك المهني مع أفضل منصة موثوقة لتطوير السيرة الذاتية والمسار الوظيفي."
+
+Make both languages appear cleanly and aligned with the UI style.
+
+2. Add a Motivational Nudge Message Under the Header
+
+Place it directly under the main header:
+
+English:
+“Complete your profile in less than one minute to unlock your customized career development path.”
+
+Arabic:
+"أكمل ملفك الشخصي في أقل من دقيقة للحصول على تجربة مخصصة في إنشاء مسار تطويرك المهني."
+
+Use a friendly tone, medium-highlight style (subheader), and center alignment.
+
+3. Improve Visual Layout of the Account Information Section
+Use a modern card container with gentle shadow and rounded corners, make sure it's consistent with the other UI in the platform.
+
+4. Keep Arabic & English Properly Structured
+
+English top → Arabic below OR
+
+Arabic right → English left (if RTL is enabled)
+
+Ensure correct RTL alignment for Arabic fields.
+
+Make text responsive on mobile.
+
+5. General UX Enhancements
+
+Position the entire header section higher with better padding.
+
+Add soft gradient background similar to the current theme.
+
+Maintain consistent styling with the rest of CVPro branding.
+
+Improve readability of input labels and increase font weight slightly.
+
+7. Final Deliverable
+
+Update the page UI to be:
+
+More attractive
+
+More motivational
+
+Fully bilingual
+
+Consistent with the platform brand
+
+User-friendly
+
+Professional and modern
+
+Encouraging the user to finish their profile quickly
+
+Use the screenshot layout as a reference and apply all improvements in the final UI.

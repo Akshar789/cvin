@@ -1,0 +1,303 @@
+Perform a complete end-to-end audit of the entire CV builder flow.
+
+Test all possible scenarios and fix:
+
+Logic issues
+
+Data save issues
+
+UI bugs
+
+State conflicts
+
+Language conflicts
+
+Guest vs Logged-in flow issues
+
+Step navigation issues
+
+Mobile issues
+
+This is a stability & production-readiness pass.
+
+🧪 1️⃣ TEST ALL USER SCENARIOS
+
+Test and fix for:
+
+👤 Guest User
+
+Start CV
+
+Fill steps
+
+Refresh page
+
+Navigate back
+
+Leave flow and return
+
+Continue draft
+
+Complete CV
+
+Ensure:
+
+Data saves properly
+
+No duplication
+
+No data loss
+
+Correct resume linked to guest session
+
+🔐 Logged-In User
+
+Start CV
+
+Leave mid-way
+
+Logout and login again
+
+Continue draft
+
+Edit existing CV
+
+Create new CV
+
+Ensure:
+
+Data linked correctly to user
+
+No overwriting wrong record
+
+No conflict between guest & user records
+
+🔀 2️⃣ CONDITIONAL FLOW TESTING
+
+Verify:
+
+Student Flow
+
+Role selection works
+
+Skips experience
+
+Goes directly to education
+
+Saves correctly
+
+Loads correctly on return
+
+Employer Flow
+
+Job Title required
+
+Job Domain dropdown loads from DB
+
+Custom domain does NOT store globally
+
+Experience year selection works
+
+Company name field saves
+
+Experience repeater works correctly
+
+💾 3️⃣ DATABASE VALIDATION
+
+Check:
+
+Each step auto-saves correctly
+
+No duplicate rows created
+
+No missing fields
+
+Correct foreign keys
+
+Guest table & User table logic works
+
+Draft resumes stored properly
+
+Resume ID persists across steps
+
+Fix any mismatch.
+
+Do NOT change schema unless absolutely required.
+
+🌍 4️⃣ LANGUAGE & RTL TESTING
+
+Switch between:
+
+English
+
+Arabic
+
+Verify:
+
+No state reset on language change
+
+No step reset
+
+No UI breaking
+
+RTL layout correct
+
+No overlapping elements
+
+No duplicated data
+
+Fix any conflict between language toggle & form state.
+
+📱 5️⃣ MOBILE TESTING
+
+Test full flow on mobile:
+
+Fixed Next button
+
+No overlap with footer
+
+No overlap with debugger
+
+Keyboard safe spacing
+
+Smooth scroll
+
+No layout shift
+
+No overflow
+
+Fix spacing & viewport handling issues.
+
+🔄 6️⃣ STEP NAVIGATION TEST
+
+Test:
+
+Forward navigation
+
+Back navigation
+
+Skip behavior
+
+Refresh in middle of step
+
+Direct URL access to step
+
+Resume incomplete draft
+
+Ensure:
+
+User always returns to correct step
+
+Step indicator accurate
+
+No broken routing
+
+No forced redirect
+
+🤖 7️⃣ AI GENERATION TEST
+
+Test:
+
+Generate with AI
+
+Regenerate
+
+Loading state
+
+Error handling
+
+Saving AI output to DB
+
+No duplicate saves
+
+No freeze
+
+⚠️ 8️⃣ EDGE CASE TESTING
+
+Test:
+
+Empty fields
+
+Invalid phone number
+
+Network delay
+
+Rapid button clicking
+
+Double submission
+
+Switching role mid-process
+
+Switching language mid-process
+
+Fix race conditions and state conflicts.
+
+🧹 9️⃣ CLEANUP
+
+After testing:
+
+Remove console errors
+
+Remove unused state
+
+Remove duplicate effects
+
+Ensure clean component lifecycle
+
+Ensure no memory leaks
+
+Keep performance optimized
+
+⚠️ IMPORTANT RULES
+
+Do NOT break working logic
+
+Do NOT change business rules
+
+Maintain existing architecture
+
+Maintain mobile-first design
+
+Keep DB schema intact
+
+No heavy refactors unless necessary
+
+✅ SUCCESS CRITERIA
+
+No console errors
+
+No data loss
+
+No duplicate records
+
+Guest flow works
+
+Logged-in flow works
+
+Language switching works
+
+Mobile works perfectly
+
+Student & Employer logic works
+
+AI works
+
+Resume draft persistence works
+
+🎯 FINAL GOAL
+
+Make the entire CV builder:
+
+Stable
+
+Bug-free
+
+Production-ready
+
+Scalable
+
+Clean
+
+Predictable in every scenario
+
+Think through every possible user action and fix any instability.

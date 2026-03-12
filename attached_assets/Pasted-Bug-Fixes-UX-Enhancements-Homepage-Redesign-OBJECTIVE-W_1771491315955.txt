@@ -1,0 +1,309 @@
+Bug Fixes + UX Enhancements + Homepage Redesign
+🎯 OBJECTIVE
+
+We previously applied modifications to the CV builder flow and homepage.
+
+During testing, several issues were identified.
+Your task is to:
+
+Fix functional bugs
+
+Restore validation logic
+
+Improve user flow persistence
+
+Redesign homepage (full rebuild)
+
+Improve header & footer design
+
+Improve engagement & UX consistency
+
+Ensure Saudi Arabia–specific validation works properly
+
+🛑 1. CRITICAL BUG – Automatic Refresh & Redirect to Homepage
+Issue:
+
+While testing the CV builder flow:
+
+The page automatically refreshes
+
+The user gets redirected to the homepage unexpectedly
+
+Required Fix:
+
+Identify the cause of forced redirect
+
+Check:
+
+Auth middleware
+
+Route guards
+
+useEffect redirects
+
+Form submission default behavior
+
+Prevent unintended page reload
+
+Ensure SPA navigation is preserved
+
+Preserve state when navigating between steps
+
+The CV builder flow must remain stable and not redirect unless intentionally triggered.
+
+📱 2. Saudi Arabia Phone Validation (CRITICAL)
+
+Previously, the system accepted:
+
+Only Saudi phone numbers
+
+Proper Saudi number format validation
+
+Validation applied both:
+
+Client-side
+
+Server-side
+
+After recent changes:
+
+Validation is completely removed
+
+Required Fix:
+
+Restore Saudi Arabia–specific validation:
+
+Requirements:
+
+Accept only Saudi phone numbers
+
+Format example: +966XXXXXXXXX
+
+Proper regex validation
+
+Validate:
+
+On frontend form
+
+On backend before saving
+
+Show clear error message if invalid
+
+Validation must exist on both client and server.
+
+🔄 3. Resume Flow Persistence (Back Navigation Issue)
+Issue:
+
+If a user:
+
+Fills Step 1
+
+Clicks back
+
+Returns to homepage
+
+Clicks “Start with FREE CV” again
+
+User is redirected to previously filled step automatically.
+
+Required Behavior:
+
+Instead:
+
+Use Local Storage to store progress temporarily
+
+When user returns:
+
+Show confirmation:
+“You have a saved draft. Continue where you left off?”
+OR
+“Start fresh”
+
+Do NOT automatically redirect without user choice.
+
+Implement clean draft handling logic.
+
+🎨 4. FULL HOMEPAGE REBUILD (More Attractive & Professional)
+
+The current homepage redesign is not sufficient.
+
+We need:
+
+More visual hierarchy
+
+Professional SaaS-level UI
+
+Modern layout
+
+Clean spacing
+
+Animation
+
+Better conversion-focused structure
+
+🏗 Required Homepage Sections
+1️⃣ Hero Section
+
+Strong headline
+
+Subheadline
+
+Primary CTA: “Start with FREE CV”
+
+Secondary CTA (optional)
+
+Illustration or animation
+
+Trust indicator (e.g., Used by thousands of job seekers)
+
+Add subtle motion animation.
+
+2️⃣ How It Works (3 Steps Section)
+
+More visual.
+Icons + animated transitions.
+
+3️⃣ Template Preview Section
+
+Show multiple CV templates.
+Hover animation.
+Professional presentation.
+
+4️⃣ Features Section
+
+Highlight:
+
+AI-powered writing
+
+Saudi-optimized formatting
+
+Easy export
+
+Professional layout
+
+5️⃣ Testimonials / Trust Section (Optional)
+
+Increase engagement and credibility.
+
+🧭 5. Header Redesign
+
+Improve:
+
+Logo visibility
+
+Spacing
+
+Sticky behavior
+
+Clear CTA in header
+
+Mobile menu animation
+
+Modern SaaS style navigation.
+
+📦 6. Footer Redesign
+
+Add:
+
+Clean layout
+
+Navigation links
+
+Contact
+
+Legal pages
+
+Social icons (if needed)
+
+Proper spacing
+
+Professional and structured.
+
+🏙 7. City Dropdown from Database
+
+We already store cities in the database.
+
+Required:
+
+In relevant step:
+
+Fetch cities dynamically from database
+
+Populate dropdown
+
+Allow user to select
+
+Optimize for performance
+
+Add searchable dropdown if many cities
+
+No hardcoded cities.
+
+❤️ 8. Improve Engagement & Motivation
+
+Add:
+
+Microcopy under form fields
+
+Positive reinforcement messages
+
+Step completion feedback
+
+Progress bar improvement
+
+Subtle animation between steps
+
+Clean error states
+
+Encouraging language tone
+
+Goal:
+Make it feel premium and motivating.
+
+⚠️ IMPORTANT RULES
+
+Do NOT push or pull from Git
+
+Do NOT refactor entire backend unless required
+
+Fix bugs surgically
+
+Maintain existing architecture
+
+Preserve current database schema
+
+Do not remove production logic
+
+✅ SUCCESS CRITERIA
+
+No unexpected refresh
+
+No forced redirect to homepage
+
+Saudi phone validation restored
+
+Draft handling works properly
+
+Homepage fully redesigned professionally
+
+Header & footer improved
+
+City dropdown dynamic from DB
+
+Smooth UX across entire flow
+
+Mobile fully responsive
+
+🎯 FINAL GOAL
+
+Deliver a stable, professional, Saudi-optimized CV builder experience that:
+
+Feels modern
+
+Works flawlessly
+
+Converts better
+
+Increases engagement
+
+Maintains technical integrity

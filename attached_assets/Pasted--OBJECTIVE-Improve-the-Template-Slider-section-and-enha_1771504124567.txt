@@ -1,0 +1,230 @@
+🎯 OBJECTIVE
+
+Improve the Template Slider section and enhance the AI Hero section with a typing animation effect.
+
+We need:
+
+Larger, more readable CV previews
+
+Remove excessive white space
+
+Show only FREE templates
+
+Add realistic typing animation in AI section
+
+Maintain premium, clean, AI-powered design.
+
+🖼 1️⃣ TEMPLATE SLIDER – MAKE IT LARGER & READABLE
+❌ Current Issues:
+
+Too much white space around template
+
+Resume text not clearly readable
+
+Template looks small inside container
+
+Layout feels empty
+
+✅ Required Changes:
+🔹 A. Increase Template Preview Size
+
+Increase container height significantly
+
+Reduce internal padding
+
+Reduce outer margins
+
+Make resume preview almost edge-to-edge inside card
+
+Maintain proper aspect ratio
+
+Template must be large enough that:
+
+Headings are readable
+
+Layout is visible
+
+Structure is clear
+
+It should feel like:
+
+“Real document preview” not thumbnail.
+
+🔹 B. Reduce White Space
+
+Remove unnecessary top/bottom spacing
+
+Tighten vertical margins
+
+Reduce empty background areas
+
+Keep layout clean but compact
+
+Make it visually balanced.
+
+🔹 C. Improve Active Slide Focus
+
+Active slide slightly scaled (1.03–1.05)
+
+Stronger shadow
+
+Slight border highlight
+
+Smooth animation
+
+Keep it premium.
+
+🆓 2️⃣ SHOW ONLY FREE TEMPLATES
+
+Currently:
+Premium templates are shown with badge.
+
+For now:
+
+Filter templates
+
+Display ONLY free templates
+
+Hide premium badge completely
+
+Do NOT show premium tag
+
+Do NOT show locked templates
+
+Backend logic should remain unchanged.
+Only filter on frontend display.
+
+🤖 3️⃣ ADD TYPING ANIMATION IN AI SECTION
+
+Section:
+“Let AI Build Your Perfect Resume”
+
+Currently:
+Static UI preview.
+
+We need dynamic typing animation.
+
+✨ Typing Effect Requirements
+
+In the AI preview box:
+
+Simulate:
+
+User prompt typing
+
+AI response appearing
+
+Smart skill tags appearing one by one
+
+Example Behavior:
+
+Cursor blinks
+
+Text types letter-by-letter
+
+Slight pause
+
+AI-generated text appears gradually
+
+Skills tags fade in one by one
+
+🎬 Animation Rules:
+
+Smooth typing speed (not too fast)
+
+Realistic typing delay
+
+Cursor blinking effect
+
+Loop after delay
+
+No flickering
+
+Lightweight implementation
+
+Mobile optimized
+
+🎨 Visual Style:
+
+Keep current dark AI panel.
+Add:
+
+Subtle glow behind generated box
+
+Soft fade-in
+
+Clean motion
+
+No heavy transitions
+
+It should feel like:
+
+“AI is actively generating your resume in real time.”
+
+📱 MOBILE REQUIREMENTS
+
+Ensure:
+
+Template slider works smoothly
+
+Typing animation does not overflow
+
+No layout shift
+
+Proper RTL support
+
+No performance drop
+
+⚠️ IMPORTANT RULES
+
+Do NOT modify backend
+
+Do NOT change template gallery page
+
+Only adjust homepage slider section
+
+Filter templates only in homepage display
+
+Keep performance optimized
+
+No heavy animation libraries
+
+✅ SUCCESS CRITERIA
+
+Template preview significantly larger
+
+White space reduced
+
+Resume text readable
+
+Only FREE templates displayed
+
+No premium badge visible
+
+AI section has realistic typing animation
+
+Smooth performance
+
+Mobile optimized
+
+RTL fully working
+
+🎯 FINAL GOAL
+
+Homepage should feel:
+
+Premium
+
+Smart
+
+AI-powered
+
+Professional
+
+Clean
+
+Highly engaging
+
+User should immediately feel:
+
+“This tool is powerful.”

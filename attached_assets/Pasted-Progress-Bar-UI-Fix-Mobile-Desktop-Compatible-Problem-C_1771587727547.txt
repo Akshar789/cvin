@@ -1,0 +1,141 @@
+Progress Bar UI Fix (Mobile + Desktop Compatible)
+❗ Problem
+
+Currently:
+
+We display a progress bar across all resume steps.
+
+Now we have added many new steps.
+
+Because of this:
+
+It looks messy on desktop.
+
+On mobile it overflows outside the screen.
+
+UI looks broken and crowded.
+
+We need to redesign the progress indicator to be clean, responsive, and scalable.
+
+✅ Requirements
+
+Must work perfectly on:
+
+Desktop
+
+Tablet
+
+Mobile
+
+Must not overflow screen.
+
+Must not break existing step logic.
+
+Must correctly reflect step completion percentage.
+
+Must stay synced with step navigation.
+
+💡 Suggested Solutions (Choose Best Implementation)
+🔹 Option 1: Percentage-Based Progress Bar (Recommended – Cleanest)
+
+Instead of showing all step labels:
+
+Show a single progress bar (horizontal)
+
+Display:
+
+“Step 3 of 8”
+
+Percentage (e.g., 37%)
+
+Clean animated fill bar
+
+Example Layout:
+
+Desktop:
+
+Step 3 of 8
+[██████████░░░░░░░░░░] 37%
+
+Mobile:
+
+Full width bar
+
+Small text above it
+
+No step names
+
+This is the cleanest and most scalable approach.
+
+🔹 Option 2: Scrollable Step Indicator (Alternative)
+
+If we want to show step names:
+
+Desktop:
+
+Horizontal scroll container
+
+Active step highlighted
+
+Mobile:
+
+Auto-scroll to active step
+
+Hide completed step labels
+
+Show only:
+
+Previous
+
+Current
+
+Next
+
+But this is more complex and still may look crowded.
+
+📱 Mobile-Specific Fix
+
+Progress container must:
+
+Use width: 100%
+
+Prevent horizontal overflow
+
+Use overflow-x: hidden
+
+Ensure no fixed large min-width values
+
+Use flexbox properly
+
+Avoid hardcoded pixel widths
+
+🎨 Final Recommendation
+
+Implement:
+
+✔ Percentage-based clean progress bar
+✔ Animated smooth transition
+✔ “Step X of Y” label
+✔ Fully responsive
+✔ No horizontal scroll
+✔ Clean minimal UI
+
+This will:
+
+Look professional
+
+Work with any number of steps
+
+Scale in future
+
+Keep UI clean
+
+⚠️ Important:
+
+Do NOT break existing step navigation logic.
+
+Do NOT disturb translation system.
+
+Do NOT disturb mobile layout structure.
+
+Must work smoothly with all resume steps.

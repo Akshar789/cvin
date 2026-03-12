@@ -1,0 +1,97 @@
+Critical Bugs – Profile Picture Not Saving + CV Not Appearing on Dashboard
+
+Test User:
+Email: akshar.storestranform@gmail.com
+
+❌ Issue 1 – Profile Picture Not Saving Properly
+
+While testing the profile picture upload flow, I noticed:
+
+The uploaded image is not being saved in the database properly.
+
+The same profile picture is not appearing in the selected CV template, even though the template supports profile images.
+
+In Profile / Settings page, the uploaded image shows as blank.
+
+The image upload appears successful visually, but it does not persist.
+
+Required Fix:
+
+Ensure the uploaded profile picture is:
+
+Properly stored in the database (correct user_id & cv_id mapping).
+
+Saved in persistent storage (not temporary session).
+
+Linked correctly to the user profile.
+
+When a CV template supports profile image:
+
+The selected profile picture must appear inside the CV preview.
+
+It must also appear in the downloaded PDF.
+
+Profile picture must sync correctly between:
+
+Profile Settings
+
+CV Basic Information
+
+CV Preview
+
+Dashboard display (if applicable)
+
+No broken image.
+No blank placeholder after refresh.
+No loss after logout/login.
+
+❌ Issue 2 – Newly Created CV Not Showing on Dashboard
+
+I created a full resume using the complete flow and reached the final Preview & Edit step successfully.
+
+However:
+
+When I go back to the Dashboard,
+
+I only see the CV created on 27 Feb,
+
+The newly generated CV does NOT appear.
+
+This is a major issue.
+
+Required Investigation:
+
+Check whether the CV is actually being inserted into the cvs table.
+
+Verify if:
+
+CV is saved with correct user_id
+
+CV status is correct (not draft-only or temporary)
+
+It is not being overwritten
+
+It is not being replaced by older record
+
+Confirm that:
+
+Guest → Login flow is not overwriting existing CV
+
+Auto-save is not updating previous CV instead of creating a new one
+
+CV creation is not stuck in session storage only
+
+🎯 Expected Final Result
+
+After fixing:
+
+✔ Profile picture uploads correctly
+✔ Image saved in database
+✔ Image appears in Profile Settings
+✔ Image appears in CV preview
+✔ Image appears in downloaded PDF
+✔ Image sync works both directions
+✔ Newly created CV always appears on Dashboard
+✔ No CV overwriting
+✔ No missing CV
+✔ Data persists after logout/login

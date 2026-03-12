@@ -1,0 +1,216 @@
+FIX TASK – Icon + Badge + Background Issues
+
+(Home Page – “Enhance Your Career Journey” Section)
+
+📌 Current Problems (From Screenshot)
+
+❌ Icons are inconsistent:
+
+LinkedIn shows a form-style icon (not brand-aligned)
+
+AI Career Coach shows emoji (unprofessional)
+
+Different icon styles across cards
+
+❌ Icon background width is too large
+
+Background block stretches too much
+
+Looks visually heavy
+
+❌ Icon background overlaps “PREMIUM” badge
+
+Badge is being visually covered
+
+Layout hierarchy is broken
+
+❌ Icon container styling is inconsistent
+
+Different shapes
+
+Different padding
+
+Different visual weight
+
+🎯 Objective
+
+Make all cards:
+
+Clean
+
+Consistent
+
+Professional
+
+Premium SaaS quality
+
+Visually balanced
+
+Fully aligned with brand system
+
+🔧 REQUIRED FIXES
+1️⃣ Replace All Icons (No Emojis)
+
+🚫 Remove emoji icons completely.
+
+Use:
+
+Clean SVG icons (Lucide / Heroicons / Custom branded)
+
+Same icon stroke style across all cards
+
+Same stroke width
+
+Same visual weight
+
+Example mapping:
+
+LinkedIn Optimizer → LinkedIn logo-style minimal icon
+
+Interview Prep → Chat / Message / Microphone icon
+
+AI Career Coach → Brain / Sparkle / AI chip icon
+
+Job Analyst → Analytics / Search / Graph icon
+
+All icons must look from same icon family.
+
+2️⃣ Standardize Icon Container
+
+Current issue: icon background too wide.
+
+Fix:
+
+Icon container should be:
+
+Fixed size (48px × 48px or 56px × 56px max)
+
+Perfect square
+
+Same border-radius as other UI cards
+
+Centered icon
+
+Padding 12–14px
+
+NOT stretched horizontally
+
+Example:
+
+width: 56px
+height: 56px
+border-radius: var(--border-radius)
+display: flex
+align-items: center
+justify-content: center
+
+Do NOT allow background to extend full card width.
+
+3️⃣ Fix Premium Badge Overlap
+
+Current issue:
+
+Icon background overlaps “PREMIUM” badge.
+
+Required:
+
+Premium badge must sit at top-right
+
+Position absolute
+
+Higher z-index
+
+Icon container must NOT interfere
+
+Add proper top padding inside card (at least 20px)
+
+Badge must visually float cleanly above content.
+
+4️⃣ Remove Long Background Strip Behind Icon
+
+Currently there is a wide color strip behind icon.
+
+🚫 Remove full-width colored background blocks.
+
+Instead:
+
+Use subtle soft background tint only inside icon container
+
+Keep rest of card background clean (white or brand-light tone)
+
+5️⃣ Improve Card Structure
+
+Structure must be:
+
+[ Badge (top-right) ]
+
+[ Icon (fixed size) ]
+
+[ Title ]
+
+[ Description ]
+
+[ Small meta text ]
+
+Spacing system:
+
+16px between sections
+
+Consistent padding (24px inside card)
+
+6️⃣ Improve Visual Balance
+
+Cards must:
+
+Have equal height
+
+Equal padding
+
+Same shadow
+
+Same border radius
+
+Same hover effect (desktop only)
+
+7️⃣ Mobile Optimization
+
+On mobile:
+
+Icon size slightly smaller (48px)
+
+Badge scaled properly
+
+No overlapping elements
+
+Maintain clean spacing
+
+No content shifting
+
+🎨 Design Rules
+
+Follow branding kit:
+
+Use primary or accent color for icon background (light tint)
+
+Use brand shadow style
+
+Use brand radius value
+
+No random colors
+
+No inconsistent shapes
+
+✅ Expected Result
+
+After fix:
+
+✔ No emoji icons
+✔ All icons same family
+✔ No background stretching
+✔ No overlap with PREMIUM badge
+✔ Clean balanced card layout
+✔ Premium SaaS look
+✔ Mobile friendly
+✔ Consistent UI system
+
+Make it visually polished and aligned with the rest of the home page design.

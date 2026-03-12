@@ -1,0 +1,691 @@
+## 🎯 OBJECTIVE
+
+Implement a complete template selection and CV creation flow:
+1. **Seed all 15 CV templates** to the database
+2. **Template Gallery page** where users browse and select templates
+3. **Database persistence** for template selection
+4. **Basic Info page** that receives template selection via URL parameter
+5. **Complete data flow** from template selection to CV creation
+
+---
+
+## 📋 TASK BREAKDOWN
+
+### TASK 1: Seed Templates to Database
+
+**Goal**: Store all 15 CV templates in the database as the single source of truth.
+
+#### Step 1.1: Run the Seed Script
+
+Execute this command in the Replit shell:
+
+```bash
+npx tsx scripts/seed-templates.ts
+```
+
+**Expected Output**:
+```
+✅ Seeding templates to database...
+✅ Template 1: Modern Professional - seeded
+✅ Template 2: Classic - seeded
+... (15 templates total)
+✅ All 15 templates seeded successfully!
+```
+
+**Verification**:
+- Check that `scripts/seed-templates.ts` exists
+- Verify the script runs without errors
+- Confirm all 15 templates are in the database
+
+#### Step 1.2: Create Templates API Endpoint
+
+**File**: `app/api/templates/route.ts`
+
+**Purpose**: Fetch all templates from database
+
+**Code**:
+```typescript
+import { NextResponse } from 'next/server';
+import { db } from '@/server/db';
+import { templates } from '@/shared/schema';
+
+export async function GET() {
+  try {
+    const allTemplates = await db.select().from(templates);
+    
+    return NextResponse.json({
+      success: true,
+      templates: allTemplates
+    });
+  } catch (error) {
+    console.error('Error fetching templates:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to fetch templates' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+**Test**: Visit `/api/templates` - should return JSON with 15 templates
+
+---
+
+### TASK 2: Template Gallery Page
+
+**Goal**: Create a beautiful gallery where users can browse and select CV templates.
+
+#### Step 2.1: Create Template Gallery Page
+
+**File**: `app/template-gallery/page.tsx`
+
+**Key Features**:
+1. Fetch templates from `/api/templates`
+2. Display in responsive 3-column grid
+3. Filter buttons: All / Free / Premium
+4. Live template preview at 0.35 scale
+5. Hover effect with "Preview Template" button
+6. Full-screen modal for detailed preview
+7. Template selection with database persistence
+8. Redirect to `/cv/basic-info?template=<templateId>`
+9. Bilingual support (English/Arabic) with RTL
+
+**Implementation Notes**:
+- Use `useState` for templates, loading, filter, modal
+- Use `useEffect` to fetch templates on mount
+- Use `useAuth` to check if user is logged in
+- Use `useLanguage` for bilingual support
+- Premium templates require subscription check
+- Store selected template in localStorage
+- Save to database for logged-in users
+
+#### Step 2.2: Template Preview Modal
+
+**Features**:
+- Full-screen overlay with backdrop
+- Template rendered at actual A4 size
+- Close button (X)
+- "Use This Template" button
+- Smooth animations
+- Responsive design
+
+---
+
+### TASK 3: Database Persistence for Template Selection
+
+**Goal**: Save user's template choice to database for both logged-in and guest users.
+
+#### Step 3.1: Create API for Logged-In Users
+
+**File**: `app/api/user/update-template/route.ts`
+
+**Purpose**: Save template selection for authenticated users
+
+**Code**:
+```typescript
+import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/server/db';
+import { users } from '@/shared/schema';
+import { eq } from 'drizzle-orm';
+import { verifyToken } from '@/lib/auth/jwt';
+
+export async function POST(request: NextRequest) {
+  try {
+    const token = request.headers.get('authorization')?.replace('Bearer ', '');
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const decoded = verifyToken(token);
+    if (!decoded) {
+      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    }
+
+    const { templateId } = await request.json();
+
+    await db.update(users)
+      .set({ selectedTemplate: templateId })
+      .where(eq(users.id, decoded.userId));
+
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Template saved successfully' 
+    });
+  } catch (error) {
+    console.error('Error saving template:', error);
+    return NextResponse.json(
+      { error: 'Failed to save template' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+#### Step 3.2: Guest User Template Storage
+
+**File**: `app/api/guest-cv/save-basic-info/route.ts`
+
+**Purpose**: Save template + basic info for guest users
+
+**Code**:
+```typescript
+import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/server/db';
+import { guestCvs } from '@/shared/schema';
+import { eq } from 'drizzle-orm';
+
+export async function POST(request: NextRequest) {
+  try {
+    const { email, templateId, basicInfo } = await request.json();
+
+    // Check if guest CV exists
+    const existing = await db.select()
+      .from(guestCvs)
+      .where(eq(guestCvs.email, email))
+      .limit(1);
+
+    if (existing.length > 0) {
+      // Update existing
+      await db.update(guestCvs)
+        .set({
+          templateId,
+          cvData: basicInfo,
+          updatedAt: new Date()
+        })
+        .where(eq(guestCvs.email, email));
+    } else {
+      // Create new
+      await db.insert(guestCvs).values({
+        email,
+        templateId,
+        cvData: basicInfo,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      });
+    }
+
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Data saved successfully' 
+    });
+  } catch (error) {
+    console.error('Error saving guest CV:', error);
+    return NextResponse.json(
+      { error: 'Failed to save data' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+---
+
+### TASK 4: Basic Info Page with Template Parameter
+
+**Goal**: Create personal information form that receives template selection via URL.
+
+#### Step 4.1: Create Basic Info Page
+
+**File**: `app/cv/basic-info/page.tsx`
+
+**URL Format**: `/cv/basic-info?template=strong`
+
+**Key Features**:
+1. Read `template` parameter from URL
+2. Display selected template name
+3. Show progress indicator (Step 2 of 3)
+4. 7 required fields:
+   - Full Name
+   - Email
+   - Phone
+   - Location
+   - Job Domain (SmartSearchDropdown)
+   - Career Level
+   - Latest Job
+5. Two submission buttons:
+   - **AI Generation** (purple) - generates CV with AI
+   - **Manual Continue** (blue) - proceeds to CV builder
+6. Form validation with real-time error clearing
+7. Auto-fill for logged-in users
+8. Save to database on submission
+9. Bilingual support with RTL
+
+#### Step 4.2: Data Flow Implementation
+
+**On Page Load**:
+```typescript
+// 1. Get template from URL
+const searchParams = useSearchParams();
+const templateId = searchParams.get('template');
+
+// 2. Get template from localStorage (fallback)
+const storedTemplate = localStorage.getItem('selectedTemplate');
+
+// 3. Fetch user profile (if logged in)
+const { user, token } = useAuth();
+
+// 4. Pre-fill form with user data
+if (user) {
+  setFormData({
+    fullName: user.name || '',
+    email: user.email || '',
+    phone: user.phone || '',
+    location: user.location || '',
+    jobDomain: user.targetJobDomain || '',
+    careerLevel: user.careerLevel || '',
+    latestJob: user.latestJob || ''
+  });
+}
+```
+
+**On Form Submission**:
+```typescript
+const handleSubmit = async (isAIGeneration: boolean) => {
+  // 1. Validate form
+  if (!validateForm()) return;
+
+  // 2. Save to database
+  if (token) {
+    // Logged-in user
+    await fetch('/api/user/update-template', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ templateId })
+    });
+  } else {
+    // Guest user
+    await fetch('/api/guest-cv/save-basic-info', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: formData.email,
+        templateId,
+        basicInfo: formData
+      })
+    });
+  }
+
+  // 3. Store in sessionStorage
+  sessionStorage.setItem('cvBasicInfo', JSON.stringify(formData));
+  sessionStorage.setItem('selectedTemplate', templateId);
+
+  // 4. Redirect
+  if (isAIGeneration) {
+    router.push('/cv/preview?mode=ai');
+  } else {
+    router.push('/cv/edit');
+  }
+};
+```
+
+---
+
+### TASK 5: Resume Capability for Guest Users
+
+**Goal**: Allow returning guest users to resume their CV creation.
+
+#### Step 5.1: Create Check API
+
+**File**: `app/api/guest-cv/get-by-email/route.ts`
+
+**Code**:
+```typescript
+import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/server/db';
+import { guestCvs } from '@/shared/schema';
+import { eq } from 'drizzle-orm';
+
+export async function GET(request: NextRequest) {
+  try {
+    const email = request.nextUrl.searchParams.get('email');
+    
+    if (!email) {
+      return NextResponse.json({ error: 'Email required' }, { status: 400 });
+    }
+
+    const guestCv = await db.select()
+      .from(guestCvs)
+      .where(eq(guestCvs.email, email))
+      .limit(1);
+
+    if (guestCv.length === 0) {
+      return NextResponse.json({ found: false });
+    }
+
+    return NextResponse.json({
+      found: true,
+      data: guestCv[0]
+    });
+  } catch (error) {
+    console.error('Error fetching guest CV:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch data' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+#### Step 5.2: Implement Resume Logic
+
+**In Basic Info Page**:
+```typescript
+// Check for existing CV when email is entered
+const checkExistingCV = async (email: string) => {
+  const response = await fetch(`/api/guest-cv/get-by-email?email=${email}`);
+  const data = await response.json();
+
+  if (data.found) {
+    // Show confirmation dialog
+    const resume = confirm(
+      'We found a previous CV with this email. Would you like to resume?'
+    );
+
+    if (resume) {
+      // Pre-fill form with existing data
+      setFormData(data.data.cvData);
+      setTemplateId(data.data.templateId);
+    }
+  }
+};
+
+// Trigger check on email blur
+<input
+  type="email"
+  value={formData.email}
+  onChange={(e) => setFormData({...formData, email: e.target.value})}
+  onBlur={(e) => checkExistingCV(e.target.value)}
+/>
+```
+
+---
+
+## 🔄 COMPLETE USER FLOW
+
+### Flow 1: New User (Guest)
+1. User visits `/template-gallery`
+2. Browses 15 templates (8 free, 7 premium)
+3. Clicks "Use This Template" on "Strong" template
+4. Template saved to localStorage
+5. Redirected to `/cv/basic-info?template=strong`
+6. Fills in 7 required fields
+7. Data saved to `guestCvs` table with email + templateId
+8. Clicks "AI Generation" or "Manual Continue"
+9. Proceeds to CV creation
+
+### Flow 2: Logged-In User
+1. User visits `/template-gallery`
+2. Selects "Modern Professional" template
+3. Template saved to `users.selectedTemplate` in database
+4. Redirected to `/cv/basic-info?template=modern-professional`
+5. Form auto-filled from user profile
+6. Updates any fields if needed
+7. Clicks "Manual Continue"
+8. Proceeds to CV builder with selected template
+
+### Flow 3: Returning Guest User
+1. User visits `/cv/basic-info`
+2. Enters email address
+3. System checks `guestCvs` table
+4. Finds existing CV from 2 days ago
+5. Shows confirmation: "Resume previous CV?"
+6. User clicks "Yes"
+7. Form pre-filled with previous data
+8. Template restored from database
+9. User continues editing
+
+---
+
+## 📊 DATABASE SCHEMA
+
+### Templates Table
+```sql
+CREATE TABLE templates (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  isPremium BOOLEAN DEFAULT false,
+  cssStyles JSONB,
+  layout JSONB,
+  previewImage VARCHAR(500),
+  createdAt TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Users Table (Add Column)
+```sql
+ALTER TABLE users 
+ADD COLUMN selectedTemplate VARCHAR(100);
+```
+
+### Guest CVs Table
+```sql
+CREATE TABLE guestCvs (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  templateId VARCHAR(100),
+  cvData JSONB,
+  createdAt TIMESTAMP DEFAULT NOW(),
+  updatedAt TIMESTAMP DEFAULT NOW()
+);
+```
+
+---
+
+## ✅ TESTING CHECKLIST
+
+### Template Gallery
+- [ ] Page loads without errors
+- [ ] All 15 templates display correctly
+- [ ] Filter buttons work (All/Free/Premium)
+- [ ] Template preview shows on hover
+- [ ] Modal opens with full preview
+- [ ] "Use This Template" button works
+- [ ] Premium templates show upgrade prompt for free users
+- [ ] Template selection saves to database
+- [ ] Redirect to basic-info works with correct URL parameter
+- [ ] Bilingual support works (EN/AR)
+- [ ] RTL layout works for Arabic
+
+### Basic Info Page
+- [ ] Page receives template parameter from URL
+- [ ] Template name displays correctly
+- [ ] Progress indicator shows "Step 2 of 3"
+- [ ] All 7 fields render correctly
+- [ ] Job Domain dropdown works
+- [ ] Form validation works
+- [ ] Error messages clear on input
+- [ ] Auto-fill works for logged-in users
+- [ ] AI Generation button redirects correctly
+- [ ] Manual Continue button redirects correctly
+- [ ] Data saves to database (logged-in users)
+- [ ] Data saves to guestCvs (guest users)
+- [ ] Bilingual support works
+- [ ] RTL layout works for Arabic
+
+### Database Persistence
+- [ ] Templates seed successfully (15 templates)
+- [ ] `/api/templates` returns all templates
+- [ ] Template selection saves for logged-in users
+- [ ] Template + basic info saves for guest users
+- [ ] Existing guest CV check works
+- [ ] Resume functionality works
+- [ ] Data persists across sessions
+
+### Integration
+- [ ] Template gallery → Basic info flow works
+- [ ] Basic info → CV builder flow works
+- [ ] Basic info → AI generation flow works
+- [ ] Guest user resume flow works
+- [ ] Logged-in user auto-fill works
+- [ ] Template selection persists throughout flow
+
+---
+
+## 🚀 DEPLOYMENT STEPS
+
+### Step 1: Seed Templates
+```bash
+npx tsx scripts/seed-templates.ts
+```
+
+### Step 2: Verify Database
+Check that templates table has 15 rows:
+```sql
+SELECT COUNT(*) FROM templates;
+-- Should return 15
+```
+
+### Step 3: Test API Endpoints
+- Visit `/api/templates` - should return 15 templates
+- Test `/api/user/update-template` with Postman
+- Test `/api/guest-cv/save-basic-info` with Postman
+- Test `/api/guest-cv/get-by-email?email=test@example.com`
+
+### Step 4: Test User Flows
+1. Test template gallery as guest user
+2. Test template gallery as logged-in user
+3. Test basic info page with template parameter
+4. Test guest user resume functionality
+5. Test complete flow from gallery to CV builder
+
+### Step 5: Verify Data Persistence
+- Check `users` table for `selectedTemplate` column
+- Check `guestCvs` table for saved data
+- Verify data persists after page refresh
+- Verify data persists across sessions
+
+---
+
+## 📝 IMPORTANT NOTES
+
+### Template IDs
+- Use string IDs externally: `"modern-professional"`, `"classic"`, `"strong"`
+- Use numeric IDs internally: `1`, `2`, `3`, etc.
+- Mapping handled by `lib/utils/templateMapping.ts`
+
+### Premium Access
+- Free users: 8 templates (IDs: 1, 2, 3, 11, 12, 13, 14, 15)
+- Premium users: All 15 templates
+- Check subscription tier before allowing premium template selection
+
+### Data Storage
+- **Logged-in users**: Store in `users.selectedTemplate`
+- **Guest users**: Store in `guestCvs` table with email as key
+- **Session**: Store in sessionStorage for current session
+- **Local**: Store in localStorage as fallback
+
+### Error Handling
+- Handle API failures gracefully
+- Show user-friendly error messages
+- Log errors to console for debugging
+- Provide fallback options
+
+### Bilingual Support
+- All text must have English and Arabic versions
+- Use `useLanguage` hook for translations
+- Support RTL layout for Arabic
+- Test both languages thoroughly
+
+---
+
+## 🎨 UI/UX REQUIREMENTS
+
+### Template Gallery
+- Clean, modern design
+- Responsive 3-column grid (desktop), 2-column (tablet), 1-column (mobile)
+- Smooth hover animations
+- Clear visual distinction between free and premium
+- Loading states for template fetching
+- Empty states if no templates found
+
+### Basic Info Page
+- Clean, professional form design
+- Clear field labels with required indicators (*)
+- Real-time validation feedback
+- Disabled state during submission
+- Loading indicators on buttons
+- Progress indicator showing current step
+- Responsive design for all screen sizes
+
+### Modal
+- Full-screen overlay with semi-transparent backdrop
+- Smooth fade-in/fade-out animations
+- Close on backdrop click
+- Close on ESC key press
+- Template rendered at actual size
+- Responsive design
+
+---
+
+## 🔧 TROUBLESHOOTING
+
+### Templates Not Showing
+- Check if seed script ran successfully
+- Verify database connection
+- Check `/api/templates` endpoint
+- Check browser console for errors
+
+### Template Selection Not Saving
+- Check authentication token
+- Verify API endpoint is working
+- Check database permissions
+- Check browser console for errors
+
+### Basic Info Page Not Receiving Template
+- Check URL parameter format
+- Verify localStorage fallback
+- Check template ID mapping
+- Check browser console for errors
+
+### Guest CV Resume Not Working
+- Check email format
+- Verify API endpoint
+- Check database query
+- Check browser console for errors
+
+---
+
+## 📚 REFERENCE FILES
+
+### Key Files to Check
+- `scripts/seed-templates.ts` - Template seeding
+- `app/api/templates/route.ts` - Templates API
+- `app/template-gallery/page.tsx` - Gallery page
+- `app/cv/basic-info/page.tsx` - Basic info page
+- `app/api/user/update-template/route.ts` - User template API
+- `app/api/guest-cv/save-basic-info/route.ts` - Guest CV API
+- `app/api/guest-cv/get-by-email/route.ts` - Guest CV check API
+- `lib/utils/templateMapping.ts` - Template ID mapping
+- `config/templates.ts` - Template configuration
+- `shared/schema.ts` - Database schema
+
+### Documentation Files
+- `TEMPLATE_DATABASE_IMPLEMENTATION.md` - Database setup
+- `BASIC_INFO_DEPLOYMENT_SUMMARY.md` - Basic info implementation
+- `DATABASE_PERSISTENCE_IMPLEMENTATION.md` - Persistence logic
+- `FEATURE_TEMPLATE_GALLERY.md` - Gallery feature details
+
+---
+
+## ✨ SUCCESS CRITERIA
+
+The implementation is successful when:
+
+1. ✅ All 15 templates are seeded to database
+2. ✅ Template gallery displays all templates correctly
+3. ✅ Users can filter templates (All/Free/Premium)
+4. ✅ Template selection saves to database
+5. ✅ Basic info page receives template parameter
+6. ✅ Form validation works correctly
+7. ✅ Data saves for both logged-in and guest users
+8. ✅ Guest users can resume previous CVs
+9. ✅ Complete flow works from gallery to CV builder
+10. ✅ Bilingual support works (EN/AR)
+11. ✅ All tests pass
+12. ✅ No console errors
+
+---

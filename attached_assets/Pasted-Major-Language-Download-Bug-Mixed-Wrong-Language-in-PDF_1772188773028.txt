@@ -1,0 +1,127 @@
+Major Language Download Bug – Mixed / Wrong Language in PDF
+
+Test Account:
+Email: akshar.storestranform@gmail.com
+
+Password: akshar.storestranform@gmail.com
+
+❌ Issue 1 – Mixed Language Download
+
+Steps performed:
+
+Logged in as user.
+
+Went to /cvs (View All CVs).
+
+Changed global language to Arabic.
+
+Downloaded CV directly from the card.
+
+Also tested Preview → Download.
+
+Result:
+
+The downloaded CV contains mixed languages (English + Arabic together).
+
+This should never happen.
+
+The downloaded file must respect the currently selected global language.
+
+❌ Issue 2 – Download Ignores Selected Language
+
+Steps performed:
+
+Opened CV in Edit mode.
+
+Switched language to Arabic.
+
+Clicked Download.
+
+Result:
+
+The downloaded CV is fully English, even though Arabic was selected.
+
+This confirms:
+
+The download system is NOT respecting the global language state.
+
+It may be defaulting to English.
+
+It may be mixing .en and .ar fields.
+
+Or it may be using stale state.
+
+✅ Expected Correct Behavior
+
+When downloading:
+
+If global language = Arabic → download must be fully Arabic.
+
+If global language = English → download must be fully English.
+
+No mixing.
+
+No fallback.
+
+No partial bilingual rendering.
+
+No default to English silently.
+
+This must work consistently from:
+
+Dashboard card download
+
+/cvs page
+
+Preview page
+
+Edit page
+
+🔎 Required Investigation
+
+Check:
+
+What language variable is being used during PDF generation?
+
+Is download reading from:
+
+Global language state?
+
+Hardcoded default?
+
+Stored CV default language?
+
+Is it using .en by default?
+
+Is it merging bilingual fields accidentally?
+
+Ensure:
+
+Download explicitly uses selected language key.
+
+No field.en || field.ar logic.
+
+No silent fallback.
+
+No mixed object mapping.
+
+🚫 Do NOT
+
+Do not default to English.
+
+Do not merge languages.
+
+Do not rely on preview state.
+
+Do not ignore current global language.
+
+✅ Final Expected Result
+
+After fix:
+
+✔ Arabic selected → Fully Arabic PDF
+✔ English selected → Fully English PDF
+✔ No mixed language
+✔ No fallback
+✔ Works from all download entry points
+✔ Fully consistent behavior

@@ -1,0 +1,318 @@
+Full Homepage Redesign + Footer Fix + Template Sync + AI Visual Upgrade
+🎯 OBJECTIVE
+
+We have already redesigned the Hero section, but the rest of the homepage must now be completely rebuilt.
+
+Your task is to:
+
+Fully redesign ALL remaining homepage sections
+
+Use the provided official logo in the footer
+
+Remove static “CVIN” text from footer
+
+Replace homepage templates with real templates from /template-gallery
+
+Add CV-related animation GIFs to increase visual appeal
+
+Create an AI-powered SaaS feel
+
+Ensure full bilingual support (Arabic + English)
+
+Build mobile-first
+
+Maintain clean and professional architecture
+
+🛑 1. FOOTER UPDATE (IMPORTANT)
+Required Changes:
+
+Remove static hardcoded text “CVIN”
+
+Use provided official logo in footer
+
+Ensure:
+
+Proper scaling
+
+High resolution
+
+Responsive behavior
+
+Improve Footer Layout:
+
+Footer should include:
+
+Official logo
+
+Navigation links
+
+Templates link
+
+Contact / Support
+
+Legal links
+
+Clean spacing
+
+Modern SaaS structure
+
+Make it professional, minimal, and structured.
+
+🎨 2. FULL HOMEPAGE REDESIGN (ALL SECTIONS BELOW HERO)
+
+The Hero section is complete.
+
+Now redesign EVERYTHING below it.
+
+Do NOT keep old sections.
+
+Rebuild the entire homepage structure with:
+
+Strong visual hierarchy
+
+Clean spacing
+
+Modern SaaS layout
+
+Better typography balance
+
+Professional UI
+
+Subtle motion animations
+
+CV-related animation GIFs
+
+AI-powered visual feel
+
+🧠 3. ADD CV-RELATED ANIMATION GIFS
+
+To make homepage more attractive and dynamic:
+
+Include:
+
+Resume writing animation GIF
+
+CV editing animation
+
+AI writing suggestions animation
+
+Document preview animation
+
+Resume download/export animation
+
+These should:
+
+Be lightweight
+
+Optimized for performance
+
+Positioned strategically in sections
+
+Not slow down loading
+
+Work properly on mobile
+
+Place them in:
+
+AI section
+
+How it works section
+
+CTA section
+
+Do not overuse — keep it professional.
+
+🧩 4. TEMPLATE SECTION FIX
+
+Currently homepage shows templates different from /template-gallery.
+
+This must be corrected.
+
+Required:
+
+Display actual best templates from /template-gallery
+
+Show 3–6 featured templates
+
+Use real preview cards
+
+Add hover effect
+
+Add button:
+
+👉 “View All Templates”
+
+Redirect to:
+
+/template-gallery
+
+
+No hardcoded or fake templates.
+
+🤖 5. AI-POWERED VISUAL FEEL
+
+Homepage should visually communicate:
+
+AI-powered resume generation
+
+Smart formatting
+
+Intelligent content suggestions
+
+Automated optimization
+
+Use:
+
+Gradient highlights
+
+Subtle glow effects
+
+Modern UI cards
+
+Clean vector resume illustrations
+
+Soft animations
+
+Make it feel like a smart platform.
+
+🌍 6. BILINGUAL SUPPORT (ENGLISH + ARABIC)
+
+Important:
+
+All sections must support:
+
+English (LTR)
+
+Arabic (RTL)
+
+Proper RTL layout for Arabic
+
+Proper text alignment
+
+Typography optimized for both languages
+
+No layout breaking in RTL
+
+Dynamic language switching
+
+Do NOT hardcode English only.
+
+📱 7. MOBILE-FIRST DESIGN (PRIORITY)
+
+Design must:
+
+Start from mobile layout
+
+Be fully responsive
+
+No horizontal overflow
+
+Proper spacing
+
+Large tappable buttons
+
+Smooth animations
+
+RTL tested on mobile
+
+Desktop should scale cleanly from mobile base.
+
+🏗 8. HOMEPAGE STRUCTURE (Rebuild Like SaaS Platform)
+
+After Hero:
+
+1️⃣ How It Works (3 Steps)
+
+Modern icon cards
+
+Small animation GIF
+
+Clean layout
+
+2️⃣ Featured Templates
+
+Real templates
+
+Hover animation
+
+View All button
+
+3️⃣ AI-Powered CV Section
+
+Animation GIF
+
+Strong headline
+
+Visual layout with illustration
+
+4️⃣ Why Choose Us
+
+AI-powered
+
+Saudi optimized
+
+Fast export
+
+Professional formatting
+
+5️⃣ Strong CTA Section
+
+Animation or subtle motion
+
+Powerful headline
+
+“Start with FREE CV” button
+
+⚠️ IMPORTANT RULES
+
+Do NOT modify backend logic
+
+Do NOT change template gallery backend
+
+Only redesign frontend UI
+
+Keep components reusable
+
+Maintain performance optimization
+
+Do NOT introduce heavy libraries unnecessarily
+
+Keep animations optimized
+
+✅ SUCCESS CRITERIA
+
+Footer uses official logo
+
+“CVIN” static text removed
+
+Homepage fully redesigned
+
+Real templates from gallery used
+
+Animation GIFs integrated properly
+
+Bilingual (EN + AR) fully functional
+
+RTL fully working
+
+Mobile-first responsive design
+
+AI-powered visual presence
+
+Professional SaaS look and feel
+
+🎯 FINAL GOAL
+
+Deliver a modern, AI-powered, bilingual CV platform homepage that:
+
+Feels intelligent
+
+Looks premium
+
+Is visually engaging
+
+Converts users better
+
+Works perfectly on mobile
+
+Supports Arabic & English seamlessly

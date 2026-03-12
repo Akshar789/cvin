@@ -1,0 +1,206 @@
+🚀 Feature: Field-Level AI Regeneration (English + Arabic Support)
+🎯 Objective
+
+Implement an AI Regenerate Content feature inside /cv/preview page for editable fields such as:
+
+Professional Summary
+
+Work Experience Description (Repeater Supported)
+
+Any long-text AI-generated field
+
+This feature should allow users to regenerate improved versions of the current field content based on:
+
+The existing field content
+
+The user’s stored personal data
+
+The currently selected language (EN / AR)
+
+🧠 Functional Requirements
+1️⃣ Add “Regenerate with AI” Button
+
+For each supported text field:
+
+Add a button/icon: ✨ Regenerate
+
+Button should appear near the textarea
+
+Works for repeater fields independently
+
+2️⃣ On Click Behavior
+
+When user clicks:
+
+Show modal popup
+
+Show loading animation:
+
+Typing effect OR
+
+AI sparkle animation
+
+Text: “AI is generating improved versions…”
+
+3️⃣ AI Generation Logic
+
+Send to AI:
+
+Current field content
+
+User CV data (name, role, skills, experience, etc.)
+
+Current language (EN or AR)
+
+4️⃣ AI Response Format (Strict)
+
+AI must return:
+
+3 improved variations
+
+Same language as selected toggle
+
+Professional tone
+
+No markdown
+
+Plain text only
+
+🔹 If English Selected
+
+AI must return:
+
+Option 1 – Polished & Professional
+<content>
+
+Option 2 – Impact-Focused
+<content>
+
+Option 3 – Concise & Strong
+<content>
+
+🔹 If Arabic Selected
+
+AI must return:
+
+الخيار 1 – احترافي ومحسّن
+<content>
+
+الخيار 2 – أكثر تأثيرًا
+<content>
+
+الخيار 3 – مختصر وقوي
+<content>
+
+📦 Modal Layout Structure
+
+Popup should display:
+
+Current Content
+
+(show original text in read-only box)
+
+Generated Options
+
+Each option should have:
+
+Title
+
+Text preview
+
+"Select This Version" button
+
+🔄 Selection Behavior
+
+When user selects an option:
+
+Replace the current field content
+
+Update autosave
+
+Close modal
+
+Show small success toast:
+✅ “Content updated successfully”
+
+🌍 Language Handling (Important)
+
+Use existing language toggle system:
+
+If language = en → generate English
+
+If language = ar → generate Arabic
+
+Respect RTL layout in Arabic
+
+Maintain separate EN/AR storage logic (as currently implemented)
+
+Do NOT mix languages.
+
+🎨 UX Requirements
+
+Disable button while generating
+
+Show skeleton loader or typing dots
+
+Smooth fade-in animation for options
+
+Prevent duplicate clicks
+
+Fully mobile responsive
+
+🔐 Edge Cases
+
+If field is empty → show warning:
+“Please add some content before regenerating.”
+
+If AI fails → show:
+“Something went wrong. Please try again.”
+
+Repeater fields must regenerate independently
+
+🧩 API Prompt to Send to AI
+
+Use this structure:
+
+You are a professional CV writing assistant.
+
+Rewrite and improve the following CV section.
+
+Requirements:
+- Keep same meaning
+- Make it more professional
+- Improve clarity and impact
+- Do not make it too long
+- Provide 3 different versions
+- Language: {selected_language}
+
+User CV Context:
+{user_data}
+
+Current Content:
+{current_field_content}
+
+Return only formatted options exactly as instructed.
+Do not add explanations.
+
+🏗 Technical Notes
+
+Reuse existing AI API integration
+
+Use field ID to update correct section
+
+Maintain English and Arabic content structure
+
+Works with repeater items via index reference
+
+✅ Expected Result
+
+User clicks ✨ Regenerate →
+Sees 3 improved versions →
+Selects one →
+Field updates instantly →
+Language respected →
+Autosave works →
+Clean UX →
+Professional AI enhancement.

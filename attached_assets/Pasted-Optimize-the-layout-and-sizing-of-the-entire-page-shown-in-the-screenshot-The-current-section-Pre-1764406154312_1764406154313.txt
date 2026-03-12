@@ -1,0 +1,63 @@
+Optimize the layout and sizing of the entire page shown in the screenshot. The current section (“Premium CV / Professional Design”) is taking too much vertical space, forcing the user to scroll down and potentially miss important actions such as the upgrade button or feature list. Apply the following updates:
+
+1. Reduce the Height of the Hero Banner
+
+Minimize the vertical padding above and below the “Premium CV / Professional Design” area.
+
+Reduce the height of the gradient box and remove unnecessary spacing.
+
+Ensure the header is visually attractive but compact, so more content appears above the fold.
+
+2. Compress Spacing Between Sections
+
+Reduce excessive margin and padding between:
+
+Header → “Unlock Pro Features”
+
+Feature bullets → Upgrade button
+
+Bring all elements closer together for a modern, compact layout.
+
+3. Make the Page Fit More Content Without Scrolling
+
+Adjust the default min-height of containers.
+
+Decrease top/bottom margins globally for all screens across the app.
+
+Ensure key information and CTAs are visible immediately when the page loads (above the fold).
+
+4. Review and Standardize Page Layout Across the Entire App
+
+Apply consistent optimization to all pages (CV builder, templates, download page, onboarding, pricing, profile):
+
+Reduce unnecessary vertical white space.
+
+Tighten component spacing to ensure efficient screen usage.
+
+Maintain readability while maximizing visible content.
+
+5. Improve Mobile Responsiveness
+
+For smaller screens:
+
+Reduce header height by 40–50%.
+
+Shrink font sizes slightly for titles.
+
+Reduce vertical padding in cards and sections.
+
+Ensure important buttons (like “Upgrade to Pro”) are positioned inside the viewport.
+
+6. Ensure No Element Pushes the User Down Unnecessarily
+
+Remove empty containers or unused padding.
+
+Condense long gradient blocks into smaller ones.
+
+Ensure modals and feature sections fit naturally into a single scroll window.
+
+7. Maintain Visual Identity but Make It More Efficient
+
+Keep colors, gradients, and branding style.
+
+Just reduce the height and spacing to present the same content in a cleaner, more compact layout.

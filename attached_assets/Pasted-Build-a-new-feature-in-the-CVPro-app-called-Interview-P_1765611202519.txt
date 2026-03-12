@@ -1,0 +1,183 @@
+Build a new feature in the CVPro app called “Interview Prep & Guidance” with the following core behavior:
+
+🧠 Feature Requirements
+1. Data Inputs
+
+From the user profile and CV:
+
+Extract user experience level (e.g., Junior, Mid, Senior)
+
+Extract skills, major, industry, job role target from CV
+
+Optional: Whether the user has prior interview experience (Yes / No)
+
+Add UI controls for the user to select:
+
+Experience Level
+
+Interview Stage (Before / During / After)
+
+Interview Type (Technical / Behavioral / Both)
+
+🧩 2. Page Flow
+
+Step 1:
+User clicks Interview Prep & Guidance
+
+Step 2:
+Show a form with:
+✔ Experience level selector
+✔ Interview stage selector
+✔ Optional: Select specific job role or industry (auto-filled from CV)
+
+Step 3:
+On submit, call AI backend to generate:
+
+🧠 3. AI-Generated Output
+
+The output must include:
+
+✅ A. Structured Recommendations
+
+Before Interview
+
+Key preparation tips (based on role & experience)
+
+Personalized guidance tailored to the user’s CV content
+
+During Interview
+
+Expected question types
+
+Communication advice + behavior guidelines
+
+After Interview
+
+Follow-up steps
+
+Thank you note email prompt
+
+Reflection and improvement advice
+
+✅ B. Custom Question Sets
+
+Generate 3 categories of questions:
+
+Domain	Description
+Before Interview	Practice questions to prepare concepts (role + skills based)
+During Interview	Typical live interview prompts / scenario questions
+After Interview	Reflection and situational wrap-up questions
+
+Each category must contain AI-generated content that is:
+✔ Tailored to user’s CV and experience
+✔ Based on job role and industry
+✔ Formatted clearly (e.g., bullet or section list)
+
+📌 4. Technical Requirements
+
+Build API integration with a large language model (OpenAI or similar)
+
+Ensure the prompt sent to AI includes:
+● User CV text
+● Selected experience level
+● Interview stage
+● Job role target
+● Skills and education
+
+Example prompt structure for AI:
+
+Given the user’s CV and profile:
+- Experience Level: {level}
+- Target Job: {role}
+- Job Industry: {industry}
+- Skills: {skill list}
+
+Generate:
+1) 5 actionable interview preparation tips (before interview)
+2) 10 practice questions tailored to the user’s profile
+3) Behavioral and role-specific interview questions
+4) After-interview follow-up guidelines
+
+📐 5. UI / Page Layout
+
+Header: “Interview Preparation & Guidance”
+Form Section: user selects Experience Level + Stage + Interview Type
+Results Section:
+Separate banners for:
+
+Before Interview
+
+During Interview
+
+After Interview
+
+Each section contains:
+📌 AI-generated guidelines
+📌 Practice questions
+📌 Actionable tips
+
+📌 6. Quality & Clarity Requirements
+
+Ensure:
+
+Results are personalized to the user’s profile
+
+Questions are role-specific not generic
+
+Guidelines explain why actions matter
+
+Sections clearly separated and labeled
+
+Example output style:
+
+=== BEFORE INTERVIEW ===
+Personalized Tips (based on CV) 
+1) …
+2) …
+
+Practice Questions:
+1) …
+2) …
+
+=== DURING INTERVIEW ===
+Communication Tips
+Scenario Questions
+...
+
+=== AFTER INTERVIEW ===
+Email templates
+Reflection Questions
+...
+
+🧪 7. Testing
+
+Provide sample test profiles:
+
+Junior Data Analyst
+
+Senior Software Engineer
+Verify that:
+✔ Generated questions differ based on experience
+✔ Career stage selection affects output
+✔ Behavioral + technical questions are appropriate
+
+📌 8. Deliverables
+
+A new Interview Prep page
+
+AI prompt integration
+
+UI for user options
+
+Display of structured results
+
+Export option (to PDF / share results)
+
+📌 End Prompt (for AI engine)
+Build an “Interview Preparation and Guidance” feature that:
+- Reads user CV and profile
+- Lets user select experience level, interview stage and type
+- Generates interview preparation tips, practice questions and guidelines
+- Categorizes output into: Before / During / After interview
+- Tailors content to the user’s CV, job role and skill set
+- Displays results clearly on a single page

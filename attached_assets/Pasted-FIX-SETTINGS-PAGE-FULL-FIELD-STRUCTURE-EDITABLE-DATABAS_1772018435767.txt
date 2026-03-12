@@ -1,0 +1,197 @@
+FIX SETTINGS PAGE – FULL FIELD STRUCTURE + EDITABLE + DATABASE SYNC
+🎯 Objective
+
+The Settings page must correctly reflect the exact structure of the CV steps for:
+
+Work Experience (Repeater)
+
+Education (Repeater)
+
+Currently, it is incorrect (collapsed, partial, missing fields).
+
+We need:
+
+All fields displayed separately
+
+All fields editable
+
+All fields saved back to database correctly
+
+Full repeater support
+
+No data loss
+
+This is a structural + database integrity fix.
+
+✅ 1️⃣ WORK EXPERIENCE – REQUIRED STRUCTURE
+
+In CV Steps we collect:
+
+Company Name
+
+Job Title
+
+City
+
+Start Month
+
+Start Year
+
+End Month
+
+End Year
+
+Present (checkbox)
+
+Description
+
+Settings Page Must:
+
+For EACH work experience entry:
+
+Show separate editable fields:
+
+Company Name → input (editable)
+
+Job Title → input (editable)
+
+City → input (editable)
+
+Start Date → Month + Year (editable)
+
+End Date → Month + Year OR Present checkbox (editable)
+
+Description → textarea (editable)
+
+Support multiple positions (repeater).
+
+If user has 3 jobs → show 3 full editable blocks.
+
+✅ 2️⃣ EDUCATION – REQUIRED STRUCTURE
+
+In CV Steps we collect:
+
+Institution
+
+Degree
+
+Field of Study
+
+Start Year
+
+Graduation Year
+
+Description
+
+Settings Page Must:
+
+For EACH education entry:
+
+Show separate editable fields:
+
+Institution → input (editable)
+
+Degree → input (editable)
+
+Field of Study → input (editable)
+
+Start Year → select (editable)
+
+Graduation Year → select (editable)
+
+Description → textarea (editable)
+
+Support repeater.
+
+If user has 2 education entries → show 2 full editable blocks.
+
+🔁 3️⃣ CRITICAL: FULL EDIT + SAVE FUNCTIONALITY
+
+All fields in Settings must:
+
+Be editable
+
+Save correctly to database
+
+Update correct CV record
+
+Maintain array structure
+
+Not overwrite unrelated entries
+
+When editing:
+
+If user edits 1 job → only that job updates
+
+If user edits 1 education entry → only that entry updates
+
+If user adds new entry → append properly
+
+If user deletes entry → remove properly
+
+Do NOT overwrite entire array accidentally.
+
+🔄 4️⃣ DATABASE RULES
+
+Preserve repeater structure (array format)
+
+Maintain correct CV ID mapping
+
+Maintain correct user ID mapping
+
+Do not flatten into single string
+
+Do not merge fields
+
+Do not lose optional fields
+
+If description is empty → still store other fields
+
+🧠 5️⃣ INTEGRITY VALIDATION
+
+Test cases:
+
+Add 2 jobs → both appear in settings.
+
+Edit 1 job → only that updates.
+
+Add 3 education entries → all show.
+
+Remove 1 education → others remain intact.
+
+Refresh page → data persists.
+
+Generate second CV → previous CV data not overwritten.
+
+🚫 DO NOT
+
+Do not collapse fields into single paragraph.
+
+Do not show only Institution.
+
+Do not remove Degree or Field of Study.
+
+Do not disable editing.
+
+Do not overwrite full CV record on partial edit.
+
+Do not break existing CV preview logic.
+
+✅ FINAL EXPECTED RESULT
+
+After fix:
+
+✔ Work Experience fields show individually
+✔ Education fields show individually
+✔ All fields editable
+✔ Proper save functionality
+✔ Full repeater support
+✔ No missing fields
+✔ No data overwrite
+✔ Database stays consistent
+✔ Future CV generation safe
+✔ Production-ready profile settings
+
+This is a full data structure + edit + save synchronization task.
+
+Implement exactly as described.

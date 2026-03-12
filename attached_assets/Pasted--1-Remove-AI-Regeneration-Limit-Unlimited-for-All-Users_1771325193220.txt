@@ -1,0 +1,216 @@
+✅ 1️⃣ Remove AI Regeneration Limit (Unlimited for All Users)
+Current Problem
+
+System is limiting AI regenerate attempts per user.
+
+Required Change
+
+Remove ALL regeneration limits.
+
+Implementation Instructions
+
+Remove:
+
+Daily limits
+
+Monthly limits
+
+Credit checks
+
+Counter checks
+
+Database usage tracking validation
+
+Keep:
+
+Rate limiting at API level (to prevent abuse)
+
+Debounce click protection
+
+Final Rule
+
+All users (guest + registered) can regenerate unlimited times.
+
+❌ 2️⃣ CRITICAL BUG: Language Switching Showing Wrong Content
+Problem Summary
+
+Steps reproduced:
+
+Regenerated content in English.
+
+Regenerated content in Arabic.
+
+Left site for 2 hours.
+
+Switched language.
+
+Arabic selected → English content appears.
+
+This means:
+
+🚨 Language-specific content is being overwritten
+OR
+🚨 Only one content field is stored in DB
+OR
+🚨 Language state is not synced on load
+
+🧠 ROOT CAUSE
+
+Most likely you are:
+
+Saving regenerated content into the same DB column
+
+Not separating English and Arabic values properly
+
+Or autosave overwriting opposite language
+
+✅ REQUIRED ARCHITECTURE FIX
+
+You MUST store language content separately.
+
+🔹 Correct Data Structure
+
+Each editable field must store:
+
+professional_summary: {
+   en: "English content",
+   ar: "Arabic content"
+}
+
+
+Same for repeater:
+
+work_experience: [
+   {
+      title: { en: "...", ar: "..." },
+      description: { en: "...", ar: "..." }
+   }
+]
+
+🔧 FIX IMPLEMENTATION STEPS
+1️⃣ When Regenerating
+
+When user clicks regenerate:
+
+currentLanguage = getSelectedLanguage()
+
+
+Send that language to AI.
+
+When user selects generated option:
+
+if (currentLanguage === "en") {
+   field.en = selectedContent
+} else {
+   field.ar = selectedContent
+}
+
+
+🚨 DO NOT TOUCH THE OTHER LANGUAGE VALUE.
+
+2️⃣ On Autosave
+
+When autosaving:
+
+Save FULL structure:
+
+{
+   professional_summary: {
+      en: "...",
+      ar: "..."
+   }
+}
+
+
+Do NOT save only active language.
+
+3️⃣ On Page Load (/cv/preview)
+
+When loading data:
+
+currentLanguage = getSelectedLanguage()
+
+if (currentLanguage === "en") {
+   show field.en
+} else {
+   show field.ar
+}
+
+4️⃣ On Language Toggle Switch
+
+When switching EN ↔ AR:
+
+DO NOT regenerate.
+
+Just:
+
+textarea.value = field[currentLanguage]
+
+
+No API call.
+No overwrite.
+No autosave.
+
+⚠️ VERY IMPORTANT
+
+Language switching must be:
+
+Display-level change only
+NOT data mutation.
+
+🧪 Testing Scenario After Fix
+
+Test this exactly:
+
+Generate English summary
+
+Switch to Arabic
+
+Generate Arabic summary
+
+Refresh page
+
+Switch languages multiple times
+
+Expected result:
+
+English shows English
+
+Arabic shows Arabic
+
+No mixing
+
+No overwrite
+
+🎯 Extra Safety Check
+
+Before saving:
+
+Add protection:
+
+if (!field.en) field.en = ""
+if (!field.ar) field.ar = ""
+
+
+So null never overwrites existing content.
+
+💡 Why This Happened
+
+Your system likely:
+
+Uses one single "description" column
+
+Or autosave triggered after toggle
+
+Or regeneration replaces base value
+
+That causes language overwrite.
+
+✅ FINAL EXPECTED BEHAVIOR
+
+✔ Unlimited regenerate
+✔ English and Arabic fully independent
+✔ No overwrite
+✔ Toggle only changes view
+✔ Regeneration respects selected language
+✔ Works after 2 hours / refresh

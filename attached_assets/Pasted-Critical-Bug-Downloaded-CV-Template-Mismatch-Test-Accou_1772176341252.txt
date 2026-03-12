@@ -1,0 +1,192 @@
+Critical Bug – Downloaded CV Template Mismatch
+🎯 Test Account
+
+Email: haresh.storestranform@gmail.com
+
+❌ Problem Summary
+
+Flow tested:
+
+Selected Minimalist Clean template.
+
+Filled all CV details.
+
+Signed up.
+
+Clicked Download My CV.
+
+Preview looked correct (Minimalist Clean).
+
+BUT downloaded CV file was completely different (wrong template / wrong styling).
+
+Then:
+
+Went to Preview/Edit page.
+
+Re-selected Minimalist Clean from template slider.
+
+Downloaded again.
+
+This time download was correct.
+
+This confirms:
+
+The correct template is NOT being used during first download.
+
+Download system is not reading latest template_id.
+
+Preview and Download engines are not aligned.
+
+🔎 Root Cause Investigation Required
+
+We must check:
+
+1️⃣ Is Download Using Correct Template ID?
+
+Verify during download:
+
+What cv_id is being used?
+
+What template_id is being passed?
+
+Is it reading from:
+
+Database?
+
+Cached state?
+
+Default template?
+
+Log before generating PDF:
+
+CV ID
+
+Template ID
+
+Template Name
+
+They MUST match the preview template.
+
+2️⃣ Check If Download Uses Default Template
+
+Possible issue:
+
+Download engine may be doing something like:
+
+template = templates[cv.template_id] || defaultTemplate
+
+If template_id not updated before signup redirect,
+it may fallback to default template.
+
+Remove any fallback behavior.
+
+3️⃣ Check Signup Redirect Flow
+
+Important:
+
+When user signs up mid-flow:
+
+Is CV saved correctly before auth?
+
+Is template_id preserved?
+
+Is new CV created?
+
+Is template_id overwritten?
+
+Likely problem:
+
+During signup,
+CV state may be re-initialized,
+causing template mismatch.
+
+4️⃣ Check Timing Issue
+
+Possibility:
+
+Template selection updated in UI
+
+But not persisted to database yet
+
+Download triggered before DB update completes
+
+Fix:
+
+Before download:
+
+Ensure latest template_id is persisted.
+
+Await save completion.
+
+Then generate file.
+
+5️⃣ Ensure Preview & Download Use Same Rendering Engine
+
+Preview looks correct.
+Download looks wrong.
+
+This means:
+
+They use different rendering logic.
+
+Or different template mapping.
+
+Or download uses outdated template mapping.
+
+Fix:
+
+Preview and Download must use:
+
+Same template renderer
+Same template_id
+Same theme variables
+Same layout config
+
+🧪 Required Testing After Fix
+
+Using haresh.storestranform@gmail.com
+:
+
+Select Minimalist Clean.
+
+Fill data.
+
+Signup.
+
+Click Download My CV.
+
+Confirm downloaded PDF matches preview exactly.
+
+No need to re-select template.
+
+Logout → Login → Download again → Still correct.
+
+Switch template → Download → Correct template.
+
+🚫 Do NOT
+
+Do not rely on default template.
+
+Do not use stale state.
+
+Do not regenerate CV incorrectly.
+
+Do not create new CV during signup.
+
+Do not mismatch preview & download rendering logic.
+
+✅ Final Expected Result
+
+After fix:
+
+✔ Downloaded CV matches preview 100%
+✔ Correct template used first time
+✔ No need to reselect template
+✔ Signup does not reset template
+✔ Template ID properly persisted
+✔ No fallback rendering
+✔ Fully consistent behavior
+
+This is a template persistence + download rendering integrity issue.
+
+Fix it at source level so preview and download always match exactly.

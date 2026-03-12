@@ -1,0 +1,260 @@
+Smart Template Recommendation System (AI-Based)
+🎯 Objective
+
+Enhance the CV creation flow by adding a new intelligent step after the “Professional Summary” step.
+
+The system should:
+
+Analyze user data
+
+Detect mismatch between selected template and profile
+
+Recommend better templates (Free + Premium)
+
+Allow live preview of recommended templates
+
+Integrate AI generation popup with upgrade logic
+
+This will make the system feel smart and AI-powered.
+
+📍 Current Flow
+
+User selects template
+
+User fills basic info
+
+User fills step-by-step details
+
+User reaches preview
+
+AI content already generated
+
+🆕 New Step to Add
+
+Add a new step:
+
+“Smart Template Recommendation”
+
+Position:
+➡ After Professional Summary step
+➡ Before final preview
+
+🧠 1️⃣ Intelligent Matching Logic
+
+The system must analyze:
+
+Employment Status (Student / Professional)
+
+Years of Experience
+
+Target Job Domain
+
+Work Experience depth
+
+Education level
+
+Skills density
+
+Content length
+
+🎯 Matching Rules (Example Logic)
+
+If:
+
+Student
+
+0–1 year experience
+
+Strong education section
+→ Recommend clean, education-focused templates.
+
+If:
+
+5+ years experience
+
+Strong work history
+→ Recommend professional executive templates.
+
+If:
+
+Creative domain
+→ Recommend modern/stylish templates.
+
+If:
+
+Corporate domain
+→ Recommend classic/ATS-friendly templates.
+
+📦 2️⃣ Template Recommendation Output
+
+Display:
+
+Section Title:
+
+“Recommended Templates for You”
+
+Show:
+
+2 Free templates
+
+2 Premium templates
+
+Each card must show:
+
+Template preview thumbnail
+
+Template name
+
+Tag (Recommended / Best Match)
+
+Free or Premium badge
+
+“Preview Template” button
+
+“Select Template” button
+
+👀 3️⃣ Preview Behavior
+
+When user clicks “Preview Template”:
+
+Open modal
+
+Render CV in that template
+
+Use already-filled data
+
+No need to regenerate data
+
+Smooth loading animation
+
+🔄 4️⃣ After User Selects Recommended Template
+
+If Free Template:
+
+Switch template
+
+Allow direct preview
+
+If Premium Template:
+
+If user is Free → Show upgrade modal
+
+If user is Premium → Allow switch
+
+🤖 5️⃣ AI Preview Popup Modification
+
+Currently when clicking Preview:
+Popup says AI is generating.
+
+We need to modify this behavior.
+
+Since AI content is already generated step-by-step:
+
+Instead of “AI is generating…”
+
+Show:
+
+“Optimizing your CV for the selected template…”
+
+Add:
+
+Subtle animated loader
+
+Smart messaging
+
+Professional AI feel
+
+💎 6️⃣ Upgrade System Integration
+
+If user selects Premium template:
+
+Show modal:
+
+Title:
+“Unlock Premium Template”
+
+Message:
+“This template is designed for high-impact professional profiles.”
+
+Show:
+
+Premium features
+
+Upgrade button
+
+Cancel option
+
+No 404.
+No broken flow.
+
+📱 7️⃣ Mobile Experience
+
+1 template per row
+
+Clear badge visibility
+
+Smooth horizontal scroll (optional)
+
+Clean CTA buttons
+
+No clutter
+
+🔐 8️⃣ Data Handling Rules
+
+Do NOT lose entered data
+
+Do NOT regenerate AI content unnecessarily
+
+Do NOT overwrite previous CV
+
+Only update template ID
+
+Preserve CV ID
+
+Maintain database integrity
+
+🧪 9️⃣ Testing Scenarios
+
+Test:
+
+Student profile → student-friendly templates recommended
+
+5+ years profile → executive templates recommended
+
+Creative domain → modern template suggested
+
+Premium template click as free user → upgrade modal
+
+Switch template → preview updates correctly
+
+Refresh page → selected template persists
+
+🚫 Do NOT
+
+Do not regenerate all content again
+
+Do not break existing flow
+
+Do not lose saved data
+
+Do not overwrite CV record incorrectly
+
+Do not mix user CVs
+
+✅ Final Expected Result
+
+After implementation:
+
+✔ Smart AI template recommendation step
+✔ Free + Premium suggestions
+✔ Intelligent matching logic
+✔ Live preview support
+✔ Upgrade integration
+✔ Smooth AI-style optimization popup
+✔ Mobile optimized
+✔ Fully integrated with current flow
+✔ Premium SaaS experience
+
+This feature will transform the system from a static template picker into a smart AI-driven CV platform.
+
+Implement cleanly and integrate with existing architecture.

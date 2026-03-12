@@ -1,0 +1,260 @@
+Homepage Redesign & Optimized CV Builder Flow
+🎯 OBJECTIVE
+
+Redesign the homepage CTA section and significantly improve the CV creation flow to:
+
+Increase conversions
+
+Reduce friction
+
+Improve mobile experience
+
+Create a modern, guided onboarding process
+
+Align fully with our CV branding kit
+
+Make the process feel fast and effortless
+
+✅ 1. HOMEPAGE CTA UPDATE
+A. Replace Existing CTA Button
+
+Replace:
+
+“Start Building Free →”
+
+With our existing branded primary button:
+
+“Start with FREE CV”
+
+Use the global reusable button component already created in the system.
+
+B. Update Hero Section Messaging
+
+Rewrite and enhance the messaging with stronger, conversion-focused copy.
+
+Suggested Copy:
+
+Headline:
+
+Create a Job-Winning CV in Minutes
+
+Subheading:
+
+Choose a professionally designed template, add your details in a guided flow, or import your existing CV to get started instantly.
+
+Keep the tone:
+
+Confident
+
+Clear
+
+Modern
+
+Action-driven
+
+Fully aligned with our CV branding kit (colors, spacing, typography)
+
+✅ 2. ADD “JUST THREE SIMPLE STEPS” SECTION
+
+Below the hero section, add a clean 3-step explainer section.
+
+Section Title:
+
+Just Three Simple Steps
+
+Steps:
+1️⃣ Pick Your Template
+
+Select from professionally crafted CV templates tailored to your experience.
+
+2️⃣ Add Your Information
+
+Fill in your details through a simple guided process.
+
+3️⃣ Download & Apply
+
+Export your CV and start applying with confidence.
+
+Design Requirements:
+
+Minimal icons
+
+Clean layout
+
+Strong spacing
+
+Fully responsive
+
+Mobile-first
+
+Follow branding kit strictly
+
+✅ 3. CV CREATION FLOW – UX OPTIMIZATION
+
+We are restructuring the onboarding experience.
+
+🔁 CURRENT FLOW:
+
+Homepage → Select Template → Basic Info Page (all fields visible)
+
+🚀 NEW FLOW:
+
+Homepage → Select Template → Guided Multi-Step Progressive Form
+
+🧠 4. OPTIMIZED STEP STRUCTURE (REDUCED STEPS – GROUPED FIELDS)
+
+Instead of one question per screen, we will group related fields logically to reduce friction and clicks.
+
+🎯 Goal:
+
+Make the process feel fast, clean, and professional — not like a long survey.
+
+🟢 Step 1 – Basic Information
+
+Group these fields together:
+
+Full Name
+
+Professional Job Title
+
+Email
+
+Phone
+
+Add helpful microcopy:
+
+This information will appear at the top of your CV.
+
+Design:
+
+Max 3–4 inputs visible
+
+Clean spacing
+
+Mobile optimized
+
+Clear “Next” button
+
+Step indicator at top (Step 1 of X)
+
+🟢 Step 2 – Location (Optional)
+
+City
+
+Country
+
+Keep minimal and clean.
+
+🟢 Step 3 – Work Experience
+
+Add job entries (repeater supported)
+
+Company
+
+Position
+
+Dates
+
+Description
+
+This step needs more space and structured UI.
+
+🟢 Step 4 – Education
+
+Structured similar to experience.
+
+🟢 Step 5 – Professional Summary
+
+At this stage, introduce:
+
+✨ Choose How You Want to Continue
+
+Build Manually
+
+Generate with AI
+
+Make this screen feel premium and exciting.
+
+📊 PROGRESS BAR REQUIREMENTS
+
+Visible at top
+
+Show “Step X of Y” or percentage
+
+Smooth animated transitions
+
+Clear forward/back navigation
+
+Do not lose data when navigating back
+
+Auto-save progress
+
+📱 MOBILE-FIRST DESIGN REQUIREMENTS
+
+Clean one-section focus
+
+No clutter
+
+Thumb-friendly buttons
+
+Proper spacing
+
+Smooth transitions between steps
+
+Keyboard-aware spacing
+
+💡 ADDITIONAL UX ENHANCEMENTS
+
+Add subtle micro-animations between steps
+
+Auto-save user input
+
+Allow user to go back without losing data
+
+Add small trust indicators on homepage
+
+Add subtle urgency messaging like:
+
+Create your CV in under 10 minutes
+
+Keep total steps between 4–5 maximum
+
+Keep cognitive load low
+
+Make the process feel premium and guided
+
+🎨 DESIGN SYSTEM REQUIREMENTS
+
+Fully aligned with CV branding kit
+
+Consistent color usage
+
+Clear CTA hierarchy
+
+Modern rounded UI components
+
+Clean typography
+
+Strong visual hierarchy
+
+Maintain reusable component structure
+
+🎯 FINAL GOAL
+
+Deliver a CV builder experience that feels:
+
+Fast
+
+Guided
+
+Premium
+
+Modern
+
+Conversion-optimized
+
+Mobile-first
+
+Simple but powerful
+
+Refactor components if necessary to maintain scalable and reusable architecture.

@@ -1,0 +1,246 @@
+Fix Smart Template UI + Template Mismatch + Selection Clarity
+
+We tested with user:
+
+akshar.storestranform@gmail.com
+
+CV Name: Akshar's CV
+
+Multiple critical issues found.
+
+1️⃣ Smart Template Step – UI Looks Crowded & Low Quality
+❌ Problem
+
+Recommendation section looks crowded
+
+No proper spacing
+
+Feels messy
+
+Not premium
+
+Doesn’t look like AI-powered system
+
+Templates stacked without hierarchy
+
+✅ Required UI Redesign
+
+Redesign Smart Template step to feel:
+
+Clean
+
+Spacious
+
+Premium SaaS
+
+AI-powered
+
+Clear hierarchy
+
+Layout Improvement:
+
+Use structured split layout:
+
+Left Side:
+
+Recommended Templates list
+
+Sorted by match %
+
+Clear spacing between cards
+
+Show badge:
+🔥 Best Match
+⭐ Recommended
+💎 Premium
+
+Right Side:
+
+Large live preview panel
+
+Smooth transition when switching templates
+
+Show template name clearly
+
+Show FREE / PREMIUM badge clearly
+
+Improve Visual Hierarchy:
+
+Add section title:
+“AI Recommended Templates for You”
+
+Add subtitle:
+“Based on your experience, domain, and career goals”
+
+Increase spacing
+
+Reduce card clutter
+
+Improve hover animation
+
+Improve shadows & border radius
+
+Make it feel like advanced AI recommendation — not static card grid.
+
+2️⃣ Critical Bug – Template Mismatch in Dashboard
+❌ Major Problem
+
+User selected:
+
+Elegant Template
+
+But dashboard shows:
+
+Simple Professional
+
+This is completely wrong.
+
+This means:
+
+Template ID not saving correctly
+
+OR template_id overwritten later
+
+OR preview saving wrong template
+
+OR dashboard reading wrong template_id
+
+✅ Required Fix
+
+When user selects a template in Smart Step:
+
+Update template_id immediately
+
+Save correctly in CV record
+
+Do NOT overwrite with preview switching
+
+Ensure preview uses latest template_id
+
+Ensure dashboard fetches latest template_id
+
+Add confirmation:
+
+✔ “Elegant Template Applied”
+
+Test flow:
+
+Select Elegant
+
+Go to Preview
+
+Go to Dashboard
+
+Confirm Elegant appears
+
+Logout → Login
+
+Confirm Elegant still appears
+
+No mismatch allowed.
+
+3️⃣ User Confusion – Which Template Is Selected?
+❌ Problem
+
+In Smart Template step:
+
+User can preview different templates.
+
+But they don’t know clearly:
+
+Which template is currently selected?
+
+Which one will be used in final preview?
+
+This causes confusion.
+
+✅ Required Fix
+A. Clearly Highlight Selected Template
+
+In recommendation list:
+
+Add strong border
+
+Add checkmark icon
+
+Add label:
+“Currently Selected”
+
+Only one template can have this.
+
+B. Show Selected Template in AI Generation Popup
+
+When user clicks “Final Preview”:
+
+In the AI animation popup show:
+
+“Preparing your CV using:
+✨ Elegant Template”
+
+Show:
+
+Small thumbnail
+
+Template name
+
+Free / Premium badge
+
+This removes confusion.
+
+4️⃣ Improve Final AI Popup Experience
+
+Instead of generic:
+
+“AI is generating…”
+
+Use smarter flow:
+
+Step 1:
+Analyzing your profile…
+
+Step 2:
+Applying Elegant Template layout…
+
+Step 3:
+Optimizing spacing and typography…
+
+Step 4:
+Finalizing professional formatting…
+
+Add:
+
+Animated progress bar
+
+Subtle visual transitions
+
+Smooth micro animations
+
+Make it feel premium and intelligent.
+
+5️⃣ Final Expected Result
+
+After fixes:
+
+✔ Smart Template UI clean & premium
+✔ No crowded layout
+✔ Selected template clearly highlighted
+✔ Dashboard always shows correct template
+✔ No template mismatch
+✔ AI popup shows selected template name
+✔ User never confused
+✔ Fully consistent template state
+✔ Professional AI feel
+
+This is a UX + State Integrity + Template Persistence Fix.
+
+Focus especially on:
+
+template_id saving
+
+dashboard fetch logic
+
+state synchronization
+
+clear selected indicator
+
+No more template mismatch allowed.
